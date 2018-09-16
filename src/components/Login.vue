@@ -1,10 +1,10 @@
 <template>
 	<div class="login">
-		<!-- <img class="bg" src="../../static/login.jpg"> -->
+		<img class="bg" src="../../static/login.jpg">
 
 		<div class="content-in">
 
-			<yd-cell-group>
+        	<yd-cell-group class="m-t-h">
 		        <yd-cell-item>
 		            <span slot="left">用户名：</span>
 		            <yd-input slot="right" required v-model="name" max="20" placeholder="请输入用户名"></yd-input>
@@ -14,9 +14,17 @@
 		            <span slot="left">密码：</span>
 		            <yd-input slot="right" type="password" v-model="password" placeholder="请输入密码"></yd-input>
 		        </yd-cell-item>
-		    
+
+		        <yd-cell-item>
+		            <span slot="left">记住密码</span>
+		            <yd-switch slot="right" v-model="remember"></yd-switch>
+		        </yd-cell-item>
+
 		    </yd-cell-group>
 
+		    
+	        <yd-button size="large" @click.native="handleLogin" type="primary">登录</yd-button>
+		    
 
 		</div>
 
@@ -35,18 +43,41 @@ export default {
 		return {
 			name: '',
 			password: '',
+			remember: false,
 		}
 	},
 	mounted () {
-		
-		this.getCodeImg()
+		// 获取记录的名字和密码
+		this.getName()
 	},
 	methods:{
 		
-		// 获取图片
-		getCodeImg() {
+		// 记录名字和密码
+		setName () {
 
-		}
+		},
+
+		// 获取名字和密码
+		getName () {
+
+		},
+
+		// 登录
+		handleLogin () {
+			const { password, name } = this
+			if (name && password) {
+
+
+			} else {
+				this.$dialog.toast({
+					mes: '请输入用户名和密码',
+					icon: 'none',
+					timeout: 2000,
+				})
+			}
+		},
+
+
 
 	},
 
@@ -75,6 +106,14 @@ export default {
 
 .login .content-in{
 	padding: 20px;
+}
+
+.b-r-3 {
+	border-radius: 3px;
+}
+
+.m-t-h {
+	margin-top: 50%;
 }
 
 
