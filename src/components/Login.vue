@@ -6,7 +6,7 @@
 
         	<yd-cell-group class="m-t-h">
 		        <yd-cell-item>
-		            <span slot="left">用户名：</span>
+		            <span slot="left">账号：</span>
 		            <yd-input slot="right" required v-model="name" max="20" placeholder="请输入用户名"></yd-input>
 		        </yd-cell-item>
 
@@ -23,7 +23,7 @@
 		    </yd-cell-group>
 
 		    
-	        <yd-button size="large" @click.native="handleLogin" type="primary">登录</yd-button>
+	        <yd-button size="large" shape="circle" @click.native="handleLogin" type="primary">登录</yd-button>
 		    
 
 		</div>
@@ -54,7 +54,7 @@ export default {
 		
 		// 记录名字和密码
 		setName () {
-
+			console.log('记录名字')
 		},
 
 		// 获取名字和密码
@@ -64,10 +64,14 @@ export default {
 
 		// 登录
 		handleLogin () {
-			const { password, name } = this
+			const { password, name, remember } = this
 			if (name && password) {
 
 
+				// 记住密码
+				if (remember) {
+					this.setName()
+				}
 			} else {
 				this.$dialog.toast({
 					mes: '请输入用户名和密码',
