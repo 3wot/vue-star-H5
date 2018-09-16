@@ -1,6 +1,6 @@
-# zaoxue
+# my-project
 
-> zaoxue project
+> A Vue.js project
 
 ## Build Setup
 

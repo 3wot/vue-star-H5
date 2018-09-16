@@ -12,20 +12,15 @@ export default {
 </script>
 
 <style>
-
-html,body,#app{
-  width: 100%;
-  height: 100%;
-  padding: 0px;
-  margin: 0px;
-}
 #app {
-  
-  font-family: '微软雅黑','Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-a{
-  text-decoration: none;
+  text-align: center;
+  color: #2c3e50;
+  
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 </style>

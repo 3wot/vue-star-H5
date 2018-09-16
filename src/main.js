@@ -2,29 +2,11 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import $ from 'jquery'
-// frozenui
-// import '@/style/frozenui.css'
-// mint-ui
-import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
-
-
 import router from './router'
 
-Vue.use(MintUI)
-
-Vue.prototype.userInfo = {
-	name:'夏天',
-	uid:"xiatian",
-  phone:'',
-  set(data) {
-    this.name = data.name;
-    this.phone = data.phone;
-    this.uid = data.dep_id;
-    this.id = data.id;
-  }
-}
+import YDUI from 'vue-ydui' /* 相当于import YDUI from 'vue-ydui/ydui.rem.js' */
+import 'vue-ydui/dist/ydui.rem.css'
+Vue.use(YDUI)
 
 Vue.config.productionTip = false
 
@@ -33,10 +15,5 @@ new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>',
-  data:{
-  	user:{
-  		name:'jjw'
-  	}
-  }
+  template: '<App/>'
 })
