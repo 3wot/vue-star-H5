@@ -10,7 +10,7 @@ Vue.use(YDUI)
 
 // 引入axios
 import axios from 'axios'
-Vue.prototype.$h = axios
+Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 

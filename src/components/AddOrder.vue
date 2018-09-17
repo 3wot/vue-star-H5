@@ -1,7 +1,7 @@
+
 <template>
 	<div class="login">
-		<img class="bg" src="../../static/login.jpg">
-
+		
 		<div class="content-in">
 
         	<yd-cell-group class="m-t-h">
@@ -39,7 +39,7 @@ export default {
 	components:{
 	// Button,Field
 	},
-	name: 'Login',
+	name: 'AddOrder',
 	data () {
 		return {
 			name: '',
@@ -48,48 +48,10 @@ export default {
 		}
 	},
 	mounted () {
-		// 获取记录的名字和密码
-		this.getName()
+		
 	},
 	methods:{
 		
-		// 记录名字和密码
-		setName () {
-			console.log('记录名字')
-		},
-
-		// 获取名字和密码
-		getName () {
-
-		},
-
-		// 登录
-		handleLogin () {
-			const { password, name, remember } = this
-			if (name && password) {
-				
-				const url = URLS('login')
-				this.$http.get(url).then(res => {
-					console.log('aaa')
-				})
-
-				// 调到首页
-				this.$router.push({ name : 'index' })
-				// 记住密码
-				if (remember) {
-					this.setName()
-				}
-			} else {
-				this.$dialog.toast({
-					mes: '请输入用户名和密码',
-					icon: 'none',
-					timeout: 2000,
-				})
-			}
-		},
-
-
-
 	},
 
 
