@@ -8,6 +8,10 @@ import YDUI from 'vue-ydui' /* 相当于import YDUI from 'vue-ydui/ydui.rem.js' 
 import 'vue-ydui/dist/ydui.rem.css'
 Vue.use(YDUI)
 
+// 引入axios
+import axios from 'axios'
+Vue.prototype.$h = axios
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

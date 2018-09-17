@@ -33,6 +33,7 @@
 
 <script>
 // import Router from 'vue-router'
+import URLS from '../router/link'
 
 export default {
 	components:{
@@ -66,8 +67,12 @@ export default {
 		handleLogin () {
 			const { password, name, remember } = this
 			if (name && password) {
-
-
+				
+				const url = URLS('login')
+				this.$h.get(url)
+				.then(res => {
+					console.log('aaa')
+				})
 				// 记住密码
 				if (remember) {
 					this.setName()
