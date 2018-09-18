@@ -47,7 +47,7 @@ export default {
 		},
 		
 		gotoAdd() {
-			// 调到首页
+			// 调到预报单
 			this.$router.push({ name : 'addOrder' })
 		},
 

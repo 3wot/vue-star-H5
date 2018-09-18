@@ -1,32 +1,64 @@
-
 <template>
-	<div class="login">
+	<div class="index">
 		
-		<div class="content-in">
+		 <yd-layout>
+	       <!-- 头 -->
+			<yd-navbar slot="navbar" title="预报单" fontsize=".4rem" bgcolor="#5871f5" color="#ffffff">
+				<span slot="left" @click="gotoIndex">
+					<yd-navbar-back-icon color="#ffffff"></yd-navbar-back-icon>
+				</span>
+			</yd-navbar>
 
-        	<yd-cell-group class="m-t-h">
+			<!-- 内容 -->
+			<yd-cell-group>
 		        <yd-cell-item>
-		            <span slot="left">账号：</span>
-		            <yd-input slot="right" required v-model="name" :show-required-icon="true" max="20" placeholder="请输入用户名"></yd-input>
+		            <span slot="left"><span class="danger">* </span>所有权人：</span>
+		            <yd-input slot="right" required :show-required-icon="false"  placeholder="请输入所有权人姓名"></yd-input>
 		        </yd-cell-item>
-
+		    </yd-cell-group>
+		    <yd-cell-group>
 		        <yd-cell-item>
-		            <span slot="left">密码：</span>
-		            <yd-input slot="right" type="password" v-model="password" placeholder="请输入密码"></yd-input>
+		            <span slot="left"><span class="danger">* </span>房屋坐落：</span>
+		            <yd-input slot="right" required :show-required-icon="false"  placeholder="请输入房屋地址"></yd-input>
 		        </yd-cell-item>
-
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">用途：</span>
+		            <select slot="right" v-model="select1">
+		               	<option v-for="item in option1">{{item}}</option>
+		            </select>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
 		        <yd-cell-item>
-		            <span slot="left">记住密码</span>
-		            <yd-switch slot="right" v-model="remember"></yd-switch>
+		            <span slot="left"><span class="danger">* </span>房屋建筑面积：</span>
+		            <yd-input type="number" slot="right" required :show-required-icon="false"  placeholder="请输入房屋建筑面积"></yd-input>
 		        </yd-cell-item>
-
 		    </yd-cell-group>
 
-		    
-	        <yd-button size="large" shape="circle" @click.native="handleLogin" type="primary">登录</yd-button>
-		    
+		   	<div class="upload-img">
+	   		 	<div class="upload-title"><span class="danger">* </span>房屋建筑面积：</div>
+		   		<div class="upload-content">
+		   			<div v-for="item in option1" class="upload-item">
+		   				<yd-icon class="dele-icon" color="#5871f5" size=".4rem" name="error"></yd-icon>
+		   				<img src="item">
+		   			</div>
+		   			
+		   			<div class="upload-item">
+		   				添加
+		   			</div>
 
-		</div>
+		   			<div style="clear: both;"></div>
+
+		   		</div>
+
+		   	</div>
+		 	
+
+	    </yd-layout>
+
+
 
 	</div>
 </template>
@@ -42,16 +74,26 @@ export default {
 	name: 'AddOrder',
 	data () {
 		return {
-			name: '',
-			password: '',
-			remember: false,
+			select1 : '住宅',
+			option1 : ['无','住宅','别墅','商业','公寓','办公'],
 		}
 	},
 	mounted () {
 		
 	},
 	methods:{
-		
+		gotoIndex() {
+			this.$dialog.confirm({
+                title: '提示',
+                mes: '当前页面如有修改，将会丢失，你确定退出吗？',
+                opts: () => {
+                    // 跳到首页
+					this.$router.push({ name : 'index' })
+                }
+            });
+		},
+
+
 	},
 
 
@@ -59,7 +101,7 @@ export default {
 </script>
 
 <style scoped>
-.login {
+.index {
 	position: absolute;
 	top: 0px;
 	left: 0px;
@@ -68,25 +110,9 @@ export default {
 	overflow: hidden;
 	vertical-align: middle;
 }
-
-.login img.bg {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	height: 100%;
-	width: 100%;
-}
-
-.login .content-in{
-	padding: 20px;
-}
-
-.b-r-3 {
-	border-radius: 3px;
-}
-
-.m-t-h {
-	margin-top: 50%;
+.danger {
+	color: red;
+	display: none;
 }
 
 
