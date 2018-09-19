@@ -9,6 +9,15 @@
 				</span>
 			</yd-navbar>
 
+			<div class="slot-bottom" slot="bottom">
+				<yd-flexbox>
+
+        	 		<yd-button class="bottom-btn" size="large">提交</yd-button>	
+        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">完成</yd-button>	
+
+		        </yd-flexbox>
+			</div>
+
 			<!-- 内容 -->
 			<yd-cell-group>
 		        <yd-cell-item>
@@ -37,10 +46,7 @@
 		        </yd-cell-item>
 		    </yd-cell-group>
 
-			<ImgUpload title="BBB" :arr="option2" @imgChange="change"></ImgUpload>		   
-
-		   	<ImgUpload title="AAA" :arr="option1" @imgChange="change"></ImgUpload>
-		 	
+			<ImgUpload title="房产证照片" :arr="option2" @imgChange="change"></ImgUpload>  
 
 	    </yd-layout>
 
@@ -50,7 +56,6 @@
 </template>
 
 <script>
-// import Router from 'vue-router'
 import URLS from '../router/link'
 import ImgUpload from './ImgUpload'
 
@@ -81,11 +86,17 @@ export default {
                 }
             });
 		},
+		// 完成
+		finish () {
+			// 跳到首页
+			this.$router.push({ name : 'index' })
+		},
 		
 		change(obj) {
 			console.log(obj)
 			console.log(this.option1)
 		},
+
 
 	},
 

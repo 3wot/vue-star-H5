@@ -37,3 +37,17 @@
 	color: red;
 	display: none;
 }
+
+.slot-bottom {
+	height: 1rem;
+	line-height: 1rem;
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+	background-color: #ffffff;
+
+}
+
+.bottom-btn {
+	margin: .05rem !important;
+}

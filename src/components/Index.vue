@@ -9,9 +9,12 @@
 			</yd-navbar>
 
 		 	<div slot="top" style="height: 1rem;">
-	 		 	<span class="line" :class="{ active: type == 0 }" @click="changeType(0)">进行中的报单</span>
-	 		 	<span class="line" :class="{ active: type == 1 }" @click="changeType(1)">历史报单</span>
+	 		 	<span class="line" :class="{ active: type == 1 }" @click="changeType(1)">进行中的报单</span>
+	 		 	<span class="line" :class="{ active: type == 2 }" @click="changeType(2)">历史报单</span>
 		 	</div>
+
+
+
 
 	    </yd-layout>
 
@@ -31,19 +34,65 @@ export default {
 	name: 'Index',
 	data () {
 		return {
-			type: 0, // 0 进行 1 历史
-			password: '',
-			remember: false,
+			// 1 进行 2 历史
+			type: 1,
+			// 订单列表
+			orderList: [
+				{
+					"Id" : "",
+					"BorrowerName" : "张三", 
+					"BorrowerMobile" : "15111112222", 
+					"BorrowerIDNO" : "XXXXXXXXXX", 
+					"CreationDateTime" : "2018-08-01 18:00:00", 
+					"Status" : 0, 
+					"CurrentOperation" : "估值"
+				},
+				{
+					"Id" : "",
+					"BorrowerName" : "张三", 
+					"BorrowerMobile" : "15111112222", 
+					"BorrowerIDNO" : "XXXXXXXXXX", 
+					"CreationDateTime" : "2018-08-01 18:00:00", 
+					"Status" : 0, 
+					"CurrentOperation" : "估值"
+				},
+				{
+					"Id" : "",
+					"BorrowerName" : "张三", 
+					"BorrowerMobile" : "15111112222", 
+					"BorrowerIDNO" : "XXXXXXXXXX", 
+					"CreationDateTime" : "2018-08-01 18:00:00", 
+					"Status" : 0, 
+					"CurrentOperation" : "估值"
+				},
+				{
+					"Id" : "",
+					"BorrowerName" : "张三", 
+					"BorrowerMobile" : "15111112222", 
+					"BorrowerIDNO" : "XXXXXXXXXX", 
+					"CreationDateTime" : "2018-08-01 18:00:00", 
+					"Status" : 0, 
+					"CurrentOperation" : "估值"
+				}
+			], 
 		}
 	},
 	mounted () {
 		
 	},
 	methods:{
-		changeType(type) {
-			console.log(type)
-			this.type = type
 
+		changeType(type) {
+			this.type = type
+			const url = URLS('OrderList')
+			const param = {
+				uid: 'AAA',
+				token: "bbb",
+				order_type: type,
+			}
+			this.$http.get(url,param).then(res => {
+				console.log(res)
+			})
 		},
 		
 		gotoAdd() {

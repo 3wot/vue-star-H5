@@ -1,10 +1,15 @@
 
 // 域名
-const HOST = 'http://aaa.com'
+const HOST = 'http://domain/service.asmx/'
 
 // 相对地址
 const urls = {
-	'login' : '/login'
+	'Login' : 'Login',
+	'UploadImage' : 'UploadImage',
+	'OrderList' : 'OrderList',
+	'OrderOperationList' : 'OrderOperationList',
+	'OperationList' : 'OperationList',
+	'NewOrder' : 'NewOrder',
 }
 
 // 外部方法
