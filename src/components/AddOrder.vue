@@ -37,23 +37,9 @@
 		        </yd-cell-item>
 		    </yd-cell-group>
 
-		   	<div class="upload-img">
-	   		 	<div class="upload-title"><span class="danger">* </span>房屋建筑面积：</div>
-		   		<div class="upload-content">
-		   			<div v-for="item in option1" class="upload-item">
-		   				<yd-icon class="dele-icon" color="#5871f5" size=".4rem" name="error"></yd-icon>
-		   				<img src="item">
-		   			</div>
-		   			
-		   			<div class="upload-item">
-		   				添加
-		   			</div>
+			<ImgUpload title="BBB" :arr="option2" @imgChange="change"></ImgUpload>		   
 
-		   			<div style="clear: both;"></div>
-
-		   		</div>
-
-		   	</div>
+		   	<ImgUpload title="AAA" :arr="option1" @imgChange="change"></ImgUpload>
 		 	
 
 	    </yd-layout>
@@ -66,9 +52,11 @@
 <script>
 // import Router from 'vue-router'
 import URLS from '../router/link'
+import ImgUpload from './ImgUpload'
 
 export default {
 	components:{
+		ImgUpload
 	// Button,Field
 	},
 	name: 'AddOrder',
@@ -76,6 +64,7 @@ export default {
 		return {
 			select1 : '住宅',
 			option1 : ['无','住宅','别墅','商业','公寓','办公'],
+			option2 : ['无','住宅','别墅','商业','公寓','办公'],
 		}
 	},
 	mounted () {
@@ -92,7 +81,11 @@ export default {
                 }
             });
 		},
-
+		
+		change(obj) {
+			console.log(obj)
+			console.log(this.option1)
+		},
 
 	},
 
@@ -109,10 +102,6 @@ export default {
 	bottom: 0px;
 	overflow: hidden;
 	vertical-align: middle;
-}
-.danger {
-	color: red;
-	display: none;
 }
 
 
