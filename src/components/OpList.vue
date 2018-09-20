@@ -10,7 +10,7 @@
 				<span slot="right" @click="gotoLook">查看资料</span>
 			</yd-navbar>
 
-			<div arrow v-for="(item,index) in opList" :key="index" class="op-item" :class="{'warn':item.Status == 0}">
+			<div @click="handleTapOp(index)" v-for="(item,index) in opList" :key="index" class="op-item" :class="{'warn':item.Status == 0}">
 				<yd-icon v-if="item.Status != 0" class="op-item-icon" color="#ffffff" size=".4rem" name="shield-outline"></yd-icon>
 				<yd-icon v-if="item.Status == 0" class="op-item-icon" color="#ffffff" size=".4rem" name="time"></yd-icon>
 				<!-- 姓名 -->
@@ -49,22 +49,36 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "估值",
 					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "估值确认",
+					"CreationDateTime" : "",
 					"Status" : "0", // 0，未操作，1，已操作
 				},
-				// {
-				// 	"Id" : "AAA",
-				// 	"OperationId" : "12354",
-				// 	"OperationName" : "预报单",
-				// 	"CreationDateTime" : "",
-				// 	"Status" : "1", // 0，未操作，1，已操作
-				// },
-				// {
-				// 	"Id" : "AAA",
-				// 	"OperationId" : "12354",
-				// 	"OperationName" : "预报单",
-				// 	"CreationDateTime" : "",
-				// 	"Status" : "1", // 0，未操作，1，已操作
-				// },
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "正式报单",
+					"CreationDateTime" : "",
+					"Status" : "0", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "初审",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "初审确认",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
 				// {
 				// 	"Id" : "AAA",
 				// 	"OperationId" : "12354",
@@ -80,8 +94,6 @@ export default {
 	},
 	methods:{
 
-		
-		
 		gotoLook() {
 			// 调到预报单
 			const id = this.$route.params.id
@@ -92,6 +104,24 @@ export default {
 		// 首页
 		gotoIndex() {
 			this.$router.push({ name : 'index' })
+		},
+
+		// 处理点击操作
+		handleTapOp(idx) {
+			if (this.opList && idx < this.opList.length) {
+				const op = this.opList[idx]
+				const name = op.OperationName
+
+				if (name == '估值确认') {
+					this.$router.push({ name : 'confirmValuation' })
+				}
+				if (name == '正式报单') {
+					this.$router.push({ name : 'form' })
+				}
+				if (name == '初审确认') {
+					this.$router.push({ name : 'confirmFirstCheck' })
+				}
+			}
 		},
 
 	},

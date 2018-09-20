@@ -6,6 +6,9 @@ import Index from '@/components/Index'
 import AddOrder from '@/components/AddOrder'
 import OpList from '@/components/OpList'
 import Look from '@/components/Look'
+import ConfirmValuation from '@/components/ConfirmValuation'
+import Form from '@/components/Form'
+import ConfirmFirstCheck from '@/components/ConfirmFirstCheck'
 
 Vue.use(Router)
 
@@ -17,29 +20,52 @@ export default new Router({
 		//   component: HelloWorld
 		// },
 		{
+			// 登录
 			path: '/',
 			name: 'login',
 			component: Login
 		},
 		{
+			// 首页
 			path: '/index',
 			name: 'index',
 			component: Index
 		},
 		{
+			// 预报单
 			path: '/addOrder',
 			name: 'addOrder',
 			component: AddOrder
 		},
 		{
+			// 操作列表
 			path: '/opList',
 			name: 'opList',
 			component: OpList
 		},
 		{
+			// 查看所有资料
 			path: '/look',
 			name: 'look',
 			component: Look
+		},
+		{
+			// 估值确认
+			path: '/confirmValuation',
+			name: 'confirmValuation',
+			component: ConfirmValuation
+		},
+		{
+			// 正式报单
+			path: '/form',
+			name: 'form',
+			component: Form
+		},
+		{
+			// 初审确认
+			path: '/confirmFirstCheck',
+			name: 'confirmFirstCheck',
+			component: ConfirmFirstCheck
 		},
 	]
 })
