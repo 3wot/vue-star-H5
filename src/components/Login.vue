@@ -7,12 +7,12 @@
         	<yd-cell-group class="m-t-h">
 		        <yd-cell-item>
 		            <span slot="left">账号：</span>
-		            <yd-input slot="right" required v-model="name" :show-required-icon="true" max="20" placeholder="请输入用户名"></yd-input>
+		            <yd-input slot="right" required v-model="mobile" :show-required-icon="true" placeholder="请输入手机号"></yd-input>
 		        </yd-cell-item>
 
 		        <yd-cell-item>
 		            <span slot="left">密码：</span>
-		            <yd-input slot="right" type="password" v-model="password" placeholder="请输入密码"></yd-input>
+		            <yd-input slot="right" type="password" v-model="pwd" placeholder="请输入密码"></yd-input>
 		        </yd-cell-item>
 
 		        <yd-cell-item>
@@ -22,7 +22,7 @@
 
 		    </yd-cell-group>
 
-		    
+
 	        <yd-button size="large" shape="circle" @click.native="handleLogin" type="primary">登录</yd-button>
 		    
 
@@ -33,7 +33,8 @@
 
 <script>
 // import Router from 'vue-router'
-import URLS from '../router/link'
+// import GETJSON from '../router/service'
+
 
 export default {
 	components:{
@@ -42,8 +43,8 @@ export default {
 	name: 'Login',
 	data () {
 		return {
-			name: '',
-			password: '',
+			mobile: '',
+			pwd: '',
 			remember: false,
 		}
 	},
@@ -56,21 +57,46 @@ export default {
 		// 记录名字和密码
 		setName () {
 			console.log('记录名字')
+			const data = {
+				mobile: this.mobile,
+				pwd: this.pwd
+			}
+			this.JCACHE.set('name', data)
 		},
 
 		// 获取名字和密码
 		getName () {
-
+			const data = this.JCACHE.get('name')
+			console.log('获取名字和密码',data)
+			if (data) {
+				const { mobile, pwd } = data
+				this.mobile = mobile
+				this.pwd = pwd	
+			}
 		},
 
 		// 登录
 		handleLogin () {
-			const { password, name, remember } = this
-			if (name && password) {
+			const { pwd, mobile, remember } = this
+			if (mobile && pwd) {
 				
-				const url = URLS('login')
-				this.$http.get(url).then(res => {
-					console.log('aaa')
+				const param = {
+					a: 'A'
+				}
+				this.GETJSON('Login', param, res => {
+					if (res.ret) {
+						const { uid, token } = res.data
+						USER_INFO.uid = uid
+						USER_INFO.token = token
+						// 首页
+						this.$router.push({ name : 'index' })
+					} else {
+						this.$dialog.toast({
+							mes: res.mes,
+							icon: 'none',
+							timeout: 2000,
+						})
+					}
 				})
 
 				// 调到首页
@@ -81,7 +107,7 @@ export default {
 				}
 			} else {
 				this.$dialog.toast({
-					mes: '请输入用户名和密码',
+					mes: '请输入账号和密码',
 					icon: 'none',
 					timeout: 2000,
 				})

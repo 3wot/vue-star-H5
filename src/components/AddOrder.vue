@@ -46,7 +46,7 @@
 		        </yd-cell-item>
 		    </yd-cell-group>
 
-			<ImgUpload title="房产证照片" :arr="option2" @imgChange="change"></ImgUpload>  
+			<ImgUpload title="房产证照片" :arr="option2"></ImgUpload>  
 
 	    </yd-layout>
 
@@ -90,11 +90,6 @@ export default {
 		finish () {
 			// 跳到首页
 			this.$router.push({ name : 'index' })
-		},
-		
-		change(obj) {
-			console.log(obj)
-			console.log(this.option1)
 		},
 
 
