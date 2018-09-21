@@ -1,5 +1,5 @@
 <template>
-	<div class="index">
+	<div class="add-order">
 		
 		 <yd-layout>
 	       <!-- 头 -->
@@ -100,7 +100,7 @@ export default {
 </script>
 
 <style scoped>
-.index {
+.add-order {
 	position: absolute;
 	top: 0px;
 	left: 0px;

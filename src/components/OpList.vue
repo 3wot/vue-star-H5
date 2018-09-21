@@ -79,13 +79,13 @@ export default {
 					"CreationDateTime" : "",
 					"Status" : "1", // 0，未操作，1，已操作
 				},
-				// {
-				// 	"Id" : "AAA",
-				// 	"OperationId" : "12354",
-				// 	"OperationName" : "预报单",
-				// 	"CreationDateTime" : "",
-				// 	"Status" : "1", // 0，未操作，1，已操作
-				// }
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "立项",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				}
 			], 
 		}
 	},
@@ -120,6 +120,9 @@ export default {
 				}
 				if (name == '初审确认') {
 					this.$router.push({ name : 'confirmFirstCheck' })
+				}
+				if (name == '立项') {
+					this.$router.push({ name : 'setUpProject' })
 				}
 			}
 		},

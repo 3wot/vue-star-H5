@@ -9,6 +9,7 @@ import Look from '@/components/Look'
 import ConfirmValuation from '@/components/ConfirmValuation'
 import Form from '@/components/Form'
 import ConfirmFirstCheck from '@/components/ConfirmFirstCheck'
+import SetUpProject from '@/components/SetUpProject'
 
 Vue.use(Router)
 
@@ -66,6 +67,12 @@ export default new Router({
 			path: '/confirmFirstCheck',
 			name: 'confirmFirstCheck',
 			component: ConfirmFirstCheck
+		},
+		{
+			// 立项
+			path: '/setUpProject',
+			name: 'setUpProject',
+			component: SetUpProject
 		},
 	]
 })
