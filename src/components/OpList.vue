@@ -85,6 +85,104 @@ export default {
 					"OperationName" : "立项",
 					"CreationDateTime" : "",
 					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "立项报告",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "二审",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "产品匹配",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "产品匹配确认",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "联系产品供应方",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "补充资料",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "下户",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "产品终审",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "产品终审结果确认",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "打印合同",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "产品方面签公证",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "产品方进抵",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "产品方放款",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
+					"OperationName" : "归档",
+					"CreationDateTime" : "",
+					"Status" : "1", // 0，未操作，1，已操作
 				}
 			], 
 		}
@@ -123,6 +221,12 @@ export default {
 				}
 				if (name == '立项') {
 					this.$router.push({ name : 'setUpProject' })
+				}
+				if (name == '产品匹配确认') {
+					this.$router.push({ name : 'confirmMatch' })
+				}
+				if (name == '补充资料') {
+					this.$router.push({ name : 'addData' })
 				}
 			}
 		},

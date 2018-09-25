@@ -10,6 +10,9 @@ import ConfirmValuation from '@/components/ConfirmValuation'
 import Form from '@/components/Form'
 import ConfirmFirstCheck from '@/components/ConfirmFirstCheck'
 import SetUpProject from '@/components/SetUpProject'
+import ConfirmMatch from '@/components/ConfirmMatch'
+import AddData from '@/components/AddData'
+
 
 Vue.use(Router)
 
@@ -74,5 +77,17 @@ export default new Router({
 			name: 'setUpProject',
 			component: SetUpProject
 		},
+		{
+			// 产品匹配确认
+			path: '/confirmMatch',
+			name: 'confirmMatch',
+			component: ConfirmMatch
+		},
+		{
+			// 补充资料
+			path: '/addData',
+			name: 'addData',
+			component: AddData
+		}
 	]
 })
