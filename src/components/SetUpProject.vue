@@ -181,8 +181,6 @@
 			        </yd-cell-item>
 			    </yd-cell-group>
 
-
-
 				<ImgUpload title="公司营业执照副本" :arr="arr1"></ImgUpload>
 
 				<ImgUpload title="企业章程" :arr="arr2"></ImgUpload>  			    
