@@ -2,7 +2,7 @@
 	<div class="look">
 		
 		<div class="content-in">
-
+			查看全部资料页面
         	
 		    
 
