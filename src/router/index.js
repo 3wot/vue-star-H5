@@ -12,7 +12,8 @@ import ConfirmFirstCheck from '@/components/ConfirmFirstCheck'
 import SetUpProject from '@/components/SetUpProject'
 import ConfirmMatch from '@/components/ConfirmMatch'
 import AddData from '@/components/AddData'
-
+import ConfirmLastCheck from '@/components/ConfirmLastCheck'
+import PrintDeal from '@/components/PrintDeal'
 
 Vue.use(Router)
 
@@ -88,6 +89,18 @@ export default new Router({
 			path: '/addData',
 			name: 'addData',
 			component: AddData
+		},
+		{
+			// 产品终审结果确认
+			path: '/confirmLastCheck',
+			name: 'confirmLastCheck',
+			component: ConfirmLastCheck
+		},
+		{
+			// 打印合同
+			path: '/printDeal',
+			name: 'printDeal',
+			component: PrintDeal
 		}
 	]
 })

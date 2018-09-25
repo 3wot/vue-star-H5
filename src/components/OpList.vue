@@ -77,14 +77,14 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "初审确认",
 					"CreationDateTime" : "",
-					"Status" : "1", // 0，未操作，1，已操作
+					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
 					"Id" : "AAA",
 					"OperationId" : "12354",
 					"OperationName" : "立项",
 					"CreationDateTime" : "",
-					"Status" : "1", // 0，未操作，1，已操作
+					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
 					"Id" : "AAA",
@@ -112,7 +112,7 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "产品匹配确认",
 					"CreationDateTime" : "",
-					"Status" : "1", // 0，未操作，1，已操作
+					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
 					"Id" : "AAA",
@@ -126,7 +126,7 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "补充资料",
 					"CreationDateTime" : "",
-					"Status" : "1", // 0，未操作，1，已操作
+					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
 					"Id" : "AAA",
@@ -147,14 +147,14 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "产品终审结果确认",
 					"CreationDateTime" : "",
-					"Status" : "1", // 0，未操作，1，已操作
+					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
 					"Id" : "AAA",
 					"OperationId" : "12354",
 					"OperationName" : "打印合同",
 					"CreationDateTime" : "",
-					"Status" : "1", // 0，未操作，1，已操作
+					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
 					"Id" : "AAA",
@@ -227,6 +227,12 @@ export default {
 				}
 				if (name == '补充资料') {
 					this.$router.push({ name : 'addData' })
+				}
+				if (name == '产品终审结果确认') {
+					this.$router.push({ name : 'confirmLastCheck' })
+				}
+				if (name == '打印合同') {
+					this.$router.push({ name : 'printDeal' })
 				}
 			}
 		},
