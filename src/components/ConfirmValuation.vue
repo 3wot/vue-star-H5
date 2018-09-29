@@ -12,8 +12,8 @@
 			<div class="slot-bottom" slot="bottom">
 				<yd-flexbox>
 
-        	 		<yd-button class="bottom-btn" size="large">提交</yd-button>	
-        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">完成</yd-button>	
+        	 		<yd-button class="bottom-btn" size="large">确认</yd-button>	
+        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">拒绝</yd-button>	
 
 		        </yd-flexbox>
 			</div>
@@ -35,11 +35,11 @@
 	                <img class="cv-img" slot="right" src="../../static/mate1-1.png">
 	            </yd-cell-item>
 	            <yd-cell-item>
-	                <img class="cv-img" slot="right" src="../../static/mate1-1.png">
+	                <span slot="left">备注：</span>
 	            </yd-cell-item>
-<!-- 	            <yd-cell-item>
-	                <img class="cv-img" slot="right" src="../../static/mate1-1.png">
-	            </yd-cell-item> -->
+	            <yd-cell-item>
+	                <yd-textarea slot="right" placeholder="请输入备注"></yd-textarea>
+	            </yd-cell-item>
 	        </yd-cell-group>
 
 

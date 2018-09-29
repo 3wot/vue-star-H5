@@ -13,7 +13,7 @@
 				<yd-flexbox>
 
         	 		<yd-button class="bottom-btn" size="large">提交</yd-button>	
-        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">完成</yd-button>	
+        	 		
 
 		        </yd-flexbox>
 			</div>

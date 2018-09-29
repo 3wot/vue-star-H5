@@ -180,6 +180,13 @@ export default {
 				{
 					"Id" : "AAA",
 					"OperationId" : "12354",
+					"OperationName" : "提交收款凭证",
+					"CreationDateTime" : "",
+					"Status" : "0", // 0，未操作，1，已操作
+				},
+				{
+					"Id" : "AAA",
+					"OperationId" : "12354",
 					"OperationName" : "归档",
 					"CreationDateTime" : "",
 					"Status" : "1", // 0，未操作，1，已操作
@@ -233,6 +240,9 @@ export default {
 				}
 				if (name == '打印合同') {
 					this.$router.push({ name : 'printDeal' })
+				}
+				if (name == '提交收款凭证') {
+					this.$router.push({ name : 'sendDeal' })
 				}
 			}
 		},

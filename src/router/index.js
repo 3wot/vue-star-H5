@@ -14,6 +14,8 @@ import ConfirmMatch from '@/components/ConfirmMatch'
 import AddData from '@/components/AddData'
 import ConfirmLastCheck from '@/components/ConfirmLastCheck'
 import PrintDeal from '@/components/PrintDeal'
+import SendDeal from '@/components/SendDeal'
+
 
 Vue.use(Router)
 
@@ -101,6 +103,12 @@ export default new Router({
 			path: '/printDeal',
 			name: 'printDeal',
 			component: PrintDeal
-		}
+		},
+		{
+			// 提交收款凭证
+			path: '/sendDeal',
+			name: 'sendDeal',
+			component: SendDeal
+		},
 	]
 })

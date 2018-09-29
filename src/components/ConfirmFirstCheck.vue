@@ -29,7 +29,7 @@
 	                <span slot="right">2018-10-01 13:30:30</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
-	                <span slot="left">估值结果：</span>
+	                <span slot="left">初审报告：</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
 	                <img class="cv-img" slot="right" src="../../static/mate1-1.png">
