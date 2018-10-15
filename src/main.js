@@ -17,7 +17,7 @@ window.USER_INFO = {
     token: '',
 }
 
-Vue.prototype.GETJSON = GETJSON
+Vue.prototype.pp = GETJSON
 Vue.prototype.JCACHE = JCACHE
 
 Vue.config.productionTip = false

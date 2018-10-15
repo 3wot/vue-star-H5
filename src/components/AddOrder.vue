@@ -12,7 +12,7 @@
 			<div class="slot-bottom" slot="bottom">
 				<yd-flexbox>
 
-        	 		<yd-button class="bottom-btn" size="large">提交</yd-button>	
+        	 		<yd-button class="bottom-btn" size="large" @click.native="sub">提交</yd-button>	
         	 		<yd-button class="bottom-btn" size="large" @click.native="finish">完成</yd-button>	
 
 		        </yd-flexbox>
@@ -22,19 +22,19 @@
 			<yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>所有权人：</span>
-		            <yd-input slot="right" required :show-required-icon="false"  placeholder="请输入所有权人姓名"></yd-input>
+		            <yd-input slot="right" v-model="OwnerName" required :show-required-icon="false"  placeholder="请输入所有权人姓名"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 		    <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>房屋坐落：</span>
-		            <yd-input slot="right" required :show-required-icon="false"  placeholder="请输入房屋地址"></yd-input>
+		            <yd-input slot="right" v-model="Location" required :show-required-icon="false"  placeholder="请输入房屋地址"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 		    <yd-cell-group>
 		        <yd-cell-item type="label">
 		            <span slot="left">用途：</span>
-		            <select slot="right" v-model="select1">
+		            <select slot="right" v-model="Usage">
 		               	<option v-for="item in option1">{{item}}</option>
 		            </select>
 		        </yd-cell-item>
@@ -42,11 +42,11 @@
 		    <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>房屋建筑面积：</span>
-		            <yd-input type="number" slot="right" required :show-required-icon="false"  placeholder="请输入房屋建筑面积"></yd-input>
+		            <yd-input type="number" v-model="Area" slot="right" required :show-required-icon="false"  placeholder="请输入房屋建筑面积(m²)"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 
-			<ImgUpload title="房产证照片" :arr="option2"></ImgUpload>  
+			<ImgUpload title="房产证照片" :arr="HouseCertificateImageUrls"></ImgUpload>  
 
 	    </yd-layout>
 
@@ -67,15 +67,21 @@ export default {
 	name: 'AddOrder',
 	data () {
 		return {
-			select1 : '住宅',
 			option1 : ['无','住宅','别墅','商业','公寓','办公'],
-			option2 : ['无','住宅','别墅','商业','公寓','办公'],
+			"OwnerName" : "吴向东",
+			"Location" : "海淀区永丰路百旺家园2区",
+			"Usage" : "住宅",
+			"Area" : "500.00",
+			"HouseCertificateImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
+			"C_HouseCertificateImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"]
 		}
 	},
 	mounted () {
 		
 	},
 	methods:{
+
+		// 去首页
 		gotoIndex() {
 			this.$dialog.confirm({
                 title: '提示',
@@ -86,12 +92,26 @@ export default {
                 }
             });
 		},
+
 		// 完成
 		finish () {
 			// 跳到首页
 			this.$router.push({ name : 'index' })
 		},
 
+		// 提交
+		sub () {
+
+			const {
+				OwnerName,
+				Location,
+				Usage,
+				Area,
+				HouseCertificateImageUrls,
+			} = this || {}
+			
+
+		},
 
 	},
 

@@ -32,11 +32,34 @@ const GETJSON = (urlKey, data, cb) => {
         
     }
     // 发请求
-    axios.post(url, param)
+    let config = {
+        headers : {
+            'Content-Type':'application/json;charset=UTF-8'
+        },
+    };
+    const postData = JSON.stringify(param)
+    axios.post(url, postData)
     .then(res => {
+        // 返回格式
+        // {
+        //     "d": {
+        //         "__type": "OutputNewOrder:#GMOA",
+        //         "msg": "token验证失败",
+        //         "ret": "fail",
+        //         "data": {
+        //             "__type": "OutputNewOrderData:#GMOA",
+        //             "HouseId": "",
+        //             "OrderId": ""
+        //         }
+        //     }
+        // }
+        const resData = {
+            ret : res.d.ret == 'ok',
+            msg : res.d.msg,
+            data : res.d.data,
+        }
         if(cb && typeof cb == 'function') {
-            res.ret = res.ret == 'ok'
-            cb(res)
+            cb(resData)
         }
 
     })

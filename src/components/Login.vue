@@ -79,11 +79,13 @@ export default {
 		handleLogin () {
 			const { pwd, mobile, remember } = this
 			if (mobile && pwd) {
-				
+				const platform = "mobile"
 				const param = {
-					a: 'A'
+					mobile,
+					pwd,
+					platform,
 				}
-				this.GETJSON('Login', param, res => {
+				this.pp('Login', param, res => {
 					if (res.ret) {
 						const { uid, token } = res.data
 						USER_INFO.uid = uid
@@ -98,8 +100,7 @@ export default {
 						})
 					}
 				})
-
-				// 调到首页
+				// 首页
 				this.$router.push({ name : 'index' })
 				// 记住密码
 				if (remember) {

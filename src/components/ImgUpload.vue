@@ -7,8 +7,8 @@
 	<div class="upload-content">
 		<div v-for="(item,index) in imgArr" :key="index" class="upload-item">
 			<yd-icon class="dele-icon" @click.native="dele(index)" color="#5871f5" size=".4rem" name="error"></yd-icon>
-			<!-- <img src="item"> -->
-			{{item}}
+			<img :src="item">
+			<!-- {{item}} -->
 		</div>
 		
 		<div class="upload-item" @click="upload">
@@ -46,7 +46,7 @@ export default {
 	methods:{
 		// 点击上传
 		upload () {
-			this.add('A')
+			this.add('http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg')
 		},
 
 		// 添加
