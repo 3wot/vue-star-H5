@@ -16,7 +16,8 @@
 			<div @click="gotoOpList(index)" v-for="(item,index) in orderList" :key="index" class="order-item" :class="{'warn':item.Status == 2}">
 				<yd-icon class="order-item-icon" name="ucenter" color="#ffffff" size=".4rem"></yd-icon>
 				<!-- 姓名 -->
-				<span class="order-item-name">{{item.BorrowerName}}</span>
+				<span class="order-item-name">{{item.BorrowerName?item.BorrowerName+" / ":''}}{{item.CurrentOperation}}</span>
+				
 				<yd-navbar-next-icon class="order-item-next" color="#ffffff"></yd-navbar-next-icon>
 			</div>
 
@@ -53,59 +54,41 @@ export default {
 					"CurrentOperation" : "估值"
 				},
 				{
-					"Id" : "222",
-					"BorrowerName" : "张三", 
-					"BorrowerMobile" : "15111112222", 
-					"BorrowerIDNO" : "XXXXXXXXXX", 
-					"CreationDateTime" : "2018-08-01 18:00:00", 
-					"Status" : 1, // 报单状态，0，正在进行中，1，正常结案，2，中途结案
+					"Id" : "22", 
+					"BorrowerName" : "", 
+					"BorrowerMobile" : "1231241451", 
+					"BorrowerIDNO" : "", 
+					"CreationDateTime" : "", 
+					"Status" : "2", 
 					"CurrentOperation" : "估值"
-				},
-				{
-					"Id" : "333",
-					"BorrowerName" : "张三", 
-					"BorrowerMobile" : "15111112222", 
-					"BorrowerIDNO" : "XXXXXXXXXX", 
-					"CreationDateTime" : "2018-08-01 18:00:00", 
-					"Status" : 2, // 报单状态，0，正在进行中，1，正常结案，2，中途结案
-					"CurrentOperation" : "估值"
-				},
-				{
-					"Id" : "444",
-					"BorrowerName" : "张三", 
-					"BorrowerMobile" : "15111112222", 
-					"BorrowerIDNO" : "XXXXXXXXXX", 
-					"CreationDateTime" : "2018-08-01 18:00:00", 
-					"Status" : 0, // 报单状态，0，正在进行中，1，正常结案，2，中途结案
-					"CurrentOperation" : "估值"
-				},
-				
-				
+				},	
 			], 
 		}
 	},
 	mounted () {
-		
+		// this.testLogin()
+		this.changeType(1)
 	},
 	methods:{
 
+		// 点击进行中或者历史
 		changeType(type) {
 			this.type = type
 			const param = {
 				order_type: type,
 			}
-			// this.GETJSON('OrderList', param, res => {
-			// 	console.log(res)
-			// 	if (res.ret) {
-					
-			// 	} else {
-			// 		this.$dialog.toast({
-			// 			mes: res.mes,
-			// 			icon: 'none',
-			// 			timeout: 2000,
-			// 		})
-			// 	}
-			// })
+			this.pp('OrderList', param, res => {
+				console.log(res)
+				if (res.ret) {
+					this.orderList = res.data
+				} else {
+					this.$dialog.toast({
+						mes: res.msg,
+						icon: 'none',
+						timeout: 2000,
+					})
+				}
+			})
 		},
 		
 		// 新增
@@ -121,11 +104,21 @@ export default {
 				const id = order.Id
 				this.$router.push({ name : 'opList', params: { id }})
 			}
-			
-
 		},
 
+		// 检测登录
+		testLogin () {
+			if (USER_INFO.uid && USER_INFO.token) {
 
+			} else {
+				this.$router.push({ name : 'login' })
+				this.$dialog.toast({
+					mes: "您还没有登录哦",
+					icon: 'none',
+					timeout: 3000,
+				})
+			}
+		},
 
 	},
 

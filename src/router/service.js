@@ -38,6 +38,7 @@ const GETJSON = (urlKey, data, cb) => {
         },
     };
     const postData = JSON.stringify(param)
+    console.log("url:",url)
     axios.post(url, postData)
     .then(res => {
         // 返回格式
@@ -67,7 +68,7 @@ const GETJSON = (urlKey, data, cb) => {
         if(cb && typeof cb == 'function') {
             const data = {
                 ret: false,
-                mes: "请求失败"
+                msg: "请求失败"
             }
             cb(data)
         }

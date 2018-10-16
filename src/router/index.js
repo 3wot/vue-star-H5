@@ -46,7 +46,7 @@ export default new Router({
 		},
 		{
 			// 操作列表
-			path: '/opList',
+			path: '/opList/:id',
 			name: 'opList',
 			component: OpList
 		},

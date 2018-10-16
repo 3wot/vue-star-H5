@@ -11,15 +11,12 @@
 
 			<div class="slot-bottom" slot="bottom">
 				<yd-flexbox>
-
         	 		<yd-button class="bottom-btn" size="large" @click.native="sub">提交</yd-button>	
-        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">完成</yd-button>	
-
 		        </yd-flexbox>
 			</div>
 
 			<!-- 内容 -->
-			<yd-cell-group>
+			<!-- <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>所有权人：</span>
 		            <yd-input slot="right" v-model="OwnerName" required :show-required-icon="false"  placeholder="请输入所有权人姓名"></yd-input>
@@ -44,7 +41,7 @@
 		            <span slot="left"><span class="danger">* </span>房屋建筑面积：</span>
 		            <yd-input type="number" v-model="Area" slot="right" required :show-required-icon="false"  placeholder="请输入房屋建筑面积(m²)"></yd-input>
 		        </yd-cell-item>
-		    </yd-cell-group>
+		    </yd-cell-group> -->
 
 			<ImgUpload title="房产证照片" :arr="HouseCertificateImageUrls"></ImgUpload>  
 
@@ -77,7 +74,8 @@ export default {
 		}
 	},
 	mounted () {
-		
+
+		// this.testLogin()
 	},
 	methods:{
 
@@ -101,18 +99,44 @@ export default {
 
 		// 提交
 		sub () {
-
 			const {
-				OwnerName,
-				Location,
-				Usage,
-				Area,
+				// OwnerName,
+				// Location,
+				// Usage,
+				// Area,
 				HouseCertificateImageUrls,
 			} = this || {}
-			
-
+			const param = {
+				HouseCertificateImageUrls,
+			}
+			this.pp('NewOrder', param, res => {
+				if (res.ret) {
+					// 首页
+					this.$router.push({ name : 'index' })
+				} else {
+					this.$dialog.toast({
+						mes: res.msg,
+						icon: 'none',
+						timeout: 2000,
+					})
+				}
+			})
 		},
 
+		// 检测登录
+		testLogin () {
+			if (USER_INFO.uid && USER_INFO.token) {
+
+			} else {
+				this.$router.push({ name : 'login' })
+				this.$dialog.toast({
+					mes: "您还没有登录哦",
+					icon: 'none',
+					timeout: 3000,
+				})
+			}
+		},
+		
 	},
 
 

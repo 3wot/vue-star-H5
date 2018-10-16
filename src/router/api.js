@@ -89,7 +89,15 @@
 		"ret" : "ok",
 		"msg" : "",
 		"data" : [
-			{ "Id" : "", "BorrowerName" : "", "BorrowerMobile" : "", "BorrowerIDNO" : "", "CreationDateTime" : "", "Status" : "", "CurrentOperation" : ""}
+			{ 
+				"Id" : "", 
+				"BorrowerName" : "", 
+				"BorrowerMobile" : "", 
+				"BorrowerIDNO" : "", 
+				"CreationDateTime" : "", 
+				"Status" : "", 
+				"CurrentOperation" : ""
+			}
 		]
 	}
 

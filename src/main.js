@@ -13,8 +13,8 @@ Vue.use(YDUI)
 
 // 全局变量
 window.USER_INFO = {
-    uid : '',
-    token: '',
+    uid : '13701191671',
+    token: '123',
 }
 
 Vue.prototype.pp = GETJSON
