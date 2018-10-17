@@ -65,10 +65,10 @@ export default {
 	data () {
 		return {
 			option1 : ['无','住宅','别墅','商业','公寓','办公'],
-			"OwnerName" : "吴向东",
-			"Location" : "海淀区永丰路百旺家园2区",
-			"Usage" : "住宅",
-			"Area" : "500.00",
+			"OwnerName" : "",
+			"Location" : "",
+			"Usage" : "",
+			"Area" : "",
 			"HouseCertificateImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
 			"C_HouseCertificateImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"]
 		}
@@ -100,14 +100,20 @@ export default {
 		// 提交
 		sub () {
 			const {
-				// OwnerName,
-				// Location,
-				// Usage,
-				// Area,
+				OwnerName,
+				Location,
+				Usage,
+				Area,
 				HouseCertificateImageUrls,
+				C_HouseCertificateImageUrls,
 			} = this || {}
 			const param = {
+				OwnerName,
+				Location,
+				Usage,
+				Area,
 				HouseCertificateImageUrls,
+				C_HouseCertificateImageUrls,
 			}
 			this.pp('NewOrder', param, res => {
 				if (res.ret) {
@@ -136,7 +142,7 @@ export default {
 				})
 			}
 		},
-		
+
 	},
 
 

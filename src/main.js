@@ -15,6 +15,8 @@ Vue.use(YDUI)
 window.USER_INFO = {
     uid : '13701191671',
     token: '123',
+    OperatorRoleId: '1',
+    OperatorRoleName: '销售',
 }
 
 Vue.prototype.pp = GETJSON

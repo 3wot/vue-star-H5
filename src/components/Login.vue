@@ -56,7 +56,7 @@ export default {
 		
 		// 记录名字和密码
 		setName () {
-			console.log('记录名字')
+			// console.log('记录名字')
 			const data = {
 				mobile: this.mobile,
 				pwd: this.pwd
@@ -67,7 +67,7 @@ export default {
 		// 获取名字和密码
 		getName () {
 			const data = this.JCACHE.get('name')
-			console.log('获取名字和密码',data)
+			// console.log('获取名字和密码',data)
 			if (data) {
 				const { mobile, pwd } = data
 				this.mobile = mobile
@@ -87,9 +87,12 @@ export default {
 				}
 				this.pp('Login', param, res => {
 					if (res.ret) {
-						const { uid, token } = res.data
+						const { uid, token, OperatorRoleId, OperatorRoleName} = res.data
 						USER_INFO.uid = uid
 						USER_INFO.token = token
+						USER_INFO.OperatorRoleId = OperatorRoleId
+						USER_INFO.OperatorRoleName = OperatorRoleName
+						// console.log(USER_INFO)
 						// 首页
 						this.$router.push({ name : 'index' })
 					} else {
@@ -101,7 +104,7 @@ export default {
 					}
 				})
 				// 首页
-				this.$router.push({ name : 'index' })
+				// this.$router.push({ name : 'index' })
 				// 记住密码
 				if (remember) {
 					this.setName()
