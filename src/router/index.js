@@ -46,7 +46,7 @@ export default new Router({
 		},
 		{
 			// 操作列表
-			path: '/opList/:id',
+			path: '/opList/:id/:hid',
 			name: 'opList',
 			component: OpList
 		},
@@ -58,7 +58,7 @@ export default new Router({
 		},
 		{
 			// 估值确认
-			path: '/confirmValuation',
+			path: '/confirmValuation/:id/:hid',
 			name: 'confirmValuation',
 			component: ConfirmValuation
 		},

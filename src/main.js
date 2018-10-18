@@ -13,14 +13,27 @@ Vue.use(YDUI)
 
 // 全局变量
 window.USER_INFO = {
-    uid : '13701191671',
-    token: '123',
-    OperatorRoleId: '1',
+    uid : '',
+    token: '',
+    OperatorRoleId: '2',
     OperatorRoleName: '销售',
 }
 
 Vue.prototype.pp = GETJSON
 Vue.prototype.JCACHE = JCACHE
+
+// Vue.prototype.test = function() {
+// 	if (USER_INFO.uid && USER_INFO.token) {
+
+// 	} else {
+// 		this.$router.push({ name : 'login' })
+// 		this.$dialog.toast({
+// 			mes: "您还没有登录哦",
+// 			icon: 'none',
+// 			timeout: 3000,
+// 		})
+// 	}
+// }
 
 Vue.config.productionTip = false
 
@@ -31,3 +44,4 @@ new Vue({
 	components: { App },
 	template: '<App/>'
 })
+

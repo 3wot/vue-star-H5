@@ -102,7 +102,8 @@ export default {
 			if (this.orderList && idx < this.orderList.length) {
 				const order = this.orderList[idx]
 				const id = order.Id
-				this.$router.push({ name : 'opList', params: { id }})
+				const hid = order.HouseId || 222
+				this.$router.push({ name : 'opList', params: { id, hid }})
 			}
 		},
 
