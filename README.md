@@ -57,5 +57,18 @@ pc端联系产品方补充资料按钮点击之后页面：
 
 FE参数疑问？
 
-1.CompleteConfirmHouseValuation(完成房屋估值报告确认操作)   入参OperationRecordId，从哪里取？
-2.
+1.CompleteConfirmHouseValuation(完成房屋估值报告确认操作)   入参OperationRecordId，从哪里取？ 操作列表返回
+
+2.正式立项页面，execl表格中参数
+
+新增加的7各参数
+
+客户身份证照片
+客户户口本照片
+客户婚姻证明材料照片
+客户征信报告照片
+配偶身份证照片
+配偶征信报告照片
+配偶户口本照片
+
+接口中不一致，接口中缺少“配偶征信”，增加“配偶婚姻证明材料”

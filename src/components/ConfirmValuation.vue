@@ -129,7 +129,7 @@ export default {
 		sub () {
 			const id = this.$route.params.id
 			const hid = this.$route.params.hid
-			const OperationRecordId = this.HouseValuationOperatorId
+			const OperationRecordId = this.$route.params.oprid
 			const HouseValuationConfirmComment = this.HouseValuationConfirmComment
 			const param = {
 				OrderId: id,

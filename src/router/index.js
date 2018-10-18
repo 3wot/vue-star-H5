@@ -58,13 +58,13 @@ export default new Router({
 		},
 		{
 			// 估值确认
-			path: '/confirmValuation/:id/:hid',
+			path: '/confirmValuation/:id/:hid/:oprid',
 			name: 'confirmValuation',
 			component: ConfirmValuation
 		},
 		{
 			// 正式报单
-			path: '/form',
+			path: '/form/:id/:hid/:oprid',
 			name: 'form',
 			component: Form
 		},

@@ -55,7 +55,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "预报单",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "1", // 0，未操作，1，已操作
 				},
 				{
@@ -63,7 +64,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "估值",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "1", // 0，未操作，1，已操作
 				},
 				{
@@ -71,7 +73,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "估值确认",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
@@ -79,7 +82,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "正式报单",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
@@ -87,7 +91,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "初审",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "1", // 0，未操作，1，已操作
 				},
 				{
@@ -95,7 +100,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "初审结果确认",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
@@ -103,7 +109,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "立项",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
@@ -111,7 +118,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "立项报告",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "1", // 0，未操作，1，已操作
 				},
 				{
@@ -119,7 +127,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "二审",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "1", // 0，未操作，1，已操作
 				},
 				{
@@ -127,7 +136,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "产品匹配",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "1", // 0，未操作，1，已操作
 				},
 				{
@@ -135,7 +145,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "产品匹配确认",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
@@ -143,23 +154,17 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "联系产品供应方",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "1", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "补充资料",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
-					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
 					"Id" : "AAA",
 					"OperationId" : "12354",
 					"OperationName" : "下户",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "1", // 0，未操作，1，已操作
 				},
 				{
@@ -167,7 +172,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "产品终审",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "1", // 0，未操作，1，已操作
 				},
 				{
@@ -175,7 +181,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "产品终审结果确认",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
@@ -183,7 +190,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "打印合同",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
@@ -191,7 +199,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "产品方面签公证",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "1", // 0，未操作，1，已操作
 				},
 				{
@@ -199,7 +208,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "产品方进抵",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "1", // 0，未操作，1，已操作
 				},
 				{
@@ -207,7 +217,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "产品方放款",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "1", // 0，未操作，1，已操作
 				},
 				{
@@ -215,7 +226,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "提交收款凭证",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "0", // 0，未操作，1，已操作
 				},
 				{
@@ -223,7 +235,8 @@ export default {
 					"OperationId" : "12354",
 					"OperationName" : "归档",
 					"CreationDateTime" : "",
-					"OperationRoleType" : 2,
+					"OperationRoleType" : 1,
+					"OperationRecordId" : "666",
 					"Status" : "1", // 0，未操作，1，已操作
 				}
 			], 
@@ -288,10 +301,9 @@ export default {
 		handleTapOp(idx) {
 			if (this.opList && idx < this.opList.length) {
 				const op = this.opList[idx]
-				const { OperationRoleType } = op
+				const { OperationRoleType, OperationName, OperationRecordId } = op
 				if (OperationRoleType == USER_INFO.OperatorRoleId) {
-					const name = op.OperationName
-					this.gotoDetail(name)
+					this.gotoDetail(OperationName, OperationRecordId)
 				} else {
 					this.$dialog.toast({
 						mes: "您不能进入此操作",
@@ -305,7 +317,7 @@ export default {
 		},
 
 		// 进入具体操作
-		gotoDetail (name) {
+		gotoDetail (nameKey, OperationRecordId) {
 			// 1	预报单	1	2
 			// 2	估值	2	3
 			// 3	估值确认	1	4
@@ -326,31 +338,22 @@ export default {
 			// 18	产品方放款	3	19
 			// 19	提交收款凭证	1	20
 			// 20	归档	3	0
+			const jsonObj = {
+				"估值确认" : "confirmValuation",
+				"正式报单" : "form",
+				"初审结果确认" : "confirmFirstCheck",
+				"立项" : "setUpProject",
+				"产品匹配确认" : "confirmMatch",
+				"产品终审结果确认" : "confirmLastCheck",
+				"打印合同" : "printDeal",
+				"提交收款凭证	" : "sendDeal",
+			}
 			const id = this.$route.params.id
 			const hid = this.$route.params.hid
-			if (name == '估值确认') {
-				this.$router.push({ name : 'confirmValuation', params: { id, hid }})
-			}
-			if (name == '正式报单') {
-				this.$router.push({ name : 'form', params: { id, hid } })
-			}
-			if (name == '初审结果确认') {
-				this.$router.push({ name : 'confirmFirstCheck', params: { id, hid } })
-			}
-			if (name == '立项') {
-				this.$router.push({ name : 'setUpProject', params: { id, hid } })
-			}
-			if (name == '产品匹配确认') {
-				this.$router.push({ name : 'confirmMatch', params: { id, hid } })
-			}
-			if (name == '产品终审结果确认') {
-				this.$router.push({ name : 'confirmLastCheck', params: { id, hid } })
-			}
-			if (name == '打印合同') {
-				this.$router.push({ name : 'printDeal', params: { id, hid } })
-			}
-			if (name == '提交收款凭证') {
-				this.$router.push({ name : 'sendDeal', params: { id, hid } })
+			const oprid = OperationRecordId
+			const name = jsonObj[nameKey]
+			if (name) {
+				this.$router.push({ name, params: { id, hid, oprid } })
 			}
 		},
 

@@ -2,7 +2,10 @@
 	
 <div class="upload-img">
  	
- 	<div class="upload-title"><span class="danger">* </span>{{title}}</div>
+ 	<div class="upload-title">
+ 		<span v-if="required" class="danger">* </span>
+ 		<span>{{title}}</span>
+ 	</div>
 
 	<div class="upload-content">
 		<div v-for="(item,index) in imgArr" :key="index" class="upload-item">
@@ -32,7 +35,7 @@ export default {
 	// Button,Field
 	},
 	name: 'ImgUpload',
-	props: ['title','arr'],
+	props: ['title','arr','required'],
 	data () {
 		return {
 			imgArr : [],
