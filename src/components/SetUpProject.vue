@@ -32,20 +32,20 @@
 			<yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>申请贷款金额：</span>
-		            <yd-input slot="right" required :show-required-icon="false"  placeholder="请输入申请贷款金额"></yd-input>
+		            <yd-input slot="right" type="number" v-model="ExpectedBorrowAmount" required :show-required-icon="false"  placeholder="请输入申请贷款金额"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 		    <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>申请贷款期限：</span>
-		            <yd-input slot="right" required :show-required-icon="false"  placeholder="请输入申请贷款期限"></yd-input>
+		            <yd-input slot="right" type="number" v-model="ExpectedBorrowPeriodInMonth" required :show-required-icon="false"  placeholder="请输入申请贷款期限(月)"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 		    
 		    <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>借款用途：</span>
-		            <select slot="right" v-model="select2">
+		            <select slot="right" required v-model="BorrowUsage">
 		               	<option v-for="item in option2">{{item}}</option>
 		            </select>
 		        </yd-cell-item>
@@ -106,7 +106,7 @@
 		    </yd-cell-group>
 
 
-		    <div v-if="select7=='已抵押'">
+		    <div v-if="IsPledged">
 
 		    	<yd-cell-group>
 			        <yd-cell-item>
@@ -230,25 +230,25 @@ export default {
 	data () {
 		return {
 			select1 : '住宅',
-			option1 : ['住宅','别墅','商业','公寓','办公'],
+			
 
 			select2 : '',
-			option2 : ['买车','买房','公司经营周转','企业经营','其他'],
+			
 
 			select3 : '',
-			option3 : ['工资收入','经营收入','企业应收账款','其他'],
+			
 
 			select4 : '',
-			option4 : ['卖房款','企业应收账款','其他'],
+			
 
 			select5 : '单独所有',
-			option5 : ['单独所有','共有'],
+			
 
 			select6 : '自住',
-			option6 : ['自住','出租','空置'],
+			
 
 			select7 : '未抵押',
-			option7 : ['已抵押','未抵押'],
+			
 
 			select8 : '否',
 			select9 : '否',
@@ -259,14 +259,52 @@ export default {
 			option9 : ['成本优先','效率优先','成数优先'],
 
 
-			arr1 : [],
+			"Usage" : "住宅",
+			option1 : ['住宅','别墅','商业','公寓','办公'],
 
-			arr2 : [],
+			"ExpectedBorrowAmount" : "",
+			"ExpectedBorrowPeriodInMonth" : "",
+			"BorrowUsage" : "",
+			option2 : ['买车','买房','公司经营周转','企业经营','其他'],
 
-			arr3 : [],
-			arr4 : [],
-			arr5 : [],
-			arr6 : [],
+			"InterestReturnSource" : "",
+			option3 : ['工资收入','经营收入','企业应收账款','其他'],
+
+			"PrincipalReturnSource" : "",
+			option4 : ['卖房款','企业应收账款','其他'],
+
+			"ShareOwnerInfo" : "单独所有",
+			option5 : ['单独所有','共有'],
+
+			"PledgeInfo" : "自住",
+			option6 : ['自住','出租','空置'],
+
+			"IsPledged" : false,
+			option7 : ['已抵押','未抵押'],
+
+			"PledgeOrgnization" : "招商银行",
+			"PledgePrice" : "700000",
+			"IsLoanPaidOff" : "False",
+			"IsZhuanDan" : "False",
+			"HasCompany" : "True",
+			"CompanySecurityIDNO" : "91310115703116990W",
+			"CompanyPhone" : "0349-3070531",
+			"CompanyLicenseImageUrl" : "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg",
+			"C_CompanyLicenseImageUrl" : "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg",
+			"CompanyLegalPersonName" : "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg",
+			"CompanyLegalPersonIDNO" : "140624199812014051",
+			"CompanyArticlesImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
+			"C_CompanyArticlesImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
+			"PermanentResidenceBookImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
+			"C_PermanentResidenceBookImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
+			"MarriageCertificateImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
+			"C_MarriageCertificateImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
+			"BankAccountStatementImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
+			"C_BankAccountStatementImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
+			"PersonalCreditReportImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
+			"C_PersonalCreditReportImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
+			"LoanPriority" : "成本优先",
+			"SaleOrderValidationComment" : "test comment"
 
 
 

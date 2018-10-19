@@ -12,8 +12,8 @@
 			<div class="slot-bottom" slot="bottom">
 				<yd-flexbox>
 
-        	 		<yd-button class="bottom-btn" size="large">提交</yd-button>	
-        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">完成</yd-button>	
+        	 		<yd-button class="bottom-btn" size="large" @click.native="sub">确认</yd-button>	
+        	 		<!-- <yd-button class="bottom-btn" size="large" @click.native="finish">完成</yd-button>	 -->
 
 		        </yd-flexbox>
 			</div>
@@ -22,24 +22,25 @@
 			<yd-cell-group>
 	            <yd-cell-item>
 	                <span slot="left">操作人：</span>
-	                <span slot="right">XXX</span>
+	                <span slot="right">{{FirstAuditionOperatorName}}</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
 	                <span slot="left">操作时间：</span>
-	                <span slot="right">2018-10-01 13:30:30</span>
+	                <span slot="right">{{FirstAuditionConfirmDateTime}}</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
 	                <span slot="left">初审报告：</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
-	                <img class="cv-img" slot="right" src="../../static/mate1-1.png">
+	                <img class="cv-img" slot="right" :src="FirstAuditionImageUrl">
+	            </yd-cell-item>
+
+	            <yd-cell-item>
+	                <span slot="left">备注：</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
-	                <img class="cv-img" slot="right" src="../../static/mate1-1.png">
+	                <yd-textarea v-model="FirstAuditionConfirmComment" slot="right" placeholder="请输入备注"></yd-textarea>
 	            </yd-cell-item>
-<!-- 	            <yd-cell-item>
-	                <img class="cv-img" slot="right" src="../../static/mate1-1.png">
-	            </yd-cell-item> -->
 	        </yd-cell-group>
 
 
@@ -58,21 +59,85 @@ export default {
 	name: 'ConfirmFirstCheck',
 	data () {
 		return {
-			
+			"C_FirstAuditionImageUrl": "",
+            "FirstAuditionConfirmDateTime": "",
+            "FirstAuditionImageUrl": "",
+            "FirstAuditionOperatorId": "",
+            "FirstAuditionOperatorName": "",
+
+            FirstAuditionConfirmComment: '',
 		}
 	},
 	mounted () {
-		
+
+		this.init()
 	},
 	methods:{
 		// 跳到首页
 		goBack() {
 			this.$router.go(-1)
 		},
+
 		// 完成
 		finish () {
 			// 跳到首页
 			this.$router.push({ name : 'opList' })
+		},
+
+		// 初始化
+		init () {
+			const id = this.$route.params.id
+			const param = {
+				OrderId: id,
+			}
+			this.pp('GetConfirmAuditBorrowerInfoParams', param, res => {
+				if (res.ret) {
+					const {
+					 	C_FirstAuditionImageUrl,
+					 	FirstAuditionConfirmDateTime,
+					 	FirstAuditionImageUrl,
+					 	FirstAuditionOperatorId,
+					 	FirstAuditionOperatorName,
+					} = res.data || {}
+					this.C_FirstAuditionImageUrl = C_FirstAuditionImageUrl
+					this.FirstAuditionConfirmDateTime = FirstAuditionConfirmDateTime
+					this.FirstAuditionImageUrl = FirstAuditionImageUrl
+					this.FirstAuditionOperatorId = FirstAuditionOperatorId
+					this.FirstAuditionOperatorName = FirstAuditionOperatorName
+				} else {
+					this.$dialog.toast({
+						mes: res.msg,
+						icon: 'none',
+						timeout: 2000,
+					})
+				}
+			})
+		},
+
+		// 确认
+		sub () {
+			const id = this.$route.params.id
+			// const hid = this.$route.params.hid
+			const OperationRecordId = this.$route.params.oprid
+			const FirstAuditionConfirmComment = this.FirstAuditionConfirmComment
+			const param = {
+				OrderId: id,
+				// HouseId: hid,
+				OperationRecordId,
+				FirstAuditionConfirmComment,
+			}
+			this.pp('CompleteConfirmAuditBorrowerInfo', param, res => {
+				if (res.ret) {
+					// 跳到操作页面
+					this.$router.push({ name : 'opList', params: { id, hid }})
+				} else {
+					this.$dialog.toast({
+						mes: res.msg,
+						icon: 'none',
+						timeout: 2000,
+					})
+				}
+			})
 		},
 
 

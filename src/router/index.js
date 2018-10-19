@@ -70,7 +70,7 @@ export default new Router({
 		},
 		{
 			// 初审确认
-			path: '/confirmFirstCheck',
+			path: '/confirmFirstCheck/:id/:hid/:oprid',
 			name: 'confirmFirstCheck',
 			component: ConfirmFirstCheck
 		},
