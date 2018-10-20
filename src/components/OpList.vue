@@ -17,7 +17,7 @@
 		        </yd-flexbox>
 			</div>
 			<!-- 内容 -->
-			<div @click="handleTapOp(index)" v-for="(item,index) in opList" :key="index" class="op-item" :class="{'warn':item.Status == 0}">
+			<div @click="handleTapOp(index)" v-for="(item,index) in opList" :key="index" class="op-item">
 				<yd-icon v-if="item.Status != 0" class="op-item-icon" color="#ffffff" size=".4rem" name="shield-outline"></yd-icon>
 				<yd-icon v-if="item.Status == 0" class="op-item-icon" color="#ffffff" size=".4rem" name="time"></yd-icon>
 				<!-- 姓名 -->
@@ -271,7 +271,7 @@ export default {
 			}
 			this.pp('OrderOperationList', param, res => {
 				if (res.ret) {
-					// this.opList = res.data
+					this.opList = res.data
 				} else {
 					this.$dialog.toast({
 						mes: res.msg,
@@ -351,6 +351,12 @@ export default {
 			// console.log(name)
 			if (name) {
 				this.$router.push({ name, params: { id, hid, oprid } })
+			} else {
+				this.$dialog.toast({
+					mes: "您不能进入此操作",
+					icon: 'none',
+					timeout: 3000,
+				})
 			}
 		},
 

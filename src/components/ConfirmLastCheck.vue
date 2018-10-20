@@ -55,7 +55,7 @@
 	                <span slot="left">拒绝理由：</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
-		            <yd-textarea slot="right" readonly v-model="LoanRejectionComment" placeholder="请输入拒绝理由"></yd-textarea>
+		            <yd-textarea slot="right" readonly v-model="LoanRejectionComment" placeholder="无"></yd-textarea>
 		        </yd-cell-item>
 
 
@@ -81,14 +81,6 @@ export default {
 	name: 'ConfirmFirstCheck',
 	data () {
 		return {
-			// 操作人
-			// 操作时间
-			// 终审意见
-			// 产品供应方批贷函
-			// 批贷金额
-			// 批贷期限
-			// 批贷利率
-			// 拒绝理由
 
 			"C_LoanApprovalImageUrls": [],
             "IsLoanApproved": null,

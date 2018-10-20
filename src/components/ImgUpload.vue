@@ -55,14 +55,20 @@ export default {
 		// 添加
 		add (url) {
 			this.arr.push(url)
-			this.arrc.push(url)
+			if (this.arrc) {
+				this.arrc.push(url)	
+			}
+			
 		},
 
 
 		// 删除图片
 		dele(idx) {
 			this.arr.splice(idx,1)
-			this.arrc.splice(idx,1)
+			if (this.arrc) {
+				this.arrc.splice(idx,1)	
+			}
+			
 		},
 
 

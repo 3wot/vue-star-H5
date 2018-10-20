@@ -105,13 +105,13 @@ FE参数疑问？
 
 
 需要添加的接口：
-1. 控制销售，进入补充资料页面
-2. 立项页面，添加接口，获取“是否有公司”
+<!-- 1. 控制销售，进入补充资料页面
+2. 立项页面，添加接口，获取“是否有公司” -->
 3. 获取全部资料
-4. 获取补充资料全部选项
+<!-- 4. 获取补充资料全部选项
 5. 获取补充资料已选选项
 6. 客服提交补充资料
-7. 销售提交补充资料
+7. 销售提交补充资料 -->
 
 
 
@@ -120,17 +120,18 @@ FE参数疑问？
 
 1. login ok
 2. index 
-		this.orderList = res.data 注释掉了
-		备用数据，
-		const hid = order.HouseId || 222 房屋id默认的222
+		<!-- this.orderList = res.data 注释掉了 -->
+		<!-- 备用数据， -->
+		<!-- const hid = order.HouseId || 222 房屋id默认的222 -->
 3. AddOrder ok
 4. OpList 
-		去掉底色不同
+		<!-- 去掉底色不同 -->
 		备用数据
-		// this.opList = res.data 注释掉了
+		<!-- // this.opList = res.data 注释掉了 -->
 5. confirmValuation ok
 6. form  ok
 7. confirmFirstCheck  ok
 8. setupproject ok
 9. confirmMatch ok
-10.
+10.confirmLastCheck ok
+11.sendDeal ok

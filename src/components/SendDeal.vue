@@ -19,9 +19,8 @@
 			</div>
 
 			<!-- 内容 -->
-			<ImgUpload title="现场照片" :arr="LoanReceivedImageUrls"></ImgUpload>
+			<ImgUpload title="现场照片" :arr="LoanReceivedImageUrls" :arrc="C_LoanReceivedImageUrls"></ImgUpload>
 			
-
 	    </yd-layout>
 
 
@@ -73,7 +72,7 @@ export default {
 			} = this
 			const param = {
 				OrderId: id,
-				OperationRecordId,
+				OperationRecordId: oprid,
 				LoanReceivedImageUrls,
 				C_LoanReceivedImageUrls,
 			}
@@ -85,7 +84,7 @@ export default {
 					this.$dialog.toast({
 						mes: res.msg,
 						icon: 'none',
-						timeout: 2000,
+						timeout: 3000,
 					})
 				}
 			})

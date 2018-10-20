@@ -9,14 +9,14 @@
 			</yd-navbar>
 
 		 	<div slot="top" style="height: 1rem;">
-	 		 	<span class="line" :class="{ active: type == 1 }" @click="changeType(1)">进行中的报单</span>
-	 		 	<span class="line" :class="{ active: type == 2 }" @click="changeType(2)">历史报单</span>
+	 		 	<span class="line" :class="{ active: type == 0 }" @click="changeType(0)">进行中的报单</span>
+	 		 	<span class="line" :class="{ active: type == 3 }" @click="changeType(3)">历史报单</span>
 		 	</div>
 
 			<div @click="gotoOpList(index)" v-for="(item,index) in orderList" :key="index" class="order-item">
 				<yd-icon class="order-item-icon" name="ucenter" color="#ffffff" size=".4rem"></yd-icon>
 				<!-- 姓名 -->
-				<span class="order-item-name">{{item.BorrowerName?item.BorrowerName+" / ":''}}{{item.CurrentOperation}}</span>
+				<span class="order-item-name">{{item.showTitle}}</span>
 				
 				<yd-navbar-next-icon class="order-item-next" color="#ffffff"></yd-navbar-next-icon>
 			</div>
@@ -40,34 +40,34 @@ export default {
 	name: 'Index',
 	data () {
 		return {
-			// 1 进行 2 历史
-			type: 1,
+			// 0，正在进行中，1，正常结案，2，中途结案 3，历史报单， 不传所有的
+			type: 0,
 			// 订单列表
 			orderList: [
-				{
-					"Id" : "111",
-					"BorrowerName" : "张三", 
-					"BorrowerMobile" : "15111112222", 
-					"BorrowerIDNO" : "XXXXXXXXXX", 
-					"CreationDateTime" : "2018-08-01 18:00:00", 
-					"Status" : 0, // 报单状态，0，正在进行中，1，正常结案，2，中途结案
-					"CurrentOperation" : "估值"
-				},
-				{
-					"Id" : "22", 
-					"BorrowerName" : "", 
-					"BorrowerMobile" : "1231241451", 
-					"BorrowerIDNO" : "", 
-					"CreationDateTime" : "", 
-					"Status" : "2", 
-					"CurrentOperation" : "估值"
-				},	
+				// {
+				// 	"Id" : "111",
+				// 	"BorrowerName" : "张三", 
+				// 	"BorrowerMobile" : "15111112222", 
+				// 	"BorrowerIDNO" : "XXXXXXXXXX", 
+				// 	"CreationDateTime" : "2018-08-01 18:00:00", 
+				// 	"Status" : 0, // 报单状态，0，正在进行中，1，正常结案，2，中途结案
+				// 	"CurrentOperation" : "估值"
+				// },
+				// {
+				// 	"Id" : "22", 
+				// 	"BorrowerName" : "", 
+				// 	"BorrowerMobile" : "1231241451", 
+				// 	"BorrowerIDNO" : "", 
+				// 	"CreationDateTime" : "", 
+				// 	"Status" : "2", 
+				// 	"CurrentOperation" : "估值"
+				// },	
 			], 
 		}
 	},
 	mounted () {
 		// this.testLogin()
-		this.changeType(1)
+		this.changeType(0)
 	},
 	methods:{
 		// 点击进行中或者历史
@@ -79,7 +79,7 @@ export default {
 			this.pp('OrderList', param, res => {
 				// console.log(res)
 				if (res.ret) {
-					// this.orderList = res.data
+					this.orderList = this.format(res.data)
 				} else {
 					this.$dialog.toast({
 						mes: res.msg,
@@ -88,6 +88,21 @@ export default {
 					})
 				}
 			})
+		},
+
+		// 格式化
+		format (arr) {
+			if (arr) {
+				arr.map(item => {
+	                const str = item.CurrentOperation ? item.CurrentOperation : item.CreationDateTime
+	                if (item.BorrowerName) {
+	                	item.showTitle = item.BorrowerName + " / " + str
+	                } else {
+	                	item.showTitle = str
+	                }
+				})
+				return arr
+			}
 		},
 		
 		// 新增
@@ -100,8 +115,8 @@ export default {
 		gotoOpList (idx) {
 			if (this.orderList && idx < this.orderList.length) {
 				const order = this.orderList[idx]
-				const id = order.Id
-				const hid = order.HouseId || 222
+				const id = order.OrderId
+				const hid = order.HouseId
 				this.$router.push({ name : 'opList', params: { id, hid }})
 			}
 		},

@@ -101,7 +101,7 @@
 
 		// uid : 用户唯一标识id
 		// token : 用户身份验证token
-		// order_type : 获取报单类型，1，正在进行中报单；2，历史报单
+		// order_type : 获取报单类型，0，正在进行中，1，正常结案，2，中途结案 3，历史报单， 不传所有的
 		
 	// 返回数据格式说明：
 	
@@ -861,89 +861,127 @@
 			// ret : 调用接口返回结果标志位，成功：ok，失败：fail
 			// msg : 失败错误信息	
 
-// *立项页面接口-销售
+// ?立项页面接口(2)-销售
 
-	// 接口地址: OrderValidation
-	
-	// 接口说明：立项
-	
-	// 输入数据格式:
-	
-	{
-		"uid" : "",
-		"token" : "",
-		"OrderId" : "",
-		"OperationRecordId" : "",
-		"ExpectedBorrowAmount" : "",
-		"ExpectedBorrowPeriodInMonth" : "",
-		"BorrowUsage" : "",
-		"InterestReturnSource" : "",
-		"PrincipalReturnSource" : "",
-		"ShareOwnerInfo" : "",
-		"PledgeInfo" : "",
-		"IsPledged" : "",
-		"PledgeOrgnization" : "",
-		"PledgePrice" : "",
-		"IsLoanPaidOff" : "",
-		"IsZhuanDan" : "",
-		"HasCompany" : "",
-		"CompanySecurityIDNO" : "",
-		"CompanyPhone" : "",
-		"CompanyLicenseImageUrl" : "",
-		"C_CompanyLicenseImageUrl" : "",
-		"CompanyLegalPersonName" : "",
-		"CompanyLegalPersonIDNO" : "",
-		"CompanyArticlesImageUrls" : ["ImageUrl1", "ImageUrl2"],
-		"C_CompanyArticlesImageUrls" : ["ImageUrl1", "ImageUrl2"],
-		"BankAccountStatementImageUrls" : ["ImageUrl1", "ImageUrl2"],
-		"C_BankAccountStatementImageUrls" : ["ImageUrl1", "ImageUrl2"],
-		"LoanPriority" : "",
-		"SaleOrderValidationComment" : ""
-	}
+	// 1. 获取立项页面参数接口
 
-	// 返回数据格式：
-
-	{
-		"ret" : "ok",
-		"msg" : ""
-	}
-
-	// 输入数据格式说明：
-
-		// uid : 用户唯一标识id
-		// token : 用户身份验证token
-		// OrderId : 报单id
-		// OperationRecordId : 报单记录id
-		// ExpectedBorrowAmount : 申请贷款金额
-		// ExpectedBorrowPeriodInMonth : 申请贷款期限
-		// BorrowUsage : 借款用途
-		// InterestReturnSource : 利息还款来源
-		// PrincipalReturnSource" : 本金还款来源
-		// ShareOwnerInfo : 共有情况
-		// PledgeInfo : 房屋抵押现状
-		// IsPledged : 抵押状况
-		// PledgeOrgnization : 抵押机构
-		// PledgePrice : 抵押金额
-		// IsLoanPaidOff : 是否结清
-		// IsZhuanDan : 是否转单
-		// HasCompany : 是否有公司
-		// CompanySecurityIDNO : 企业统一社会代码
-		// CompanyPhone : 企业电话号码
-		// CompanyLicenseImageUrl : 公司营业执照副本
-		// C_CompanyLicenseImageUrl : 公司营业执照副本缩略图
-		// CompanyLegalPersonName : 企业法定代表人姓名
-		// CompanyLegalPersonIDNO : 企业法定代表人身份证号
-		// CompanyArticlesImageUrls : 企业章程照片
-		// C_CompanyArticlesImageUrls : 企业章程照片缩略图
-		// BankAccountStatementImageUrls : 银行流水
-		// C_BankAccountStatementImageUrls : 银行流水缩略图
-		// LoanPriority : 客户需求侧重
-		// SaleOrderValidationComment : 销售经理立项建议
+		// 接口地址: GetOrderValidationParams
 		
-	// 返回数据格式说明：
+		// 接口说明：获取立项页面参数
+		
+		// 输入数据格式:
+		
+		{
+			"uid" : "",
+			"token" : "",
+			"OrderId" : ""
+		}
+
+		// 返回数据格式：
+
+		{
+			"ret" : "ok",
+			"msg" : "",
+			"data" : {
+				"HasCompany" : "true|false"
+			}
+		}
+
+		// 输入数据格式说明：
+
+			// uid : 用户唯一标识id
+			// token : 用户身份验证token
+			// OrderId : 报单id
+
+		// 返回数据格式说明：
+		
+			// ret : 调用接口返回结果标志位，成功：ok，失败：fail
+			// msg : 失败错误信息
+			// HasCompany : 是否有公司
 	
-		// ret : 调用接口返回结果标志位，成功：ok，失败：fail
-		// msg : 失败错误信息	
+	// 2. 提交立项页面数据接口
+
+		// 接口地址: OrderValidation
+		
+		// 接口说明：立项
+		
+		// 输入数据格式:
+		
+		{
+			"uid" : "",
+			"token" : "",
+			"OrderId" : "",
+			"OperationRecordId" : "",
+			"ExpectedBorrowAmount" : "",
+			"ExpectedBorrowPeriodInMonth" : "",
+			"BorrowUsage" : "",
+			"InterestReturnSource" : "",
+			"PrincipalReturnSource" : "",
+			"ShareOwnerInfo" : "",
+			"PledgeInfo" : "",
+			"IsPledged" : "",
+			"PledgeOrgnization" : "",
+			"PledgePrice" : "",
+			"IsLoanPaidOff" : "",
+			"IsZhuanDan" : "",
+			"HasCompany" : "",
+			"CompanySecurityIDNO" : "",
+			"CompanyPhone" : "",
+			"CompanyLicenseImageUrl" : "",
+			"C_CompanyLicenseImageUrl" : "",
+			"CompanyLegalPersonName" : "",
+			"CompanyLegalPersonIDNO" : "",
+			"CompanyArticlesImageUrls" : ["ImageUrl1", "ImageUrl2"],
+			"C_CompanyArticlesImageUrls" : ["ImageUrl1", "ImageUrl2"],
+			"BankAccountStatementImageUrls" : ["ImageUrl1", "ImageUrl2"],
+			"C_BankAccountStatementImageUrls" : ["ImageUrl1", "ImageUrl2"],
+			"LoanPriority" : "",
+			"SaleOrderValidationComment" : ""
+		}
+
+		// 返回数据格式：
+
+		{
+			"ret" : "ok",
+			"msg" : ""
+		}
+
+		// 输入数据格式说明：
+
+			// uid : 用户唯一标识id
+			// token : 用户身份验证token
+			// OrderId : 报单id
+			// OperationRecordId : 报单记录id
+			// ExpectedBorrowAmount : 申请贷款金额
+			// ExpectedBorrowPeriodInMonth : 申请贷款期限
+			// BorrowUsage : 借款用途
+			// InterestReturnSource : 利息还款来源
+			// PrincipalReturnSource" : 本金还款来源
+			// ShareOwnerInfo : 共有情况
+			// PledgeInfo : 房屋抵押现状
+			// IsPledged : 抵押状况
+			// PledgeOrgnization : 抵押机构
+			// PledgePrice : 抵押金额
+			// IsLoanPaidOff : 是否结清
+			// IsZhuanDan : 是否转单
+			// HasCompany : 是否有公司
+			// CompanySecurityIDNO : 企业统一社会代码
+			// CompanyPhone : 企业电话号码
+			// CompanyLicenseImageUrl : 公司营业执照副本
+			// C_CompanyLicenseImageUrl : 公司营业执照副本缩略图
+			// CompanyLegalPersonName : 企业法定代表人姓名
+			// CompanyLegalPersonIDNO : 企业法定代表人身份证号
+			// CompanyArticlesImageUrls : 企业章程照片
+			// C_CompanyArticlesImageUrls : 企业章程照片缩略图
+			// BankAccountStatementImageUrls : 银行流水
+			// C_BankAccountStatementImageUrls : 银行流水缩略图
+			// LoanPriority : 客户需求侧重
+			// SaleOrderValidationComment : 销售经理立项建议
+			
+		// 返回数据格式说明：
+		
+			// ret : 调用接口返回结果标志位，成功：ok，失败：fail
+			// msg : 失败错误信息	
 
 // *二审页面接口(3)-风控
 
@@ -1480,7 +1518,7 @@
 			// ret : 调用接口返回结果标志位，成功：ok，失败：fail
 			// msg : 失败错误信息	
 
-// 补充资料页面接口(2)-销售
+// [废弃]补充资料页面接口(2)-销售
 
 	// 1. 获取补充资料页面参数接口
 
@@ -1734,6 +1772,7 @@
 			"uid" : "",
 			"token" : "",
 			"OrderId" : ""
+			
 		}
 
 		// 返回数据格式：
@@ -1751,7 +1790,8 @@
 					"LoanInterest" : "",
 					"LoanApprovalOperatorId" : "",
 					"LoanApprovalOperatorName" : "",
-					"LoanApprovalDateTime" : ""
+					"LoanApprovalDateTime" : "",
+					"LoanRejectionComment" : ""
 				}
 			
 		}
@@ -1775,6 +1815,7 @@
 			// LoanApprovalOperatorId : 操作人id
 			// LoanApprovalOperatorName : 操作人名称
 			// LoanApprovalDateTime : 操作时间
+			// LoanRejectionComment : 批贷拒绝理由
 
 	// *2. 完成产品终审页面(批贷)确认操作接口
 
@@ -1788,8 +1829,7 @@
 			"uid" : "",
 			"token" : "",
 			"OrderId" : "",
-			"OperationRecordId" : "",
-			"LoanRejectionComment" : ""
+			"OperationRecordId" : ""
 		}
 
 		// 返回数据格式：
@@ -1804,7 +1844,6 @@
 			// uid : 用户唯一标识id
 			// token : 用户身份验证token
 			// OrderId : 报单id
-			// LoanRejectionComment : 批贷拒绝理由
 			
 		// 返回数据格式说明：
 		
@@ -2270,5 +2309,222 @@
 		// ret : 调用接口返回结果标志位，成功：ok，失败：fail
 		// msg : 失败错误信息
 
+// 新补充资料接口(6)
 
+	// 1. 获取所有补充资料选项
+
+		// 接口地址: GetMaterialList
+		
+		// 接口说明：获取所有补充资料选项
+		
+		// 输入数据格式:
+		
+		{
+			"uid" : "",
+			"token" : ""
+		}
+
+		// 返回数据格式：
+
+		{
+			"ret" : "ok",
+			"msg" : "",
+			"data" : 
+				[	
+					{ "Id" : "1", "FieldName" : "BorrowerIDNOImageUrls", "Name" : "客户身份证照片"},
+					{ "Id" : "2", "FieldName" : "PermanentResidenceBookImageUrls", "Name" : "客户户口本照片"}
+				]
+			
+		}
+
+		// 输入数据格式说明：
+
+			// uid : 用户唯一标识id
+			// token : 用户身份验证token
+			// OrderId : 报单id
+			
+		// 返回数据格式说明：
+		
+			// ret : 调用接口返回结果标志位，成功：ok，失败：fail
+			// msg : 失败错误信息
+			// Id : 补充资料id
+			// FieldName : 补充资料字段名称
+			// Name : 补充资料显示名称
+
+	// 2. 风控或客服提交已选补充资料选项接口
+
+		// 接口地址: SubmitMaterialList
+		
+		// 接口说明：风控或客服提交已选补充资料选项
+		
+		// 输入数据格式:
+		
+		{
+			"uid" : "",
+			"token" : "",
+			"MaterialIds" : ["1", "2"]
+		}
+
+		// 返回数据格式：
+
+		{
+			"ret" : "ok",
+			"msg" : "",
+		}
+
+		// 输入数据格式说明：
+
+			// uid : 用户唯一标识id
+			// token : 用户身份验证token
+			// MaterialIds : 补充资料id数组
+			
+		// 返回数据格式说明：
+		
+			// ret : 调用接口返回结果标志位，成功：ok，失败：fail
+			// msg : 失败错误信息
+
+	// 3. 销售获取风控或客服已选补充资料选项接口
+
+		// 接口地址: GetSubmittedMaterialList
+		
+		// 接口说明：销售风控或客服提交已选补充资料选项
+		
+		// 输入数据格式:
+		
+		{
+			"uid" : "",
+			"token" : ""
+		}
+
+		// 返回数据格式：
+
+		{
+			"ret" : "ok",
+			"msg" : "",
+			"data" : 
+				[	
+					{ "Id" : "1", "FieldName" : "BorrowerIDNOImageUrls", "Name" : "客户身份证照片"},
+					{ "Id" : "2", "FieldName" : "PermanentResidenceBookImageUrls", "Name" : "客户户口本照片"}
+				]
+		}
+
+		// 输入数据格式说明：
+
+			// uid : 用户唯一标识id
+			// token : 用户身份验证token
+			
+		// 返回数据格式说明：
+		
+			// ret : 调用接口返回结果标志位，成功：ok，失败：fail
+			// msg : 失败错误信息
+			// Id : 补充资料id
+			// FieldName : 补充资料字段名称
+			// Name : 补充资料显示名称
+
+	// 4. 风控或客服是否可以发起补充资料请求接口
+
+		// 接口地址: CanSubmitMaterialList
+		
+		// 接口说明：风控或客服是否可以发起补充资料请求
+		
+		// 输入数据格式:
+		
+		{
+			"uid" : "",
+			"token" : ""
+		}
+
+		// 返回数据格式：
+
+		{
+			"ret" : "ok",
+			"msg" : "",
+			"data" : {
+				"CanSubmitMaterialList" : "true|false"
+			}
+		}
+
+		// 输入数据格式说明：
+
+			// uid : 用户唯一标识id
+			// token : 用户身份验证token
+			// MaterialIds : 补充资料id数组
+			
+		// 返回数据格式说明：
+		
+			// ret : 调用接口返回结果标志位，成功：ok，失败：fail
+			// msg : 失败错误信息
+			// CanSubmitMaterialList : 是否可以发起补充资料请求
+
+	// 5. 销售是否需要补充资料接口
+
+		// 接口地址: NeedToSupplementMaterial
+		
+		// 接口说明：销售是否需要补充资料
+		
+		// 输入数据格式:
+		
+		{
+			"uid" : "",
+			"token" : ""
+		}
+
+		// 返回数据格式：
+
+		{
+			"ret" : "ok",
+			"msg" : "",
+			"data" : {
+				"NeedToSupplementMaterial" : "true|false"
+			}
+		}
+
+		// 输入数据格式说明：
+
+			// uid : 用户唯一标识id
+			// token : 用户身份验证token
+			
+		// 返回数据格式说明：
+		
+			// ret : 调用接口返回结果标志位，成功：ok，失败：fail
+			// msg : 失败错误信息
+			// NeedToSupplementMaterial : 销售是否需要补充资料
+
+	// 6. 销售提交已选补充资料接口
+
+		// 接口地址: SupplementMaterial
+		
+		// 接口说明：销售提交已选补充资料
+		
+		// 输入数据格式:
+		
+		{
+			"uid" : "",
+			"token" : "",
+			"Materials" : [
+				{ "Id" : "1", "ImageUrls" : ["ImageUrl1", "ImageUrl2"], "C_ImageUrls" : ["ImageUrl1", "ImageUrl2"] },
+				{ "Id" : "2", "ImageUrls" : ["ImageUrl1", "ImageUrl2"], "C_ImageUrls" : ["ImageUrl1", "ImageUrl2"] },
+			]
+		}
+
+		// 返回数据格式：
+
+		{
+			"ret" : "ok",
+			"msg" : "",
+		}
+
+		// 输入数据格式说明：
+
+			// uid : 用户唯一标识id
+			// token : 用户身份验证token
+			// Materials : 补充资料数组
+			// Id : 补充材料id
+			// ImageUrls : 补充材料图片url
+			// C_ImageUrls : 补充材料缩略图图片url
+			
+		// 返回数据格式说明：
+		
+			// ret : 调用接口返回结果标志位，成功：ok，失败：fail
+			// msg : 失败错误信息
 
