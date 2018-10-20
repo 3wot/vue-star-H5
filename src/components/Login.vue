@@ -7,12 +7,12 @@
         	<yd-cell-group class="m-t-h">
 		        <yd-cell-item>
 		            <span slot="left">账号：</span>
-		            <yd-input slot="right" required v-model="mobile" :show-required-icon="true" placeholder="请输入手机号"></yd-input>
+		            <yd-input slot="right" required v-model="mobile" placeholder="请输入手机号"></yd-input>
 		        </yd-cell-item>
 
 		        <yd-cell-item>
 		            <span slot="left">密码：</span>
-		            <yd-input slot="right" type="password" v-model="pwd" placeholder="请输入密码"></yd-input>
+		            <yd-input slot="right" type="password" required v-model="pwd" placeholder="请输入密码"></yd-input>
 		        </yd-cell-item>
 
 		        <yd-cell-item>
@@ -87,19 +87,24 @@ export default {
 				}
 				this.pp('Login', param, res => {
 					if (res.ret) {
-						const { uid, token, OperatorRoleId, OperatorRoleName} = res.data
+						const { 
+							uid,
+							token,
+							OperatorRoleId,
+							OperatorRoleName,
+						} = res.data || {}
+
 						USER_INFO.uid = uid
 						USER_INFO.token = token
 						USER_INFO.OperatorRoleId = OperatorRoleId
 						USER_INFO.OperatorRoleName = OperatorRoleName
-						// console.log(USER_INFO)
 						// 首页
 						this.$router.push({ name : 'index' })
 					} else {
 						this.$dialog.toast({
 							mes: res.mes,
 							icon: 'none',
-							timeout: 2000,
+							timeout: 3000,
 						})
 					}
 				})
@@ -113,7 +118,7 @@ export default {
 				this.$dialog.toast({
 					mes: '请输入账号和密码',
 					icon: 'none',
-					timeout: 2000,
+					timeout: 3000,
 				})
 			}
 		},

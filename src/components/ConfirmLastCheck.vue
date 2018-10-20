@@ -12,8 +12,8 @@
 			<div class="slot-bottom" slot="bottom">
 				<yd-flexbox>
 
-        	 		<yd-button class="bottom-btn" size="large">确认</yd-button>	
-        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">拒绝</yd-button>	
+        	 		<yd-button class="bottom-btn" size="large" @click.native="sub">确认</yd-button>	
+        	 		<!-- <yd-button class="bottom-btn" size="large" @click.native="finish">拒绝</yd-button>	 -->
 
 		        </yd-flexbox>
 			</div>
@@ -22,36 +22,40 @@
 			<yd-cell-group>
 	            <yd-cell-item>
 	                <span slot="left">操作人：</span>
-	                <span slot="right">XXX</span>
+	                <span slot="right">{{LoanApprovalOperatorName}}</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
 	                <span slot="left">操作时间：</span>
-	                <span slot="right">2018-10-01 13:30:30</span>
+	                <span slot="right">{{LoanApprovalDateTime}}</span>
 	            </yd-cell-item>
 				<yd-cell-item>
 	                <span slot="left">终审意见：</span>
-	                <span slot="right">通过/拒绝</span>
+	                <span slot="right">{{IsLoanApproved ? '通过' : '拒绝'}}</span>
 	            </yd-cell-item>
 
-	            <ImgUpload title="产品供应方批贷函：" :arr="arr1"></ImgUpload>
+	            <div v-if="IsLoanApproved">
+	            	<ImgList title="产品供应方批贷函：" :arr="C_LoanApprovalImageUrls"></ImgList>
 
-	            <yd-cell-item>
-	                <span slot="left">批贷金额：</span>
-	                <span slot="right">500000</span>
-	            </yd-cell-item>
-	            <yd-cell-item>
-	                <span slot="left">批贷期限：</span>
-	                <span slot="right">36个月</span>
-	            </yd-cell-item>
-	            <yd-cell-item>
-	                <span slot="left">批贷利率：</span>
-	                <span slot="right">5%</span>
-	            </yd-cell-item>
-	            <yd-cell-item>
+		            <yd-cell-item>
+		                <span slot="left">批贷金额：</span>
+		                <span slot="right">{{LoanAmount}}</span>
+		            </yd-cell-item>
+		            <yd-cell-item>
+		                <span slot="left">批贷期限：</span>
+		                <span slot="right">{{LoanPeriodInMonth}}</span>
+		            </yd-cell-item>
+		            <yd-cell-item>
+		                <span slot="left">批贷利率：</span>
+		                <span slot="right">{{LoanInterest}}</span>
+		            </yd-cell-item>
+
+	            </div>
+	            
+	            <yd-cell-item v-if="!IsLoanApproved">
 	                <span slot="left">拒绝理由：</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
-		            <yd-textarea slot="right" v-model="str1"></yd-textarea>
+		            <yd-textarea slot="right" readonly v-model="LoanRejectionComment" placeholder="请输入拒绝理由"></yd-textarea>
 		        </yd-cell-item>
 
 
@@ -65,16 +69,18 @@
 
 <script>
 import ImgUpload from './ImgUpload'
+import ImgList from './ImgList'
+
+
 
 export default {
 	components:{
-		ImgUpload
+		ImgUpload,
+		ImgList,
 	},
 	name: 'ConfirmFirstCheck',
 	data () {
 		return {
-			arr1 : [],
-			str1 : '我的拒绝理由',
 			// 操作人
 			// 操作时间
 			// 终审意见
@@ -83,6 +89,18 @@ export default {
 			// 批贷期限
 			// 批贷利率
 			// 拒绝理由
+
+			"C_LoanApprovalImageUrls": [],
+            "IsLoanApproved": null,
+            "LoanAmount": "",
+            "LoanApprovalDateTime": "",
+            "LoanApprovalImageUrls": [],
+            "LoanApprovalOperatorId": "",
+            "LoanApprovalOperatorName": "",
+            "LoanInterest": "",
+            "LoanPeriodInMonth": "",
+
+            LoanRejectionComment:"拒绝理由如何获取？？拒绝理由如何获取？？拒绝理由如何获取??",
 		}
 	},
 	mounted () {
@@ -97,6 +115,75 @@ export default {
 		finish () {
 			// 跳到首页
 			this.$router.push({ name : 'opList' })
+		},
+
+		// 初始化
+		init () {
+			const id = this.$route.params.id
+			// const hid = this.$route.params.hid
+			const param = {
+				OrderId: id,
+				// HouseId: hid,
+			}
+			this.pp('GetConfirmLoanApprovalParams', param, res => {
+				if (res.ret) {
+					const {
+			            C_LoanApprovalImageUrls,
+			            IsLoanApproved,
+			            LoanAmount,
+
+			            LoanApprovalDateTime,
+			            LoanApprovalImageUrls,
+			            LoanApprovalOperatorId,
+
+			            LoanApprovalOperatorName,
+			            LoanInterest,
+			            LoanPeriodInMonth,
+					} = res.data || {}
+
+					this.C_LoanApprovalImageUrls = C_LoanApprovalImageUrls
+					this.IsLoanApproved = IsLoanApproved
+					this.LoanAmount = LoanAmount
+
+					this.LoanApprovalDateTime = LoanApprovalDateTime
+					this.LoanApprovalImageUrls = LoanApprovalImageUrls
+					this.LoanApprovalOperatorId = LoanApprovalOperatorId
+
+					this.LoanApprovalOperatorName = LoanApprovalOperatorName
+					this.LoanInterest = LoanInterest
+					this.LoanPeriodInMonth = LoanPeriodInMonth
+					
+				} else {
+					this.$dialog.toast({
+						mes: res.msg,
+						icon: 'none',
+						timeout: 2000,
+					})
+				}
+			})
+		},
+
+		// 确认
+		sub () {
+			const { id, hid, oprid } = this.$route.params
+			const LoanRejectionComment = this.LoanRejectionComment
+			const param = {
+				OrderId: id,
+				OperationRecordId: oprid,
+				LoanRejectionComment,
+			}
+			this.pp('CompleteConfirmLoanApproval', param, res => {
+				if (res.ret) {
+					// 跳到操作页面
+					this.$router.push({ name : 'opList', params: { id, hid }})
+				} else {
+					this.$dialog.toast({
+						mes: res.msg,
+						icon: 'none',
+						timeout: 2000,
+					})
+				}
+			})
 		},
 
 

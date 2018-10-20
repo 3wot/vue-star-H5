@@ -8,13 +8,13 @@
  	</div>
 
 	<div class="upload-content">
-		<div v-for="(item,index) in imgArr" :key="index" class="upload-item">
+		<div v-for="(item,index) in arr" :key="index" class="upload-item">
 			<yd-icon class="dele-icon" @click.native="dele(index)" color="#5871f5" size=".4rem" name="error"></yd-icon>
 			<img :src="item">
 			<!-- {{item}} -->
 		</div>
 		
-		<div class="upload-item" @click="upload">
+		<div v-if="arr.length < maxNum" class="upload-item" @click="upload">
 			<img src="../../static/plus.png" alt="">
 		</div>
 
@@ -35,16 +35,16 @@ export default {
 	// Button,Field
 	},
 	name: 'ImgUpload',
-	props: ['title','arr','required'],
+	props: ['title','arr','arrc','required', 'max'],
 	data () {
 		return {
-			imgArr : [],
-
+			maxNum : 999,
 		}
 	},
 	mounted () {
-		// 点击上传
-		this.imgArr = this.arr
+		if (this.max) {
+			this.maxNum = this.max
+		}
 	},
 	methods:{
 		// 点击上传
@@ -54,13 +54,15 @@ export default {
 
 		// 添加
 		add (url) {
-			this.imgArr.push(url)	
+			this.arr.push(url)
+			this.arrc.push(url)
 		},
 
 
 		// 删除图片
 		dele(idx) {
-			this.imgArr.splice(idx,1)
+			this.arr.splice(idx,1)
+			this.arrc.splice(idx,1)
 		},
 
 

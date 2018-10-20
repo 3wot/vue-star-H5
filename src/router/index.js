@@ -76,13 +76,13 @@ export default new Router({
 		},
 		{
 			// 立项
-			path: '/setUpProject',
+			path: '/setUpProject/:id/:hid/:oprid',
 			name: 'setUpProject',
 			component: SetUpProject
 		},
 		{
 			// 产品匹配确认
-			path: '/confirmMatch',
+			path: '/confirmMatch/:id/:hid/:oprid',
 			name: 'confirmMatch',
 			component: ConfirmMatch
 		},
@@ -94,19 +94,19 @@ export default new Router({
 		},
 		{
 			// 产品终审结果确认
-			path: '/confirmLastCheck',
+			path: '/confirmLastCheck/:id/:hid/:oprid',
 			name: 'confirmLastCheck',
 			component: ConfirmLastCheck
 		},
-		{
-			// 打印合同
-			path: '/printDeal',
-			name: 'printDeal',
-			component: PrintDeal
-		},
+		// {
+		// 	// 打印合同
+		// 	path: '/printDeal/:id/:hid/:oprid',
+		// 	name: 'printDeal',
+		// 	component: PrintDeal
+		// },
 		{
 			// 提交收款凭证
-			path: '/sendDeal',
+			path: '/sendDeal/:id/:hid/:oprid',
 			name: 'sendDeal',
 			component: SendDeal
 		},

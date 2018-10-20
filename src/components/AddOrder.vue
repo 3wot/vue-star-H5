@@ -43,7 +43,7 @@
 		        </yd-cell-item>
 		    </yd-cell-group> -->
 
-			<ImgUpload title="房产证照片" :arr="HouseCertificateImageUrls"></ImgUpload>  
+			<ImgUpload title="房产证全套照片" :arr="HouseCertificateImageUrls" :arrc="C_HouseCertificateImageUrls"></ImgUpload>  
 
 	    </yd-layout>
 
@@ -59,7 +59,6 @@ import ImgUpload from './ImgUpload'
 export default {
 	components:{
 		ImgUpload
-	// Button,Field
 	},
 	name: 'AddOrder',
 	data () {
@@ -69,8 +68,8 @@ export default {
 			"Location" : "",
 			"Usage" : "",
 			"Area" : "",
-			"HouseCertificateImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
-			"C_HouseCertificateImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"]
+			"HouseCertificateImageUrls" : [],
+			"C_HouseCertificateImageUrls" : [],
 		}
 	},
 	mounted () {
@@ -108,13 +107,14 @@ export default {
 				C_HouseCertificateImageUrls,
 			} = this || {}
 			const param = {
-				OwnerName,
-				Location,
-				Usage,
-				Area,
+				// OwnerName,
+				// Location,
+				// Usage,
+				// Area,
 				HouseCertificateImageUrls,
 				C_HouseCertificateImageUrls,
 			}
+			// console.log(param)
 			this.pp('NewOrder', param, res => {
 				if (res.ret) {
 					// 首页
@@ -123,7 +123,7 @@ export default {
 					this.$dialog.toast({
 						mes: res.msg,
 						icon: 'none',
-						timeout: 2000,
+						timeout: 3000,
 					})
 				}
 			})

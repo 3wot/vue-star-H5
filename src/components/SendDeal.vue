@@ -12,14 +12,14 @@
 			<div class="slot-bottom" slot="bottom">
 				<yd-flexbox>
 
-        	 		<yd-button class="bottom-btn" size="large">提交</yd-button>	
+        	 		<yd-button class="bottom-btn" size="large" @click.native="sub">提交</yd-button>	
         	 		
 
 		        </yd-flexbox>
 			</div>
 
 			<!-- 内容 -->
-			<ImgUpload title="收款凭证" :arr="arr1"></ImgUpload>
+			<ImgUpload title="现场照片" :arr="LoanReceivedImageUrls"></ImgUpload>
 			
 
 	    </yd-layout>
@@ -40,7 +40,8 @@ export default {
 	name: 'SendDeal',
 	data () {
 		return {
-			arr1 : [],
+			"LoanReceivedImageUrls" : [],
+			"C_LoanReceivedImageUrls" : []
 		}
 	},
 	mounted () {
@@ -57,11 +58,38 @@ export default {
                 }
             });
 		},
+
 		finish () {
 			arr1 : [], // 跳到首页
 			this.$router.push({ name : 'opList' })
 		},
 
+		// 确认
+		sub () {
+			const { id, hid, oprid } = this.$route.params
+			const {
+				LoanReceivedImageUrls,
+				C_LoanReceivedImageUrls,
+			} = this
+			const param = {
+				OrderId: id,
+				OperationRecordId,
+				LoanReceivedImageUrls,
+				C_LoanReceivedImageUrls,
+			}
+			this.pp('CompleteUploadLoanReceivedCertificate', param, res => {
+				if (res.ret) {
+					// 跳到操作页面
+					this.$router.push({ name : 'opList', params: { id, hid }})
+				} else {
+					this.$dialog.toast({
+						mes: res.msg,
+						icon: 'none',
+						timeout: 2000,
+					})
+				}
+			})
+		},
 
 	},
 

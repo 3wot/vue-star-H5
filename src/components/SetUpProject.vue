@@ -12,33 +12,33 @@
 			<div class="slot-bottom" slot="bottom">
 				<yd-flexbox>
 
-        	 		<yd-button class="bottom-btn" size="large">提交</yd-button>	
-        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">完成</yd-button>	
+        	 		<yd-button class="bottom-btn" size="large" @click.native="sub">提交</yd-button>	
+        	 		<!-- <yd-button class="bottom-btn" size="large" @click.native="finish">完成</yd-button>	 -->
 
 		        </yd-flexbox>
 			</div>
 
 			<!-- 内容 -->
 
-			<yd-cell-group>
+<!-- 			<yd-cell-group>
 		        <yd-cell-item type="label">
 		            <span slot="left">用途：</span>
-		            <select slot="right" v-model="select1">
+		            <select slot="right" v-model="Usage">
 		               	<option v-for="item in option1">{{item}}</option>
 		            </select>
 		        </yd-cell-item>
-		    </yd-cell-group>
+		    </yd-cell-group> -->
 
 			<yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>申请贷款金额：</span>
-		            <yd-input slot="right" type="number" v-model="ExpectedBorrowAmount" required :show-required-icon="false"  placeholder="请输入申请贷款金额"></yd-input>
+		            <yd-input slot="right" type="number" required v-model="ExpectedBorrowAmount" :show-required-icon="false"  placeholder="请输入申请贷款金额"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 		    <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>申请贷款期限：</span>
-		            <yd-input slot="right" type="number" v-model="ExpectedBorrowPeriodInMonth" required :show-required-icon="false"  placeholder="请输入申请贷款期限(月)"></yd-input>
+		            <yd-input slot="right" type="number" required v-model="ExpectedBorrowPeriodInMonth" :show-required-icon="false" placeholder="请输入申请贷款期限(月)"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 		    
@@ -49,39 +49,39 @@
 		               	<option v-for="item in option2">{{item}}</option>
 		            </select>
 		        </yd-cell-item>
-		        <yd-cell-item v-if="select2 == '其他'">
-		            <yd-textarea slot="right" placeholder="请输入借款用途"></yd-textarea>
+		        <yd-cell-item v-if="BorrowUsage == '其他'">
+		            <yd-textarea slot="right" required v-model="BorrowUsageReal" placeholder="请输入借款用途"></yd-textarea>
 		        </yd-cell-item>
 		    </yd-cell-group>
 
 		    <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>利息还款来源：</span>
-		            <select slot="right" v-model="select3">
+		            <select slot="right" v-model="InterestReturnSource">
 		               	<option v-for="item in option3">{{item}}</option>
 		            </select>
 		        </yd-cell-item>
-		        <yd-cell-item v-if="select3 == '其他'">
-		            <yd-textarea slot="right" placeholder="请输入利息还款来源"></yd-textarea>
+		        <yd-cell-item v-if="InterestReturnSource == '其他'">
+		            <yd-textarea slot="right" required v-model="InterestReturnSourceReal" placeholder="请输入利息还款来源"></yd-textarea>
 		        </yd-cell-item>
 		    </yd-cell-group>
 
 		    <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>本金还款来源：</span>
-		            <select slot="right" v-model="select4">
+		            <select slot="right" required v-model="PrincipalReturnSource">
 		               	<option v-for="item in option4">{{item}}</option>
 		            </select>
 		        </yd-cell-item>
-		        <yd-cell-item v-if="select4 == '其他'">
-		            <yd-textarea slot="right" placeholder="请输入本金还款来源"></yd-textarea>
+		        <yd-cell-item v-if="PrincipalReturnSource == '其他'">
+		            <yd-textarea slot="right" required v-model="PrincipalReturnSourceReal" placeholder="请输入本金还款来源"></yd-textarea>
 		        </yd-cell-item>
 		    </yd-cell-group>
 
 		    <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>共有情况：</span>
-		            <select slot="right" v-model="select5">
+		            <select slot="right" required v-model="ShareOwnerInfo">
 		               	<option v-for="item in option5">{{item}}</option>
 		            </select>
 		        </yd-cell-item>
@@ -90,7 +90,7 @@
 		    <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>抵押物现状：</span>
-		            <select slot="right" v-model="select6">
+		            <select slot="right" required v-model="PledgeInfo">
 		               	<option v-for="item in option6">{{item}}</option>
 		            </select>
 		        </yd-cell-item>
@@ -99,8 +99,8 @@
 		    <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>抵押状况：</span>
-		            <select slot="right" v-model="select7">
-		               	<option v-for="item in option7">{{item}}</option>
+		            <select slot="right" required v-model="IsPledged">
+		               	<option v-for="item in option7" :value="item.value">{{item.title}}</option>
 		            </select>
 		        </yd-cell-item>
 		    </yd-cell-group>
@@ -111,22 +111,24 @@
 		    	<yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left"><span class="danger">* </span>抵押机构：</span>
-			            <yd-input slot="right" required :show-required-icon="false"  placeholder="请输入抵押机构"></yd-input>
+			            <select slot="right" required v-model="PledgeOrgnization">
+			               	<option v-for="item in option10">{{item}}</option>
+			            </select>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
 		    	<yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left"><span class="danger">* </span>抵押金额：</span>
-			            <yd-input slot="right" required :show-required-icon="false"  placeholder="请输入抵押金额"></yd-input>
+			            <yd-input slot="right" required v-model="PledgePrice" :show-required-icon="false"  placeholder="请输入抵押金额"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
 				<yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left"><span class="danger">* </span>是否结清：</span>
-			            <select slot="right" v-model="select8">
-			               	<option v-for="item in option8">{{item}}</option>
+			            <select slot="right" required v-model="IsLoanPaidOff">
+			               	<option v-for="item in option8" :value="item.value">{{item.title}}</option>
 			            </select>
 			        </yd-cell-item>
 			    </yd-cell-group>
@@ -134,8 +136,8 @@
 			    <yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left"><span class="danger">* </span>是否转单：</span>
-			            <select slot="right" v-model="select9">
-			               	<option v-for="item in option8">{{item}}</option>
+			            <select slot="right" required v-model="IsZhuanDan">
+			               	<option v-for="item in option8" :value="item.value">{{item.title}}</option>
 			            </select>
 			        </yd-cell-item>
 			    </yd-cell-group>
@@ -144,58 +146,58 @@
 
 		    <yd-cell-group>
 		        <yd-cell-item>
-		            <span slot="left"><span class="danger">* </span>是否有公司：</span>
-		            <select slot="right" v-model="select10">
-		               	<option v-for="item in option8">{{item}}</option>
+		            <span slot="left">是否有公司：</span>
+		            <select slot="right" v-model="HasCompany">
+		               	<option v-for="item in option8" :value="item.value">{{item.title}}</option>
 		            </select>
 		        </yd-cell-item>
 		    </yd-cell-group>
 
-		    <div v-if="select10 == '是'">
+		    <div v-if="HasCompany">
 
 		    	<yd-cell-group>
 			        <yd-cell-item>
-			            <span slot="left"><span class="danger">* </span>企业统一社会信用代码：</span>
-			            <yd-input slot="right" :show-required-icon="false"  placeholder="请输入企业统一社会信用代码"></yd-input>
+			            <span slot="left">企业统一社会信用代码：</span>
+			            <yd-input slot="right" v-model="CompanySecurityIDNO" :show-required-icon="false"  placeholder="请输入企业统一社会信用代码"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
 			    <yd-cell-group>
 			        <yd-cell-item>
-			            <span slot="left"><span class="danger">* </span>企业电话：</span>
-			            <yd-input slot="right" :show-required-icon="false"  placeholder="请输入企业电话"></yd-input>
+			            <span slot="left">企业电话：</span>
+			            <yd-input slot="right" v-model="CompanyPhone" :show-required-icon="false"  placeholder="请输入企业电话"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
 			    <yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left"><span class="danger">* </span>企业法定代表人姓名：</span>
-			            <yd-input slot="right" :show-required-icon="false"  placeholder="请输入企业法人姓名"></yd-input>
+			            <yd-input slot="right" required v-model="CompanyLegalPersonName" :show-required-icon="false"  placeholder="请输入企业法人姓名"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
 			    <yd-cell-group>
 			        <yd-cell-item>
-			            <span slot="left"><span class="danger">* </span>企业法定代表人身份证号：：</span>
-			            <yd-input slot="right" :show-required-icon="false"  placeholder="请输入企业法人身份证号"></yd-input>
+			            <span slot="left"><span class="danger">* </span>企业法人身份证号：：</span>
+			            <yd-input slot="right" required v-model="CompanyLegalPersonIDNO" :show-required-icon="false"  placeholder="请输入企业法人身份证号"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
-				<ImgUpload title="公司营业执照副本" :arr="arr1"></ImgUpload>
+				<ImgUpload title="公司营业执照副本" required="true" :max="1" :arr="CompanyLicenseImageUrl"></ImgUpload>
 
-				<ImgUpload title="企业章程" :arr="arr2"></ImgUpload>  			    
+				<ImgUpload title="企业章程" required="true" :arr="CompanyArticlesImageUrls"></ImgUpload>  			    
 
 		    </div>
 
-			<ImgUpload title="户口本" :arr="arr3"></ImgUpload>
-			<ImgUpload title="婚姻证明材料" :arr="arr4"></ImgUpload>
-			<ImgUpload title="银行流水" :arr="arr5"></ImgUpload>
-			<ImgUpload title="征信报告" :arr="arr6"></ImgUpload>
+			<!-- <ImgUpload title="户口本" :arr="arr3"></ImgUpload> -->
+			<!-- <ImgUpload title="婚姻证明材料" :arr="arr4"></ImgUpload> -->
+			<ImgUpload title="银行流水" :arr="BankAccountStatementImageUrls"></ImgUpload>
+			<!-- <ImgUpload title="征信报告" :arr="arr6"></ImgUpload> -->
 
 			<yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>客户需求侧重：</span>
-		            <select slot="right" v-model="select11">
+		            <select slot="right" required v-model="LoanPriority">
 		               	<option v-for="item in option9">{{item}}</option>
 		            </select>
 		        </yd-cell-item>
@@ -206,13 +208,11 @@
 		            <span slot="left"><span class="danger">* </span>销售经理立项建议：</span>
 		        </yd-cell-item>
 		         <yd-cell-item>
-		            <yd-textarea slot="right" placeholder="请输入立项建议"></yd-textarea>
+		            <yd-textarea slot="right" required v-model="SaleOrderValidationComment" placeholder="请输入立项建议"></yd-textarea>
 		        </yd-cell-item>
 		    </yd-cell-group>
 
 	    </yd-layout>
-
-
 
 	</div>
 </template>
@@ -229,48 +229,23 @@ export default {
 	name: 'SetUpProject',
 	data () {
 		return {
-			select1 : '住宅',
-			
 
-			select2 : '',
-			
-
-			select3 : '',
-			
-
-			select4 : '',
-			
-
-			select5 : '单独所有',
-			
-
-			select6 : '自住',
-			
-
-			select7 : '未抵押',
-			
-
-			select8 : '否',
-			select9 : '否',
-			select10 : '否',
-			option8 : ['是','否'],
-
-			select11 : '效率优先',
-			option9 : ['成本优先','效率优先','成数优先'],
-
-
-			"Usage" : "住宅",
-			option1 : ['住宅','别墅','商业','公寓','办公'],
+			// "Usage" : "住宅",
+			// option1 : ['住宅','别墅','商业','公寓','办公'],
 
 			"ExpectedBorrowAmount" : "",
 			"ExpectedBorrowPeriodInMonth" : "",
+
 			"BorrowUsage" : "",
+			"BorrowUsageReal" : "",
 			option2 : ['买车','买房','公司经营周转','企业经营','其他'],
 
 			"InterestReturnSource" : "",
+			"InterestReturnSourceReal" : "",
 			option3 : ['工资收入','经营收入','企业应收账款','其他'],
 
 			"PrincipalReturnSource" : "",
+			"PrincipalReturnSourceReal" : "",
 			option4 : ['卖房款','企业应收账款','其他'],
 
 			"ShareOwnerInfo" : "单独所有",
@@ -280,35 +255,35 @@ export default {
 			option6 : ['自住','出租','空置'],
 
 			"IsPledged" : false,
-			option7 : ['已抵押','未抵押'],
+			option7 : [{title:'已抵押',value:true},{title:'未抵押',value:false}],
 
-			"PledgeOrgnization" : "招商银行",
-			"PledgePrice" : "700000",
-			"IsLoanPaidOff" : "False",
-			"IsZhuanDan" : "False",
-			"HasCompany" : "True",
-			"CompanySecurityIDNO" : "91310115703116990W",
-			"CompanyPhone" : "0349-3070531",
-			"CompanyLicenseImageUrl" : "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg",
-			"C_CompanyLicenseImageUrl" : "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg",
-			"CompanyLegalPersonName" : "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg",
-			"CompanyLegalPersonIDNO" : "140624199812014051",
-			"CompanyArticlesImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
-			"C_CompanyArticlesImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
-			"PermanentResidenceBookImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
-			"C_PermanentResidenceBookImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
-			"MarriageCertificateImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
-			"C_MarriageCertificateImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
-			"BankAccountStatementImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
-			"C_BankAccountStatementImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
-			"PersonalCreditReportImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
-			"C_PersonalCreditReportImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
-			"LoanPriority" : "成本优先",
-			"SaleOrderValidationComment" : "test comment"
+			"PledgeOrgnization" : "银行",
+			option10: ['银行','信托','法人','自然人','其他'],
 
+			"PledgePrice" : "",
+			"IsLoanPaidOff" : false,
+			"IsZhuanDan" : false,
+			option8 : [{title:'是',value:true},{title:'否',value:false}],
 
+			"HasCompany" : true, // 获取回来
 
+			"CompanySecurityIDNO" : "",
+			"CompanyPhone" : "",
+			"CompanyLegalPersonName" : "",
+			"CompanyLegalPersonIDNO" : "",
 
+			"CompanyLicenseImageUrl" : [],
+			"C_CompanyLicenseImageUrl" : [],
+			"CompanyArticlesImageUrls" : [],
+			"C_CompanyArticlesImageUrls" : [],
+			
+			
+			"BankAccountStatementImageUrls" : [],
+			"C_BankAccountStatementImageUrls" : [],
+			
+			"LoanPriority" : "效率优先",
+			option9 : ['成本优先','效率优先','成数优先'],
+			"SaleOrderValidationComment" : "",
 		}
 
 	},
@@ -326,10 +301,126 @@ export default {
                 }
             });
 		},
+
 		// 完成
 		finish () {
 			// 跳到首页
 			this.$router.push({ name : 'opList' })
+		},
+
+		// 初始化// 获取是否有公司
+		init () {
+			const id = this.$route.params.id
+			const hid = this.$route.params.hid
+			const param = {
+				OrderId: id,
+				HouseId: hid,
+			}
+			this.pp('', param, res => {
+				if (res.ret) {
+					
+				} else {
+					this.$dialog.toast({
+						mes: res.msg,
+						icon: 'none',
+						timeout: 2000,
+					})
+				}
+			})
+		},
+
+		// 提交
+		sub () {
+			const { id, hid, oprid } = this.$route.params
+			
+			const OrderId = id
+			const HouseId = hid
+			const OperationRecordId = oprid
+
+			const { 					
+				ExpectedBorrowAmount,
+				ExpectedBorrowPeriodInMonth,
+				BorrowUsage,
+				BorrowUsageReal,
+				
+				InterestReturnSource,
+				InterestReturnSourceReal,
+				
+				PrincipalReturnSource,
+				PrincipalReturnSourceReal,
+				
+				ShareOwnerInfo,
+			
+				PledgeInfo,
+				
+				IsPledged,
+				
+				PledgeOrgnization,
+				
+				PledgePrice,
+				IsLoanPaidOff,
+				IsZhuanDan,
+				
+				HasCompany, // 获取回来
+
+				CompanySecurityIDNO,
+				CompanyPhone,
+				CompanyLegalPersonName,
+				CompanyLegalPersonIDNO,
+
+				CompanyLicenseImageUrl,
+				C_CompanyLicenseImageUrl,
+				CompanyArticlesImageUrls,
+				C_CompanyArticlesImageUrls,
+				
+				BankAccountStatementImageUrls,
+				C_BankAccountStatementImageUrls,
+				
+				LoanPriority,
+				SaleOrderValidationComment,
+			} = this
+			const param = {
+				OrderId,
+				HouseId,
+				OperationRecordId,
+				ExpectedBorrowAmount,
+				ExpectedBorrowPeriodInMonth,
+				BorrowUsage : BorrowUsage == '其他' ? BorrowUsageReal : BorrowUsage,
+				InterestReturnSource : InterestReturnSource == '其他' ? InterestReturnSourceReal : InterestReturnSource,
+				PrincipalReturnSource : PrincipalReturnSource == '其他' ? PrincipalReturnSourceReal : PrincipalReturnSource,
+				ShareOwnerInfo,
+				PledgeInfo,
+				IsPledged,
+				PledgeOrgnization,
+				PledgePrice,
+				IsLoanPaidOff,
+				IsZhuanDan,
+				HasCompany, // 获取回来
+				CompanySecurityIDNO,
+				CompanyPhone,
+				CompanyLegalPersonName,
+				CompanyLegalPersonIDNO,
+				CompanyLicenseImageUrl,
+				C_CompanyLicenseImageUrl,
+				CompanyArticlesImageUrls,
+				C_CompanyArticlesImageUrls,
+				BankAccountStatementImageUrls,
+				C_BankAccountStatementImageUrls,
+				LoanPriority,
+				SaleOrderValidationComment,
+			}
+			this.pp('OrderValidation', param, res => {
+				if (res.ret) {
+					// 跳到操作页面
+					this.$router.push({ name : 'opList', params: { id, hid }})
+				} else {
+					this.$dialog.toast({
+						mes: res.msg,
+						icon: 'none',
+						timeout: 2000,
+					})
+				}
+			})
 		},
 
 

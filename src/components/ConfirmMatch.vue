@@ -12,8 +12,8 @@
 			<div class="slot-bottom" slot="bottom">
 				<yd-flexbox>
 
-        	 		<yd-button class="bottom-btn" size="large">提交</yd-button>	
-        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">完成</yd-button>	
+        	 		<yd-button class="bottom-btn" size="large" @click.native="sub">提交</yd-button>	
+        	 		<!-- <yd-button class="bottom-btn" size="large" @click.native="finish">完成</yd-button>	 -->
 
 		        </yd-flexbox>
 			</div>
@@ -22,24 +22,30 @@
 			<yd-cell-group>
 	            <yd-cell-item>
 	                <span slot="left">操作人：</span>
-	                <span slot="right">XXX</span>
+	                <span slot="right">{{MatchProductOperatorName}}</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
 	                <span slot="left">操作时间：</span>
-	                <span slot="right">2018-10-01 13:30:30</span>
+	                <span slot="right">{{MatchProductDateTime}}</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
-	                <span slot="left">产品匹配结果：</span>
+	                <span slot="left">匹配产品：</span>
+	            </yd-cell-item>
+	            <yd-cell-item v-for="(item,index) in MatchProducts" :key="index">
+				    <yd-accordion slot="right">
+				        <yd-accordion-item :title="item.Name +'（类别：'+ item.ClassName + '）'">
+				            <div style="padding: .24rem;">
+				                <p>{{item.Description}}</p>
+				            </div>
+				        </yd-accordion-item>
+				    </yd-accordion>
 	            </yd-cell-item>
 	            <yd-cell-item>
-	                <img class="cv-img" slot="right" src="../../static/mate1-1.png">
+	                <span slot="left">备注：</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
-	                <img class="cv-img" slot="right" src="../../static/mate1-1.png">
+	                <yd-textarea v-model="ConfirmMatchProductComment" slot="right" placeholder="请输入备注"></yd-textarea>
 	            </yd-cell-item>
-<!-- 	            <yd-cell-item>
-	                <img class="cv-img" slot="right" src="../../static/mate1-1.png">
-	            </yd-cell-item> -->
 	        </yd-cell-group>
 
 
@@ -57,11 +63,19 @@ export default {
 	name: 'ConfirmValuation',
 	data () {
 		return {
-			
+			ConfirmMatchProductComment: "",
+            "MatchProductDateTime": "",
+            "MatchProductOperatorId": "",
+            "MatchProductOperatorName": "",
+            "MatchProducts": [ 	
+					{ "Id" : "", "Name": "银行产品1", "ClassName": "银行", "Description" : "这个是一段描述，可能很长~~s这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长"},
+					{ "Id" : "", "Name": "银行产品222", "ClassName": "银行22", "Description" : "这个是一段描述，可能很长~~s这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长"},
+				],
 		}
 	},
 	mounted () {
-		
+
+		this.init()
 	},
 	methods:{
 		// 跳到首页
@@ -74,6 +88,58 @@ export default {
 			this.$router.push({ name : 'opList' })
 		},
 
+		// 初始化
+		init () {
+			const id = this.$route.params.id
+			// const hid = this.$route.params.hid
+			const param = {
+				OrderId: id,
+				// HouseId: hid,
+			}
+			this.pp('GetConfirmProductMatchParams', param, res => {
+				if (res.ret) {
+					const {
+			            MatchProductDateTime,
+			            MatchProductOperatorId,
+			            MatchProductOperatorName,
+			            MatchProducts,
+					} = res.data || {}
+					this.MatchProductDateTime = MatchProductDateTime
+					this.MatchProductOperatorId = MatchProductOperatorId
+					this.MatchProductOperatorName = MatchProductOperatorName
+					this.MatchProducts = MatchProducts
+				} else {
+					this.$dialog.toast({
+						mes: res.msg,
+						icon: 'none',
+						timeout: 2000,
+					})
+				}
+			})
+		},
+
+		// 确认
+		sub () {
+			const { id, oprid } = this.$route.params
+			const ConfirmMatchProductComment = this.ConfirmMatchProductComment
+			const param = {
+				OrderId: id,
+				OperationRecordId: oprid,
+				ConfirmMatchProductComment,
+			}
+			this.pp('CompleteConfirmProductMatch', param, res => {
+				if (res.ret) {
+					// 跳到操作页面
+					this.$router.push({ name : 'opList', params: { id, hid }})
+				} else {
+					this.$dialog.toast({
+						mes: res.msg,
+						icon: 'none',
+						timeout: 2000,
+					})
+				}
+			})
+		},
 
 	},
 

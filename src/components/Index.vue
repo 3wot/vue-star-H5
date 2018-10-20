@@ -13,7 +13,7 @@
 	 		 	<span class="line" :class="{ active: type == 2 }" @click="changeType(2)">历史报单</span>
 		 	</div>
 
-			<div @click="gotoOpList(index)" v-for="(item,index) in orderList" :key="index" class="order-item" :class="{'warn':item.Status == 2}">
+			<div @click="gotoOpList(index)" v-for="(item,index) in orderList" :key="index" class="order-item">
 				<yd-icon class="order-item-icon" name="ucenter" color="#ffffff" size=".4rem"></yd-icon>
 				<!-- 姓名 -->
 				<span class="order-item-name">{{item.BorrowerName?item.BorrowerName+" / ":''}}{{item.CurrentOperation}}</span>
@@ -70,7 +70,6 @@ export default {
 		this.changeType(1)
 	},
 	methods:{
-
 		// 点击进行中或者历史
 		changeType(type) {
 			this.type = type
@@ -78,14 +77,14 @@ export default {
 				order_type: type,
 			}
 			this.pp('OrderList', param, res => {
-				console.log(res)
+				// console.log(res)
 				if (res.ret) {
 					// this.orderList = res.data
 				} else {
 					this.$dialog.toast({
 						mes: res.msg,
 						icon: 'none',
-						timeout: 2000,
+						timeout: 3000,
 					})
 				}
 			})

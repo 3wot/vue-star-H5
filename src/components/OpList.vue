@@ -25,7 +25,6 @@
 				<yd-navbar-next-icon class="op-item-next" color="#ffffff"></yd-navbar-next-icon>
 			</div>
 
-
 	    </yd-layout>
 
 
@@ -345,13 +344,13 @@ export default {
 				"立项" : "setUpProject",
 				"产品匹配确认" : "confirmMatch",
 				"产品终审结果确认" : "confirmLastCheck",
-				"打印合同" : "printDeal",
-				"提交收款凭证	" : "sendDeal",
+				"提交收款凭证" : "sendDeal",
 			}
 			const id = this.$route.params.id
 			const hid = this.$route.params.hid
 			const oprid = OperationRecordId
 			const name = jsonObj[nameKey]
+			console.log(name)
 			if (name) {
 				this.$router.push({ name, params: { id, hid, oprid } })
 			}

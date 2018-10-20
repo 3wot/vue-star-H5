@@ -18,7 +18,9 @@
 		"msg" : "",
 		"data" : {
 				"uid" : "",
-				"token" : ""
+				"token" : "",
+				"OperatorRoleId" : "",
+				"OperatorRoleName" : ""
 			}
 	}
 
@@ -33,6 +35,8 @@
 		// msg : 失败错误信息
 		// uid : 用户唯一标识id
 		// token : 用户身份验证token
+		// OperatorRoleId : 用户角色id
+		// OperatorRoleName : 用户角色名称
 
 // 上传图片接口-All
 
@@ -89,15 +93,7 @@
 		"ret" : "ok",
 		"msg" : "",
 		"data" : [
-			{ 
-				"Id" : "", 
-				"BorrowerName" : "", 
-				"BorrowerMobile" : "", 
-				"BorrowerIDNO" : "", 
-				"CreationDateTime" : "", 
-				"Status" : "", 
-				"CurrentOperation" : ""
-			}
+			{ "Id" : "", "BorrowerName" : "", "BorrowerMobile" : "", "BorrowerIDNO" : "", "CreationDateTime" : "", "Status" : "", "CurrentOperation" : ""}
 		]
 	}
 
@@ -557,8 +553,8 @@
 		"C_PersonalCreditReportImageUrls" : ["ImageUrl1", "ImageUrl2"],
 		"MarriageCertificateImageUrls" : ["ImageUrl1", "ImageUrl2"],
 		"C_MarriageCertificateImageUrls" : ["ImageUrl1", "ImageUrl2"],
-		"SpouseMarriageCertificateImageUrls" : ["ImageUrl1", "ImageUrl2"],
-		"C_SpouseMarriageCertificateImageUrls" : ["ImageUrl1", "ImageUrl2"]
+		"SpousePersonalCreditReportImageUrls" : ["ImageUrl1", "ImageUrl2"],
+		"C_SpousePersonalCreditReportImageUrls" : ["ImageUrl1", "ImageUrl2"]
 
 	}
 
@@ -597,8 +593,8 @@
 		// C_PersonalCreditReportImageUrls : 借款人征信记录照片缩略图
 		// MarriageCertificateImageUrls : 借款人结婚材料照片
 		// C_MarriageCertificateImageUrls : 借款人结婚材料照片缩略图
-		// SpouseMarriageCertificateImageUrls : 借款人配偶结婚材料照片
-		// C_SpouseMarriageCertificateImageUrls : 借款人配偶结婚材料照片缩略图
+		// SpousePersonalCreditReportImageUrls : 借款人配偶征信照片
+		// C_SpousePersonalCreditReportImageUrls : 借款人配偶征信照片缩略图
 
 		
 	// 返回数据格式说明：
@@ -878,7 +874,6 @@
 		"token" : "",
 		"OrderId" : "",
 		"OperationRecordId" : "",
-		"Usage" : "",
 		"ExpectedBorrowAmount" : "",
 		"ExpectedBorrowPeriodInMonth" : "",
 		"BorrowUsage" : "",
@@ -900,14 +895,8 @@
 		"CompanyLegalPersonIDNO" : "",
 		"CompanyArticlesImageUrls" : ["ImageUrl1", "ImageUrl2"],
 		"C_CompanyArticlesImageUrls" : ["ImageUrl1", "ImageUrl2"],
-		"PermanentResidenceBookImageUrls" : ["ImageUrl1", "ImageUrl2"],
-		"C_PermanentResidenceBookImageUrls" : ["ImageUrl1", "ImageUrl2"],
-		"MarriageCertificateImageUrls" : ["ImageUrl1", "ImageUrl2"],
-		"C_MarriageCertificateImageUrls" : ["ImageUrl1", "ImageUrl2"],
 		"BankAccountStatementImageUrls" : ["ImageUrl1", "ImageUrl2"],
 		"C_BankAccountStatementImageUrls" : ["ImageUrl1", "ImageUrl2"],
-		"PersonalCreditReportImageUrls" : ["ImageUrl1", "ImageUrl2"],
-		"C_PersonalCreditReportImageUrls" : ["ImageUrl1", "ImageUrl2"],
 		"LoanPriority" : "",
 		"SaleOrderValidationComment" : ""
 	}
@@ -923,7 +912,6 @@
 
 		// uid : 用户唯一标识id
 		// token : 用户身份验证token
-		// Usage : 用途
 		// OrderId : 报单id
 		// OperationRecordId : 报单记录id
 		// ExpectedBorrowAmount : 申请贷款金额
@@ -947,14 +935,8 @@
 		// CompanyLegalPersonIDNO : 企业法定代表人身份证号
 		// CompanyArticlesImageUrls : 企业章程照片
 		// C_CompanyArticlesImageUrls : 企业章程照片缩略图
-		// PermanentResidenceBookImageUrls ： 户口本照片
-		// C_PermanentResidenceBookImageUrls ： 户口本照片缩略图
-		// MarriageCertificateImageUrls : 婚姻证明材料照片
-		// C_MarriageCertificateImageUrls : 婚姻证明材料照片缩略图
 		// BankAccountStatementImageUrls : 银行流水
 		// C_BankAccountStatementImageUrls : 银行流水缩略图
-		// PersonalCreditReportImageUrls : 征信报告
-		// C_PersonalCreditReportImageUrls : 征信报告缩略图
 		// LoanPriority : 客户需求侧重
 		// SaleOrderValidationComment : 销售经理立项建议
 		
@@ -1180,8 +1162,7 @@
 		
 		{
 			"uid" : "",
-			"token" : "",
-			"ClassId" : ""
+			"token" : ""
 		}
 
 		// 返回数据格式：
@@ -1191,8 +1172,8 @@
 			"msg" : "",
 			"data" : 
 				[ 	
-					{ "Id" : "", "Name": "银行产品1", "Description" : ""},
-					{ "Id" : "", "Name": "银行产品2", "Description" : ""}
+					{ "Id" : "", "ClassId": "", "ClassName": "银行", "Name": "银行产品1", "Description" : ""},
+					{ "Id" : "", "ClassId": "", "ClassName": "银行", "Name": "银行产品2", "Description" : ""}
 				]
 			
 		}
@@ -1208,6 +1189,8 @@
 			// ret : 调用接口返回结果标志位，成功：ok，失败：fail
 			// msg : 失败错误信息
 			// Id : 产品Id
+			// ClassId : 产品类别Id
+			// ClassName : 产品类别名称
 			// Name : 产品名称
 			// Description : 产品要素（介绍）
 
