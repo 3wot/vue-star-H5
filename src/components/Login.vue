@@ -102,7 +102,7 @@ export default {
 						this.$router.push({ name : 'index' })
 					} else {
 						this.$dialog.toast({
-							mes: res.mes,
+							mes: res.msg,
 							icon: 'none',
 							timeout: 3000,
 						})
