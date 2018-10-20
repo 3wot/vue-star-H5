@@ -100,7 +100,7 @@ export default {
             "LoanInterest": "",
             "LoanPeriodInMonth": "",
 
-            LoanRejectionComment:"拒绝理由如何获取？？拒绝理由如何获取？？拒绝理由如何获取??",
+            LoanRejectionComment:"",
 		}
 	},
 	mounted () {
@@ -139,6 +139,7 @@ export default {
 			            LoanApprovalOperatorName,
 			            LoanInterest,
 			            LoanPeriodInMonth,
+			            LoanRejectionComment,
 					} = res.data || {}
 
 					this.C_LoanApprovalImageUrls = C_LoanApprovalImageUrls
@@ -152,12 +153,13 @@ export default {
 					this.LoanApprovalOperatorName = LoanApprovalOperatorName
 					this.LoanInterest = LoanInterest
 					this.LoanPeriodInMonth = LoanPeriodInMonth
+					this.LoanRejectionComment = LoanRejectionComment
 					
 				} else {
 					this.$dialog.toast({
 						mes: res.msg,
 						icon: 'none',
-						timeout: 2000,
+						timeout: 3000,
 					})
 				}
 			})
@@ -166,11 +168,11 @@ export default {
 		// 确认
 		sub () {
 			const { id, hid, oprid } = this.$route.params
-			const LoanRejectionComment = this.LoanRejectionComment
+			// const LoanRejectionComment = this.LoanRejectionComment
 			const param = {
 				OrderId: id,
 				OperationRecordId: oprid,
-				LoanRejectionComment,
+				// LoanRejectionComment,
 			}
 			this.pp('CompleteConfirmLoanApproval', param, res => {
 				if (res.ret) {
@@ -180,12 +182,11 @@ export default {
 					this.$dialog.toast({
 						mes: res.msg,
 						icon: 'none',
-						timeout: 2000,
+						timeout: 3000,
 					})
 				}
 			})
 		},
-
 
 	},
 
