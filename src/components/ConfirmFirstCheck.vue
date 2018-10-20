@@ -108,7 +108,7 @@ export default {
 					this.$dialog.toast({
 						mes: res.msg,
 						icon: 'none',
-						timeout: 2000,
+						timeout: 3000,
 					})
 				}
 			})
@@ -116,16 +116,16 @@ export default {
 
 		// 确认
 		sub () {
-			const id = this.$route.params.id
-			// const hid = this.$route.params.hid
-			const OperationRecordId = this.$route.params.oprid
+			const { id, hid, oprid } = this.$route.params
+			const OperationRecordId = oprid
 			const FirstAuditionConfirmComment = this.FirstAuditionConfirmComment
+			
 			const param = {
 				OrderId: id,
-				// HouseId: hid,
 				OperationRecordId,
 				FirstAuditionConfirmComment,
 			}
+			
 			this.pp('CompleteConfirmAuditBorrowerInfo', param, res => {
 				if (res.ret) {
 					// 跳到操作页面
@@ -134,7 +134,7 @@ export default {
 					this.$dialog.toast({
 						mes: res.msg,
 						icon: 'none',
-						timeout: 2000,
+						timeout: 3000,
 					})
 				}
 			})

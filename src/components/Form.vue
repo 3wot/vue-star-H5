@@ -22,21 +22,21 @@
 			<yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>客户姓名：</span>
-		            <yd-input slot="right" required :show-required-icon="false"  placeholder="请输入客户姓名："></yd-input>
+		            <yd-input slot="right" required v-model="BorrowerName" placeholder="请输入客户姓名"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 
 		    <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>客户身份证号：</span>
-		            <yd-input slot="right" required :show-required-icon="false"  placeholder="请输入客户身份证号"></yd-input>
+		            <yd-input slot="right" required v-model="BorrowerIDNO" placeholder="请输入客户身份证号"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 
 		    <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>客户电话：</span>
-		            <yd-input slot="right" required :show-required-icon="false"  placeholder="请输入客户电话"></yd-input>
+		            <yd-input slot="right" required v-model="BorrowerMobile" placeholder="请输入客户电话"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 
@@ -54,21 +54,21 @@
 		    	<yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left"><span class="danger">* </span>配偶姓名：</span>
-			            <yd-input slot="right" required :show-required-icon="false"  placeholder="请输入配偶姓名"></yd-input>
+			            <yd-input slot="right" required v-model="BorrowerSpouseName" placeholder="请输入配偶姓名"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
 			    <yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left"><span class="danger">* </span>配偶身份证号：</span>
-			            <yd-input slot="right" required :show-required-icon="false"  placeholder="请输入配偶身份证号"></yd-input>
+			            <yd-input slot="right" required v-model="BorrowerSpouseIDNO"  placeholder="请输入配偶身份证号"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
 			    <yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left"><span class="danger">* </span>配偶电话：</span>
-			            <yd-input slot="right" required :show-required-icon="false"  placeholder="请输入配偶电话"></yd-input>
+			            <yd-input slot="right" required v-model="BorrowerSpouseMobile" placeholder="请输入配偶电话"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
@@ -84,17 +84,17 @@
 		    <yd-cell-group v-if="HasCompany">
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>企业名称：</span>
-		            <yd-input slot="right" v-model="CompanyName" required :show-required-icon="false"  placeholder="请输入企业名称"></yd-input>
+		            <yd-input slot="right" v-model="CompanyName" required  placeholder="请输入企业名称"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 
-		    <ImgUpload required="1" title="客户身份证照片" :arr="BorrowerIDNOImageUrls"></ImgUpload>
-		    <ImgUpload title="客户户口本照片" :arr="PermanentResidenceBookImageUrls"></ImgUpload>
-		    <ImgUpload required="1" title="客户婚姻证明材料照片" :arr="MarriageCertificateImageUrls"></ImgUpload>
-		    <ImgUpload required="1" title="客户征信报告照片" :arr="PersonalCreditReportImageUrls"></ImgUpload>
-		    <ImgUpload title="配偶身份证照片" :arr="BorrowerSpouseIDNOImageUrls"></ImgUpload>
-		    <ImgUpload title="配偶征信报告照片" :arr="SpousePersonalCreditReportImageUrls"></ImgUpload>
-		    <ImgUpload title="配偶户口本照片" :arr="SpousePermanentResidenceBookImageUrls"></ImgUpload>
+		    <ImgUpload required="1" title="客户身份证照片" :arr="BorrowerIDNOImageUrls" :arrc="C_BorrowerIDNOImageUrls"></ImgUpload>
+		    <ImgUpload title="客户户口本照片" :arr="PermanentResidenceBookImageUrls" :arrc="C_PermanentResidenceBookImageUrls"></ImgUpload>
+		    <ImgUpload required="1" title="客户婚姻证明材料照片" :arr="MarriageCertificateImageUrls" :arrc="C_MarriageCertificateImageUrls"></ImgUpload>
+		    <ImgUpload required="1" title="客户征信报告照片" :arr="PersonalCreditReportImageUrls" :arrc="C_PersonalCreditReportImageUrls"></ImgUpload>
+		    <ImgUpload title="配偶身份证照片" :arr="BorrowerSpouseIDNOImageUrls" :arrc="C_BorrowerSpouseIDNOImageUrls"></ImgUpload>
+		    <ImgUpload title="配偶征信报告照片" :arr="SpousePersonalCreditReportImageUrls" :arrc="C_SpousePersonalCreditReportImageUrls"></ImgUpload>
+		    <ImgUpload title="配偶户口本照片" :arr="SpousePermanentResidenceBookImageUrls" :arrc="C_SpousePermanentResidenceBookImageUrls"></ImgUpload>
 			
 	    </yd-layout>
 
@@ -110,7 +110,6 @@ import ImgUpload from './ImgUpload'
 export default {
 	components:{
 		ImgUpload
-	// Button,Field
 	},
 	name: 'AddOrder',
 	data () {
@@ -121,14 +120,16 @@ export default {
 			"BorrowerIDNO" : "",
 			"BorrowerMobile" : "13888888888",
 			"BorrowerMarriageStatus" : "",
+
 			"BorrowerSpouseName" : "",
 			"BorrowerSpouseIDNO" : "",
 			"BorrowerSpouseMobile" : "",
+
 			"HasCompany" : false,
 			"CompanyName" : "",
 
-			"BorrowerIDNOImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
-			"C_BorrowerIDNOImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
+			"BorrowerIDNOImageUrls" : [],
+			"C_BorrowerIDNOImageUrls" : [],
 
 			"BorrowerSpouseIDNOImageUrls" : [],
 			"C_BorrowerSpouseIDNOImageUrls" : [],
@@ -139,11 +140,11 @@ export default {
 			"SpousePermanentResidenceBookImageUrls" : [],
 			"C_SpousePermanentResidenceBookImageUrls" : [],
 
-			"PersonalCreditReportImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
-			"C_PersonalCreditReportImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
+			"PersonalCreditReportImageUrls" : [],
+			"C_PersonalCreditReportImageUrls" : [],
 
-			"MarriageCertificateImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
-			"C_MarriageCertificateImageUrls" : ["http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg", "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg"],
+			"MarriageCertificateImageUrls" : [],
+			"C_MarriageCertificateImageUrls" : [],
 
 			"SpousePersonalCreditReportImageUrls" : [],
 			"C_SpousePersonalCreditReportImageUrls" : [],
@@ -218,6 +219,7 @@ export default {
 				SpousePersonalCreditReportImageUrls,
 				C_SpousePersonalCreditReportImageUrls,
 			}
+
 			this.pp('SubmitBorrowerInfo', param, res => {
 				if (res.ret) {
 					// 跳到操作页面
@@ -226,7 +228,7 @@ export default {
 					this.$dialog.toast({
 						mes: res.msg,
 						icon: 'none',
-						timeout: 2000,
+						timeout: 3000,
 					})
 				}
 			})

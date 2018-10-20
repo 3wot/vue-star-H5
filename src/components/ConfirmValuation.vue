@@ -54,9 +54,9 @@ export default {
 	name: 'ConfirmValuation',
 	data () {
 		return {
-            "C_HouseValuationImageUrl": "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg",
+            "C_HouseValuationImageUrl": "",
+            "HouseValuationImageUrl": "",
             "HouseValuationConfirmDateTime": "",
-            "HouseValuationImageUrl": "http://zx.youzhu.com/uploadfile/2017/0326/20170326104024702.jpg",
             "HouseValuationOperatorId": "",
             "HouseValuationOperatorName": "",
             "HouseValuationConfirmComment": "",
@@ -87,6 +87,12 @@ export default {
 			this.$router.go(-1)
 		},
 
+		// 完成
+		finish () {
+			// 跳到首页
+			this.$router.push({ name : 'opList' })
+		},
+
 		// 初始化
 		init () {
 			const id = this.$route.params.id
@@ -113,30 +119,24 @@ export default {
 					this.$dialog.toast({
 						mes: res.msg,
 						icon: 'none',
-						timeout: 2000,
+						timeout: 3000,
 					})
 				}
 			})
 		},
 
-		// 完成
-		finish () {
-			// 跳到首页
-			this.$router.push({ name : 'opList' })
-		},
-
 		// 确认
 		sub () {
-			const id = this.$route.params.id
-			const hid = this.$route.params.hid
-			const OperationRecordId = this.$route.params.oprid
+			const { id, hid, oprid } = this.$route.params
 			const HouseValuationConfirmComment = this.HouseValuationConfirmComment
+
 			const param = {
 				OrderId: id,
 				HouseId: hid,
-				OperationRecordId,
+				OperationRecordId: oprid,
 				HouseValuationConfirmComment,
 			}
+
 			this.pp('CompleteConfirmHouseValuation', param, res => {
 				if (res.ret) {
 					// 跳到操作页面
@@ -145,7 +145,7 @@ export default {
 					this.$dialog.toast({
 						mes: res.msg,
 						icon: 'none',
-						timeout: 2000,
+						timeout: 3000,
 					})
 				}
 			})

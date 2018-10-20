@@ -36,7 +36,7 @@
 
 export default {
 	components:{
-	// Button,Field
+		
 	},
 	name: 'OpList',
 	data () {
@@ -191,7 +191,7 @@ export default {
 					"CreationDateTime" : "",
 					"OperationRoleType" : 1,
 					"OperationRecordId" : "666",
-					"Status" : "0", // 0，未操作，1，已操作
+					"Status" : "1", // 0，未操作，1，已操作
 				},
 				{
 					"Id" : "AAA",
@@ -276,7 +276,7 @@ export default {
 					this.$dialog.toast({
 						mes: res.msg,
 						icon: 'none',
-						timeout: 2000,
+						timeout: 3000,
 					})
 				}
 			})
@@ -310,8 +310,6 @@ export default {
 						timeout: 3000,
 					})
 				}
-				
-				
 			}
 		},
 
@@ -350,7 +348,7 @@ export default {
 			const hid = this.$route.params.hid
 			const oprid = OperationRecordId
 			const name = jsonObj[nameKey]
-			console.log(name)
+			// console.log(name)
 			if (name) {
 				this.$router.push({ name, params: { id, hid, oprid } })
 			}

@@ -29,7 +29,7 @@
 	                <span slot="right">{{MatchProductDateTime}}</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
-	                <span slot="left">匹配产品：</span>
+	                <span slot="left">产品匹配结果：</span>
 	            </yd-cell-item>
 	            <yd-cell-item v-for="(item,index) in MatchProducts" :key="index">
 				    <yd-accordion slot="right">
@@ -68,8 +68,8 @@ export default {
             "MatchProductOperatorId": "",
             "MatchProductOperatorName": "",
             "MatchProducts": [ 	
-					{ "Id" : "", "Name": "银行产品1", "ClassName": "银行", "Description" : "这个是一段描述，可能很长~~s这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长"},
-					{ "Id" : "", "Name": "银行产品222", "ClassName": "银行22", "Description" : "这个是一段描述，可能很长~~s这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长"},
+					// { "Id" : "", "Name": "银行产品1", "ClassName": "银行", "Description" : "这个是一段描述，可能很长~~s这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长"},
+					// { "Id" : "", "Name": "银行产品222", "ClassName": "银行22", "Description" : "这个是一段描述，可能很长~~s这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长这个是一段描述，可能很长"},
 				],
 		}
 	},
@@ -162,6 +162,5 @@ export default {
 	height: auto;
 	margin-bottom: .3rem;
 }
-
 
 </style>

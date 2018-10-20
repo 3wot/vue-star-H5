@@ -32,13 +32,13 @@
 			<yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>申请贷款金额：</span>
-		            <yd-input slot="right" type="number" required v-model="ExpectedBorrowAmount" :show-required-icon="false"  placeholder="请输入申请贷款金额"></yd-input>
+		            <yd-input slot="right" type="number" required v-model="ExpectedBorrowAmount"  placeholder="请输入申请贷款金额"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 		    <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left"><span class="danger">* </span>申请贷款期限：</span>
-		            <yd-input slot="right" type="number" required v-model="ExpectedBorrowPeriodInMonth" :show-required-icon="false" placeholder="请输入申请贷款期限(月)"></yd-input>
+		            <yd-input slot="right" type="number" required v-model="ExpectedBorrowPeriodInMonth" placeholder="请输入申请贷款期限(月)"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 		    
@@ -120,7 +120,7 @@
 		    	<yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left"><span class="danger">* </span>抵押金额：</span>
-			            <yd-input slot="right" required v-model="PledgePrice" :show-required-icon="false"  placeholder="请输入抵押金额"></yd-input>
+			            <yd-input slot="right" required v-model="PledgePrice"  placeholder="请输入抵押金额"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
@@ -158,40 +158,40 @@
 		    	<yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left">企业统一社会信用代码：</span>
-			            <yd-input slot="right" v-model="CompanySecurityIDNO" :show-required-icon="false"  placeholder="请输入企业统一社会信用代码"></yd-input>
+			            <yd-input slot="right" v-model="CompanySecurityIDNO"  placeholder="请输入企业统一社会信用代码"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
 			    <yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left">企业电话：</span>
-			            <yd-input slot="right" v-model="CompanyPhone" :show-required-icon="false"  placeholder="请输入企业电话"></yd-input>
+			            <yd-input slot="right" v-model="CompanyPhone"  placeholder="请输入企业电话"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
 			    <yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left"><span class="danger">* </span>企业法定代表人姓名：</span>
-			            <yd-input slot="right" required v-model="CompanyLegalPersonName" :show-required-icon="false"  placeholder="请输入企业法人姓名"></yd-input>
+			            <yd-input slot="right" required v-model="CompanyLegalPersonName"  placeholder="请输入企业法人姓名"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
 			    <yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left"><span class="danger">* </span>企业法人身份证号：：</span>
-			            <yd-input slot="right" required v-model="CompanyLegalPersonIDNO" :show-required-icon="false"  placeholder="请输入企业法人身份证号"></yd-input>
+			            <yd-input slot="right" required v-model="CompanyLegalPersonIDNO"  placeholder="请输入企业法人身份证号"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
-				<ImgUpload title="公司营业执照副本" required="true" :max="1" :arr="CompanyLicenseImageUrl"></ImgUpload>
+				<ImgUpload title="公司营业执照副本" required="true" :max="1" :arr="CompanyLicenseImageUrl" :arrc="C_CompanyLicenseImageUrl"></ImgUpload>
 
-				<ImgUpload title="企业章程" required="true" :arr="CompanyArticlesImageUrls"></ImgUpload>  			    
+				<ImgUpload title="企业章程" required="true" :arr="CompanyArticlesImageUrls" :arrc="C_CompanyArticlesImageUrls"></ImgUpload>
 
 		    </div>
 
 			<!-- <ImgUpload title="户口本" :arr="arr3"></ImgUpload> -->
 			<!-- <ImgUpload title="婚姻证明材料" :arr="arr4"></ImgUpload> -->
-			<ImgUpload title="银行流水" :arr="BankAccountStatementImageUrls"></ImgUpload>
+			<ImgUpload title="银行流水" :arr="BankAccountStatementImageUrls" :arrc="C_BankAccountStatementImageUrls"></ImgUpload>
 			<!-- <ImgUpload title="征信报告" :arr="arr6"></ImgUpload> -->
 
 			<yd-cell-group>
@@ -400,8 +400,8 @@ export default {
 				CompanyPhone,
 				CompanyLegalPersonName,
 				CompanyLegalPersonIDNO,
-				CompanyLicenseImageUrl,
-				C_CompanyLicenseImageUrl,
+				CompanyLicenseImageUrl:CompanyLicenseImageUrl.join(),
+				C_CompanyLicenseImageUrl:C_CompanyLicenseImageUrl.join(),
 				CompanyArticlesImageUrls,
 				C_CompanyArticlesImageUrls,
 				BankAccountStatementImageUrls,
