@@ -34,7 +34,7 @@
 	            </yd-cell-item>
 
 	            <div v-if="IsLoanApproved">
-	            	<ImgList title="产品供应方批贷函：" :arr="C_LoanApprovalImageUrls"></ImgList>
+	            	<ImgList title="产品供应方批贷函：" :arr="LoanApprovalImageUrls" :arrc="C_LoanApprovalImageUrls"></ImgList>
 
 		            <yd-cell-item>
 		                <span slot="left">批贷金额：</span>
@@ -50,13 +50,16 @@
 		            </yd-cell-item>
 
 	            </div>
+
+	            <div v-if="!IsLoanApproved">
+	            	<yd-cell-item >
+		                <span slot="left">拒绝理由：</span>
+		            </yd-cell-item>
+		            <yd-cell-item>
+			            <yd-textarea slot="left" :readonly="true" v-model="LoanRejectionComment" placeholder="无"></yd-textarea>
+			        </yd-cell-item>	
+	            </div>
 	            
-	            <yd-cell-item v-if="!IsLoanApproved">
-	                <span slot="left">拒绝理由：</span>
-	            </yd-cell-item>
-	            <yd-cell-item>
-		            <yd-textarea slot="right" readonly v-model="LoanRejectionComment" placeholder="无"></yd-textarea>
-		        </yd-cell-item>
 
 
 	        </yd-cell-group>
@@ -83,7 +86,7 @@ export default {
 		return {
 
 			"C_LoanApprovalImageUrls": [],
-            "IsLoanApproved": null,
+            "IsLoanApproved": false,
             "LoanAmount": "",
             "LoanApprovalDateTime": "",
             "LoanApprovalImageUrls": [],
@@ -96,7 +99,7 @@ export default {
 		}
 	},
 	mounted () {
-		
+		this.init()
 	},
 	methods:{
 		// 跳到首页

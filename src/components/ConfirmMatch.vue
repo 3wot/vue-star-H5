@@ -32,13 +32,17 @@
 	                <span slot="left">产品匹配结果：</span>
 	            </yd-cell-item>
 	            <yd-cell-item v-for="(item,index) in MatchProducts" :key="index">
-				    <yd-accordion slot="right">
-				        <yd-accordion-item :title="item.Name +'（类别：'+ item.ClassName + '）'">
-				            <div style="padding: .24rem;">
-				                <p>{{item.Description}}</p>
-				            </div>
-				        </yd-accordion-item>
-				    </yd-accordion>
+
+	            	<div slot="right" class="match-accordion">
+		            	<yd-accordion>
+					        <yd-accordion-item :title="item.Name +'（类别：'+ item.ClassName + '）'">
+					            <div style="padding: .24rem;">
+					                <p>{{item.Description}}</p>
+					            </div>
+					        </yd-accordion-item>
+					    </yd-accordion>	
+	            	</div>
+				    
 	            </yd-cell-item>
 	            <yd-cell-item>
 	                <span slot="left">备注：</span>
@@ -161,6 +165,10 @@ export default {
 	width: 100%;
 	height: auto;
 	margin-bottom: .3rem;
+}
+.match-accordion {
+	width: 100%;
+	text-align: left;
 }
 
 </style>
