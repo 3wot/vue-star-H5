@@ -68,6 +68,15 @@ const GETJSON = (urlKey, data, cb) => {
     //         cb(data)
     //     }
     // })
+    $.each(param, function(idx,val){
+        if (val === true) {
+            param[idx] = "True"
+        }
+        if (val === false) {
+            param[idx] = "False"
+        }
+    })
+    // console.log(JSON.stringify(param))
     $.ajax({
         type: "POST",
         url: url,
@@ -93,7 +102,8 @@ const GETJSON = (urlKey, data, cb) => {
                 data : res.d.data,
             }
             if(cb && typeof cb == 'function') {
-                cb(resData)
+                let cbDataStr = JSON.stringify(resData).replace(/"True"/g,'true').replace(/"False"/g,'false')
+                cb(JSON.parse(cbDataStr))
             }
 
         },
