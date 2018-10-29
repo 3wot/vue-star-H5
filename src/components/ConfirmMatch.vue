@@ -40,7 +40,7 @@
 					                <p>{{item.Description}}</p>
 					            </div>
 					        </yd-accordion-item>
-					    </yd-accordion>	
+					    </yd-accordion>
 	            	</div>
 				    
 	            </yd-cell-item>

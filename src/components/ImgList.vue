@@ -8,9 +8,12 @@
  	</div>
 
 	<div class="upload-content">
-		<div v-for="(item,index) in imgArr" :key="index" class="upload-item">
-			<img :src="item">
-		</div>
+		<yd-lightbox :num="imgArr.length">
+			<div v-for="(item,index) in imgArr" :key="index" class="upload-item">
+				<!-- <img :src="item"> -->
+				<yd-lightbox-img :src="item" :original="arrc[index]"></yd-lightbox-img>
+			</div>
+		</yd-lightbox>
 
 		<div style="clear: both;"></div>
 
@@ -24,7 +27,7 @@
 
 export default {
 	components:{
-	
+		
 	},
 	name: 'ImgList',
 

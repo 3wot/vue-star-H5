@@ -11,15 +11,19 @@
 
 			<div class="slot-bottom" slot="bottom">
 				<yd-flexbox>
-
-        	 		<yd-button class="bottom-btn" size="large">提交</yd-button>	
-        	 		
-
+        	 		<yd-button class="bottom-btn" size="large" @click.native="sub">提交</yd-button>	
 		        </yd-flexbox>
 			</div>
 
 			<!-- 内容 -->
-			<ImgUpload title="客户配偶身份证照片" :arr="arr1"></ImgUpload>
+
+			<div v-for="(item,index) in arr" :key="index">
+				<p v-if="item.Comment" class="item-comment">备注：
+					<span class="comment">{{item.Comment}}</span>
+				</p>
+				<ImgUpload :title="item.Name" :arr="item.ImageUrls" :arrc="item.C_ImageUrls"></ImgUpload>
+			</div>
+			<!-- <ImgUpload title="客户配偶身份证照片" :arr="arr1"></ImgUpload>
 			<ImgUpload title="户口本照片" :arr="arr2"></ImgUpload>
 			<ImgUpload title="婚姻证明材料照片" :arr="arr3"></ImgUpload>
 			<ImgUpload title="房产证照片" :arr="arr4"></ImgUpload>
@@ -39,7 +43,7 @@
 			<ImgUpload title="实控人证明" :arr="arr18"></ImgUpload>
 			<ImgUpload title="企业财务报表" :arr="arr19"></ImgUpload>
 			<ImgUpload title="诉讼结案证明" :arr="arr20"></ImgUpload>
-			<ImgUpload title="其它" :arr="arr21"></ImgUpload>
+			<ImgUpload title="其它" :arr="arr21"></ImgUpload> -->
 
 	    </yd-layout>
 
@@ -59,49 +63,97 @@ export default {
 	name: 'AddData',
 	data () {
 		return {
-			arr1 : [], // 客户配偶身份证照片
-			arr2 : [], // 户口本照片
-			arr3 : [], // 婚姻证明材料照片
-			arr4 : [], // 房产证照片
-			arr5 : [], // 房屋租赁合同照片
-			arr6 : [], // 原始购房合同照片
-			arr7 : [], // 契税发票
-			arr8 : [], // 上家借款合同
-			arr9 : [], // 上家结清证明
-			arr10 : [], // 银行流水
-			arr11 : [], // 征信报告
-			arr12 : [], // 公司营业执照副本
-			arr13 : [], // 企业征信
-			arr14 : [], // 对公流水
-			arr15 : [], // 购销合同
-			arr16 : [], // 担保人财产共有人同意提供担保的书面文件
-			arr17 : [], // 还款卡
-			arr18 : [], // 实控人证明
-			arr19 : [], // 企业财务报表
-			arr20 : [], // 诉讼结案证明
-			arr21 : [], // 其它
-
+			arr: [],
 		}
 	},
 	mounted () {
-		
+		this.init()
 	},
 	methods:{
+		// 返回
 		gotoIndex() {
+			const { id, hid } = this.$route.params
 			this.$dialog.confirm({
                 title: '提示',
                 mes: '当前页面如有修改，将会丢失，你确定退出吗？',
                 opts: () => {
-                    arr1 : [], // 跳到首页
-					this.$router.push({ name : 'opList' })
+                    // 跳到首页
+					this.$router.push({ name : 'opList',params: { id, hid }})
                 }
             });
 		},
-		finish () {
-			arr1 : [], // 跳到首页
-			this.$router.push({ name : 'opList' })
+
+		// 初始化
+		init () {
+			const { id, hid } = this.$route.params
+			const param = {
+				OrderId: id,
+				HouseId: hid,
+			}
+			this.pp('GetSubmittedMaterialList', param, res => {
+				if (res.ret) {
+					this.arr = this.format(res.data)
+				} else {
+					this.$dialog.toast({
+						mes: res.msg,
+						icon: 'none',
+						timeout: 3000,
+					})
+				}
+			})
 		},
 
+		// 格式化
+		format (arr) {
+			if (arr && arr.length) {
+				arr.map(item => {
+					if (!item.ImageUrls) {
+						item.ImageUrls = []
+						item.C_ImageUrls = []
+					}
+				})
+				return arr
+			} else {
+				return []
+			}
+		},
+
+		// 提交
+		sub () {
+			const { id, hid } = this.$route.params
+			const arr = this.arr
+			let Materials = []
+			arr.map(item => {
+				// { "Id" : "1", "ImageUrls" : ["ImageUrl1", "ImageUrl2"], "C_ImageUrls" : ["ImageUrl1", "ImageUrl2"] },
+				const { Id, ImageUrls, C_ImageUrls } = item || {}
+				Materials.push({
+					Id,
+					ImageUrls,
+					C_ImageUrls,
+				})
+			})
+			const param = {
+				OrderId: id,
+				HouseId: hid,
+				Materials,
+			}
+			this.pp('SupplementMaterial', param, res => {
+				if (res.ret) {
+					this.$dialog.toast({
+						mes: "提交成功",
+						icon: 'none',
+						timeout: 3000,
+					})
+					this.$router.push({ name : 'opList',params: { id, hid }})
+				} else {
+					this.$dialog.toast({
+						mes: res.msg,
+						icon: 'none',
+						timeout: 3000,
+					})
+				}
+			})
+		},
 
 	},
 
@@ -119,6 +171,18 @@ export default {
 	overflow: hidden;
 	vertical-align: middle;
 }
-
+.item-comment {
+	background-color: #fff;
+	text-align: left;
+	height: auto;
+	line-height: .6rem;
+	padding-left: .24rem;
+	color: #555;
+    font-size: .28rem;
+    margin-bottom: -0.2rem;
+}
+.comment {
+	color: #777;
+}
 
 </style>

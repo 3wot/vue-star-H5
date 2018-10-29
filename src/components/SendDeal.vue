@@ -48,19 +48,15 @@ export default {
 	},
 	methods:{
 		gotoIndex() {
+			const { id, hid } = this.$route.params
 			this.$dialog.confirm({
                 title: '提示',
                 mes: '当前页面如有修改，将会丢失，你确定退出吗？',
                 opts: () => {
-                    arr1 : [], // 跳到首页
-					this.$router.push({ name : 'opList' })
+                    // 跳到首页
+					this.$router.push({ name : 'opList',params: { id, hid }})
                 }
             });
-		},
-
-		finish () {
-			arr1 : [], // 跳到首页
-			this.$router.push({ name : 'opList' })
 		},
 
 		// 确认

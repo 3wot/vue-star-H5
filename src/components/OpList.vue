@@ -49,195 +49,195 @@ export default {
 				// OperationRoleType : 操作所属角色id
 				// CreationDateTime : 操作创建日期时间, 格式：2018-08-01 18:00:00
 				// Status : 操作状态，0，未操作，1，已操作
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "预报单",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "1", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "估值",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "1", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "估值确认",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "0", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "正式报单",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "0", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "初审",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "1", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "初审结果确认",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "0", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "立项",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "0", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "立项报告",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "1", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "二审",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "1", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "产品匹配",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "1", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "产品匹配确认",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "0", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "联系产品供应方",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "1", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "下户",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "1", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "产品终审",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "1", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "产品终审结果确认",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "0", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "打印合同",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "1", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "产品方面签公证",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "1", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "产品方进抵",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "1", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "产品方放款",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "1", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "提交收款凭证",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "0", // 0，未操作，1，已操作
-				},
-				{
-					"Id" : "AAA",
-					"OperationId" : "12354",
-					"OperationName" : "归档",
-					"CreationDateTime" : "",
-					"OperationRoleType" : 1,
-					"OperationRecordId" : "666",
-					"Status" : "1", // 0，未操作，1，已操作
-				}
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "预报单",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "1", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "估值",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "1", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "估值确认",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "0", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "正式报单",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "0", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "初审",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "1", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "初审结果确认",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "0", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "立项",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "0", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "立项报告",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "1", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "二审",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "1", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "产品匹配",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "1", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "产品匹配确认",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "0", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "联系产品供应方",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "1", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "下户",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "1", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "产品终审",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "1", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "产品终审结果确认",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "0", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "打印合同",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "1", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "产品方面签公证",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "1", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "产品方进抵",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "1", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "产品方放款",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "1", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "提交收款凭证",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "0", // 0，未操作，1，已操作
+				// },
+				// {
+				// 	"Id" : "AAA",
+				// 	"OperationId" : "12354",
+				// 	"OperationName" : "归档",
+				// 	"CreationDateTime" : "",
+				// 	"OperationRoleType" : 1,
+				// 	"OperationRecordId" : "666",
+				// 	"Status" : "1", // 0，未操作，1，已操作
+				// }
 			], 
 		}
 	},
@@ -254,8 +254,30 @@ export default {
 		
 		// 补充资料
 		gotoAdd() {
-			const id = this.$route.params.id
-			this.$router.push({ name: 'addData', params: { id }})
+			const { id, hid, oprid } = this.$route.params
+			const param = {
+				OrderId: id,
+			}
+			this.pp('NeedToSupplementMaterial', param, res => {
+				if (res.ret) {
+					const { NeedToSupplementMaterial } = res.data
+					if (NeedToSupplementMaterial === true) {
+						this.$router.push({ name : 'addData', params: { id, hid } })
+					} else {
+						this.$dialog.toast({
+							mes: '暂时不能进行补充资料操作~',
+							icon: 'none',
+							timeout: 3000,
+						})	
+					}
+				} else {
+					this.$dialog.toast({
+						mes: '暂时不能进行补充资料操作',
+						icon: 'none',
+						timeout: 3000,
+					})
+				}
+			})
 		},
 
 		// 首页

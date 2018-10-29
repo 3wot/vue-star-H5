@@ -292,12 +292,13 @@ export default {
 	},
 	methods:{
 		goBack() {
+			const { id, hid } = this.$route.params
 			this.$dialog.confirm({
                 title: '提示',
                 mes: '当前页面如有修改，将会丢失，你确定退出吗？',
                 opts: () => {
                     // 跳到首页
-					this.$router.push({ name : 'opList' })
+					this.$router.push({ name : 'opList',params: { id, hid }})
                 }
             });
 		},

@@ -88,7 +88,7 @@ export default new Router({
 		},
 		{
 			// 补充资料
-			path: '/addData',
+			path: '/addData/:id/:hid',
 			name: 'addData',
 			component: AddData
 		},

@@ -8,12 +8,17 @@
  	</div>
 
 	<div class="upload-content">
-		<div v-for="(item,index) in arr" :key="index" class="upload-item">
-			<yd-icon class="dele-icon" @click.native="dele(index)" color="#5871f5" size=".4rem" name="error"></yd-icon>
-			<img :src="item">
-			<!-- {{item}} -->
-		</div>
-		
+		<yd-lightbox :num="arr.length">
+			<div v-for="(item,index) in arr" :key="index" class="upload-item">
+				<yd-icon class="dele-icon" @click.native="dele(index)" color="#5871f5" size=".4rem" name="error"></yd-icon>
+				
+				<!-- <img :src="item"> -->
+				<yd-lightbox-img :src="item" :original="arrc[index]"></yd-lightbox-img>
+			</div>
+		</yd-lightbox>
+
+
+        
 		<div v-if="arr.length < maxNum" class="upload-item" @click="upload">
 			<img src="../../static/plus.png" alt="">
 		</div>
