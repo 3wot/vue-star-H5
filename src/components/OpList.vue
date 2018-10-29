@@ -248,8 +248,8 @@ export default {
 	methods:{
 		// 查看资料
 		gotoLook() {
-			const id = this.$route.params.id
-			this.$router.push({ name: 'look', params: { id }})
+			const { id, hid, oprid } = this.$route.params
+			this.$router.push({ name: 'look', params: { id, hid }})
 		},
 		
 		// 补充资料

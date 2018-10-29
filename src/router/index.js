@@ -52,7 +52,7 @@ export default new Router({
 		},
 		{
 			// 查看所有资料
-			path: '/look',
+			path: '/look/:id/:hid',
 			name: 'look',
 			component: Look
 		},
