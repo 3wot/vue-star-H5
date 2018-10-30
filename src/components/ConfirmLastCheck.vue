@@ -13,7 +13,7 @@
 				<yd-flexbox>
 
         	 		<yd-button class="bottom-btn" size="large" @click.native="sub">确认</yd-button>	
-        	 		<!-- <yd-button class="bottom-btn" size="large" @click.native="finish">拒绝</yd-button>	 -->
+        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">结案</yd-button>	
 
 		        </yd-flexbox>
 			</div>
@@ -102,14 +102,40 @@ export default {
 		this.init()
 	},
 	methods:{
+		
 		// 跳到首页
 		goBack() {
 			this.$router.go(-1)
 		},
-		// 完成
+
+		// 结案
 		finish () {
-			// 跳到首页
-			this.$router.push({ name : 'opList' })
+			const { id, hid, oprid } = this.$route.params
+			const param = {
+				OrderId: id,
+			}
+			this.$dialog.confirm({
+                title: '警告',
+                mes: '点击确定，将直接结案，请您慎重操作！',
+                opts: () => {
+                    this.pp('CancelOrder', param, res => {
+						if (res.ret) {
+							this.$dialog.toast({
+								mes: '结案成功',
+								icon: 'none',
+								timeout: 3000,
+							})
+							this.$router.push({ name : 'index' })
+						} else {
+							this.$dialog.toast({
+								mes: res.msg,
+								icon: 'none',
+								timeout: 3000,
+							})
+						}
+					})
+                }
+            })
 		},
 
 		// 初始化

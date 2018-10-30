@@ -146,3 +146,10 @@ H5检查一遍
 pc-----------------------------------------------
 
 风控 13701191672 123 销售 13701191673 123
+
+
+public static string AccessKeyId = "LTAIqvhnE8gxvxTn";
+public static string AccessKeySecret = "6G8JP9oALCYvB8v9msTlWwgirBqYHs";
+public static string Endpoint = "http://oss-cn-beijing-internal.aliyuncs.com";
+public static String BucketName = "pic01";
+public static String Key = "http://pic01.oss-cn-beijing-internal.aliyuncs.com/";
