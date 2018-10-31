@@ -191,6 +191,33 @@ export default {
 				SpousePersonalCreditReportImageUrls,
 				C_SpousePersonalCreditReportImageUrls,
 			} = this
+			// 拦截
+			if (BorrowerName && BorrowerIDNO && BorrowerMobile && BorrowerMarriageStatus && BorrowerIDNOImageUrls.length && C_BorrowerIDNOImageUrls.length && MarriageCertificateImageUrls.length && C_MarriageCertificateImageUrls.length && PersonalCreditReportImageUrls.length && C_PersonalCreditReportImageUrls.length) {
+			} else {
+				this.$dialog.toast({
+					mes: "请填写或者上传标红的项目！",
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
+			if (BorrowerMarriageStatus == "已婚" && !(BorrowerSpouseName && BorrowerSpouseIDNO && BorrowerSpouseMobile)) {
+				this.$dialog.toast({
+					mes: "请填写或者上传标红的项目！",
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
+			if (HasCompany && CompanyName=="") {
+				this.$dialog.toast({
+					mes: "请填写或者上传标红的项目！",
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
+
 			const param = {
 				OrderId,
 				OperationRecordId,

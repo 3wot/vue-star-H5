@@ -147,9 +147,7 @@
 		    <yd-cell-group>
 		        <yd-cell-item>
 		            <span slot="left">是否有公司：</span>
-		            <select slot="right" v-model="HasCompany">
-		               	<option v-for="item in option8" :value="item.value">{{item.title}}</option>
-		            </select>
+		            <span slot="right">{{HasCompany ? '有' : '无'}}</span>
 		        </yd-cell-item>
 		    </yd-cell-group>
 
@@ -178,14 +176,14 @@
 
 			    <yd-cell-group>
 			        <yd-cell-item>
-			            <span slot="left"><span class="danger">* </span>企业法人身份证号：：</span>
+			            <span slot="left">企业法人身份证号：：</span>
 			            <yd-input slot="right" required v-model="CompanyLegalPersonIDNO"  placeholder="请输入企业法人身份证号"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
 				<ImgUpload title="公司营业执照副本" required="true" :max="1" :arr="CompanyLicenseImageUrl" :arrc="C_CompanyLicenseImageUrl"></ImgUpload>
 
-				<ImgUpload title="企业章程" required="true" :arr="CompanyArticlesImageUrls" :arrc="C_CompanyArticlesImageUrls"></ImgUpload>
+				<ImgUpload title="企业章程" :arr="CompanyArticlesImageUrls" :arrc="C_CompanyArticlesImageUrls"></ImgUpload>
 
 		    </div>
 
@@ -265,7 +263,7 @@ export default {
 			"IsZhuanDan" : false,
 			option8 : [{title:'是',value:true},{title:'否',value:false}],
 
-			"HasCompany" : true, // 获取回来
+			"HasCompany" : false, // 获取回来
 
 			"CompanySecurityIDNO" : "",
 			"CompanyPhone" : "",
@@ -288,7 +286,7 @@ export default {
 
 	},
 	mounted () {
-		
+		this.init()
 	},
 	methods:{
 		goBack() {
@@ -317,9 +315,10 @@ export default {
 				OrderId: id,
 				HouseId: hid,
 			}
-			this.pp('', param, res => {
+			this.pp('GetOrderValidationParams', param, res => {
 				if (res.ret) {
-					
+					const { HasCompany } = res.data || {}
+					this.HasCompany = HasCompany
 				} else {
 					this.$dialog.toast({
 						mes: res.msg,
@@ -410,6 +409,33 @@ export default {
 				LoanPriority,
 				SaleOrderValidationComment,
 			}
+			// 拦截
+			if (ExpectedBorrowAmount && ExpectedBorrowPeriodInMonth && param.BorrowUsage && param.InterestReturnSource && param.PrincipalReturnSource && ShareOwnerInfo && PledgeInfo && LoanPriority && SaleOrderValidationComment) {
+			} else {
+				this.$dialog.toast({
+					mes: "请填写或者上传标红的项目！",
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
+			if (IsPledged && !(PledgeOrgnization && PledgePrice)) {
+				this.$dialog.toast({
+					mes: "请填写或者上传标红的项目！",
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
+			if (HasCompany && !(CompanyLegalPersonName && param.CompanyLicenseImageUrl && param.C_CompanyLicenseImageUrl)) {
+				this.$dialog.toast({
+					mes: "请填写或者上传标红的项目！",
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
+			
 			this.pp('OrderValidation', param, res => {
 				if (res.ret) {
 					// 跳到操作页面

@@ -106,6 +106,18 @@ export default {
 				HouseCertificateImageUrls,
 				C_HouseCertificateImageUrls,
 			} = this || {}
+
+			if (HouseCertificateImageUrls.length && C_HouseCertificateImageUrls) {
+				
+			} else {
+				this.$dialog.toast({
+					mes: '请上传房产证照片！',
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
+
 			const param = {
 				// OwnerName,
 				// Location,

@@ -72,6 +72,16 @@ export default {
 				LoanReceivedImageUrls,
 				C_LoanReceivedImageUrls,
 			}
+			if (LoanReceivedImageUrls.length && C_LoanReceivedImageUrls.length) {
+
+			} else {
+				this.$dialog.toast({
+						mes: "请上传照片！",
+						icon: 'none',
+						timeout: 3000,
+					})
+				return
+			}
 			this.pp('CompleteUploadLoanReceivedCertificate', param, res => {
 				if (res.ret) {
 					// 跳到操作页面

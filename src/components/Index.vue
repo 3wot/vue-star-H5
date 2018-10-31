@@ -20,8 +20,7 @@
 				
 				<yd-navbar-next-icon class="order-item-next" color="#ffffff"></yd-navbar-next-icon>
 			</div>
-
-
+			
 	    </yd-layout>
 
 

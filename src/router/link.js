@@ -61,6 +61,8 @@ const urls = {
 	'SubmitMaterialList': 'SubmitMaterialList',
 	'GetMaterialList': 'GetMaterialList',
 
+	'GetOrderValidationParams': 'GetOrderValidationParams',
+
 }
 
 // 外部方法
