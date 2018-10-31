@@ -40,25 +40,25 @@
 			</yd-cell-group>
 
 			<ImgLook v-if="HouseVisitImageUrls" title="下户照片：" :arr="HouseVisitImageUrls" :arrc="C_HouseVisitImageUrls"></ImgLook>
-			<yd-cell-group v-if="CurrentOperationName">
+			<yd-cell-group>
 		        <yd-cell-item type="label">
 		            <span slot="left">是否通过批贷：</span>
 		            <span slot="right">{{IsLoanApproved ? '通过' : "未通过"}}</span>
 		        </yd-cell-item>
 		    </yd-cell-group>
-		    <yd-cell-group v-if="CurrentOperationName">
+		    <yd-cell-group>
 		        <yd-cell-item type="label">
 		            <span slot="left">批贷金额：</span>
 		            <span slot="right">{{LoanAmount}}</span>
 		        </yd-cell-item>
 		    </yd-cell-group>
-		    <yd-cell-group v-if="CurrentOperationName">
+		    <yd-cell-group>
 		        <yd-cell-item type="label">
 		            <span slot="left">批贷期限：</span>
 		            <span slot="right">{{LoanPeriodInMonth}}</span>
 		        </yd-cell-item>
 		    </yd-cell-group>
-		    <yd-cell-group v-if="CurrentOperationName">
+		    <yd-cell-group>
 		        <yd-cell-item type="label">
 		            <span slot="left">批贷利率：</span>
 		            <span slot="right">{{LoanInterest}}</span>
@@ -239,7 +239,7 @@ export default {
 			if (dd) {
 				const kk = Object.keys(dd)
 				kk.map(item => {
-					if (dd[item] == null) {
+					if (dd[item] == null && item.indexOf('Url')!=-1) {
 						dd[item] = []
 					}
 				})

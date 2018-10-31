@@ -14,7 +14,7 @@
 		<yd-lightbox :num="imgArr.length">
 			<div v-for="(item,index) in imgArr" :key="index" class="upload-item">
 				<!-- <img :src="item"> -->
-				<yd-lightbox-img :src="item" :original="arrc[index]"></yd-lightbox-img>
+				<yd-lightbox-img :src="item" :original="arr[index]"></yd-lightbox-img>
 			</div>
 		</yd-lightbox>
 
@@ -43,13 +43,13 @@ export default {
 	},
 	computed:{
 		imgArr:function(){
-			if (this.arr) {
-				if (typeof this.arr == 'string') {
+			if (this.arrc) {
+				if (typeof this.arrc == 'string') {
 					let a = []
-					a.push(this.arr)
+					a.push(this.arrc)
 					return a
 				} else {
-					return this.arr
+					return this.arrc
 				}	
 			} else {
 				return []

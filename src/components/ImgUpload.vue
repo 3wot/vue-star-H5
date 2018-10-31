@@ -9,11 +9,11 @@
 
 	<div class="upload-content">
 		<yd-lightbox :num="arr.length">
-			<div v-for="(item,index) in arr" :key="index" class="upload-item">
+			<div v-for="(item,index) in arrc" :key="index" class="upload-item">
 				<yd-icon class="dele-icon" @click.native="dele(index)" color="#5871f5" size=".4rem" name="error"></yd-icon>
 				
 				<!-- <img :src="item"> -->
-				<yd-lightbox-img :src="item" :original="arrc[index]"></yd-lightbox-img>
+				<yd-lightbox-img :src="item" :original="arr[index]"></yd-lightbox-img>
 			</div>
 		</yd-lightbox>
 
