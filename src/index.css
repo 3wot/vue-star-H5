@@ -7,6 +7,7 @@
 	line-height:1rem;
 	text-align: left;
 	padding-left: .24rem;
+	padding-right: .24rem;
 	color: #555;
     font-size: .28rem;
     white-space: nowrap;
@@ -36,6 +37,9 @@
 .danger {
 	color: red;
 	/*display: none;*/
+}
+.pull-right {
+	float: right;
 }
 
 .slot-bottom {

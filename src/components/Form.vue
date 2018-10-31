@@ -104,7 +104,6 @@
 </template>
 
 <script>
-import URLS from '../router/link'
 import ImgUpload from './ImgUpload'
 
 export default {
