@@ -39,7 +39,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ==后端
 
 当前操作null
-房屋估值确认页面参数HouseValuationConfirmDateTime-》HouseValuationDateTime
+<!-- 房屋估值确认页面参数HouseValuationConfirmDateTime-》HouseValuationDateTime -->
 <!-- 房屋估值页面三个接口，上传估值报告和完成估值操作合并成一个接口 -->
 <!-- pc端联系产品方补充资料按钮点击之后页面： -->
 <!-- 接口1：获取所有所有补充资料备选项 -->
@@ -54,7 +54,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 初审和二审加入补充材料循环
 风控首页加销售姓名字段
 <!-- 估值页面空白区显示图片大图 -->
-估值生成表格建成年代改成房龄
+<!-- 估值生成表格建成年代改成房龄 -->
 <!-- 初审表格去掉“公安不良行为” -->
 二审页面四个输入框放在表格里
 风控，客服，所有页面里面加全局按钮，查看所有材料
@@ -146,10 +146,3 @@ H5检查一遍
 pc-----------------------------------------------
 
 风控 13701191672 123 销售 13701191673 123
-
-
-public static string AccessKeyId = "LTAIqvhnE8gxvxTn";
-public static string AccessKeySecret = "6G8JP9oALCYvB8v9msTlWwgirBqYHs";
-public static string Endpoint = "http://oss-cn-beijing-internal.aliyuncs.com";
-public static String BucketName = "pic01";
-public static String Key = "http://pic01.oss-cn-beijing-internal.aliyuncs.com/";

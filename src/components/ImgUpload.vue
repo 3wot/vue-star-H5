@@ -61,7 +61,7 @@ export default {
 		add (url) {
 			this.arr.push(url)
 			if (this.arrc) {
-				this.arrc.push(url)	
+				this.arrc.push(url)
 			}
 			
 		},

@@ -55,3 +55,6 @@
 .bottom-btn {
 	margin: .05rem !important;
 }
+.input-danger>input{
+	color: red !important;
+}

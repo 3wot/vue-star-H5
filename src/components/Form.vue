@@ -28,8 +28,8 @@
 
 		    <yd-cell-group>
 		        <yd-cell-item>
-		            <span slot="left"><span class="danger">* </span>客户身份证号：</span>
-		            <yd-input slot="right" required v-model="BorrowerIDNO" placeholder="请输入客户身份证号"></yd-input>
+		            <span slot="left"><span class="danger">* </span>客户身份证号{{ageTemp}}：</span>
+		            <yd-input slot="right" :class="{'input-danger': ageTemp }" required v-model="BorrowerIDNO" placeholder="请输入客户身份证号"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 
@@ -152,6 +152,29 @@ export default {
 	},
 	mounted () {
 		
+	},
+	computed:{
+		ageTemp:function(){
+			const BorrowerIDNO = this.BorrowerIDNO
+			if (BorrowerIDNO && BorrowerIDNO.length >= 14) {
+				const year = BorrowerIDNO.slice(6,10)
+				const mon = BorrowerIDNO.slice(10,12)
+				const day = BorrowerIDNO.slice(12,14)
+				const start = (+year + 18) + '/' + mon + '/'+ day
+				const end = (+year + 65) + '/' + mon + '/'+ day
+				const startTime = new Date(start).getTime()
+				const endTime = new Date(end).getTime()
+				const nowTime = new Date().getTime()
+				console.log(start)
+				if (nowTime<startTime || nowTime>endTime) {
+					return true
+				} else {
+					return false
+				}
+			} else {
+				return false
+			}
+		},
 	},
 	methods:{
 		// 回退
