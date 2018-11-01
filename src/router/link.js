@@ -62,7 +62,6 @@ const urls = {
 	'GetMaterialList': 'GetMaterialList',
 
 	'GetOrderValidationParams': 'GetOrderValidationParams',
-
 }
 
 // 外部方法
