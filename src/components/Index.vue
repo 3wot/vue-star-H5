@@ -116,6 +116,7 @@ export default {
 				const order = this.orderList[idx]
 				const id = order.OrderId
 				const hid = order.HouseId
+				window.sessionStorage.setItem('OrderId',id)
 				this.$router.push({ name : 'opList', params: { id, hid }})
 			}
 		},

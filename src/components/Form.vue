@@ -28,7 +28,7 @@
 
 		    <yd-cell-group>
 		        <yd-cell-item>
-		            <span slot="left"><span class="danger">* </span>客户身份证号{{ageTemp}}：</span>
+		            <span slot="left"><span class="danger">* </span>客户身份证号：</span>
 		            <yd-input slot="right" :class="{'input-danger': ageTemp }" required v-model="BorrowerIDNO" placeholder="请输入客户身份证号"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
