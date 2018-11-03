@@ -24,7 +24,7 @@
 			<el-upload
 				:action="uploadUrl"
 				:multiple="true"
-				:limit="10"
+				:limit="200"
 				:show-file-list="false"
 				:auto-upload="true"
 				:http-request="fnUploadRequest"
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-// import Router from 'vue-router'
+import loadingUrl from '@/assets/loading.gif'
 import Vue from 'vue'
 import $ from 'jquery'
 import { Upload } from 'element-ui'
@@ -58,8 +58,10 @@ export default {
 	props: ['title','arr','arrc','required', 'max'],
 	data () {
 		return {
+			loadingUrl: loadingUrl,
 			maxNum : 999,
-			uploadUrl: 'http://www.windant.com:9005/UpLoadFile.ashx',
+			// uploadUrl: 'http://www.windant.com:9005/UpLoadFile.ashx',
+			uploadUrl: '/UpLoadFile.ashx',
 		}
 	},
 	mounted () {
@@ -74,6 +76,7 @@ export default {
 		},
 
 		fnUploadRequest (option) {
+			console.log('fnUploadRequest')
       		const that = this
       		
 
@@ -94,8 +97,8 @@ export default {
       		}
 			// 添加loading
       		const length = that.arr.length
-      		that.arr.push('../../static/loading.gif')
-      		that.arrc.push('../../static/loading.gif')
+      		that.arr.push(loadingUrl)
+      		that.arrc.push(loadingUrl)
 
       		fd.append('uid', uid)
       		fd.append('token', token)
@@ -104,7 +107,8 @@ export default {
       		
       		$.ajax({
 		        type: "POST",
-		        url: 'http://www.windant.com:9005/UpLoadFile.ashx',
+		        // url: 'http://www.windant.com:9005/UpLoadFile.ashx',
+		        url: '/UpLoadFile.ashx',
 		        contentType: false,
 		        processData:false,
             	mimeType:"multipart/form-data",
@@ -163,7 +167,7 @@ export default {
 			} else { // 出现失败
 				let idxTemp
 				this.arr.map((item,idx) => {
-					if (item == '../../static/loading.gif') {
+					if (item == loadingUrl) {
 						idxTemp = idx
 					}
 				})
@@ -189,7 +193,8 @@ export default {
       		fd.append('OSSFileUrl',OSSFileUrl)
 			$.ajax({
 		        type: "POST",
-		        url: 'http://www.windant.com:9005/DeleteFile.ashx',
+		        // url: 'http://www.windant.com:9005/DeleteFile.ashx',
+		        url: '/DeleteFile.ashx',
 		       	contentType: false,
 		        processData:false,
             	mimeType:"multipart/form-data",
