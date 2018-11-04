@@ -31,13 +31,13 @@
 
 			<yd-cell-group>
 		        <yd-cell-item>
-		            <span slot="left"><span class="danger">* </span>申请贷款金额：</span>
-		            <yd-input slot="right" type="number" required v-model="ExpectedBorrowAmount"  placeholder="请输入申请贷款金额"></yd-input>
+		            <span slot="left"><span class="danger">* </span>申请贷款金额(元)：</span>
+		            <yd-input slot="right" type="number" required v-model="ExpectedBorrowAmount"  placeholder="请输入申请贷款金额(元)"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 		    <yd-cell-group>
 		        <yd-cell-item>
-		            <span slot="left"><span class="danger">* </span>申请贷款期限：</span>
+		            <span slot="left"><span class="danger">* </span>申请贷款期限(月)：</span>
 		            <yd-input slot="right" type="number" required v-model="ExpectedBorrowPeriodInMonth" placeholder="请输入申请贷款期限(月)"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>

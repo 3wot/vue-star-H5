@@ -30,7 +30,7 @@
 	            </yd-cell-item>
 	            <yd-cell-item>
 	                <!-- <img class="cv-img" slot="right" :src="C_HouseValuationImageUrl"> -->
-	                <yd-lightbox class="cv-img" slot="right">
+	                <yd-lightbox class="cv-img" slot="left">
 						<yd-lightbox-img :src="C_HouseValuationImageUrl" :original="HouseValuationImageUrl"></yd-lightbox-img>
 					</yd-lightbox>
 	            </yd-cell-item>
@@ -200,7 +200,7 @@ export default {
 }
 
 .cv-img img {
-	width: 100%;
+	max-width: 100%;
 	height: auto;
 }
 
