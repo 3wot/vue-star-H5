@@ -78,7 +78,9 @@ export default {
 	methods:{
 		// 跳到首页
 		goBack() {
-			this.$router.go(-1)
+			// this.$router.go(-1)
+			const { id, hid, oprid } = this.$route.params
+			this.$router.push({ name : 'opList', params: { id, hid }})
 		},
 
 		// 结案
