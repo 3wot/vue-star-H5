@@ -320,7 +320,7 @@ export default {
 
 		// 处理点击操作
 		handleTapOp(idx) {
-			if (this.opList && idx < this.opList.length) {
+			if (this.opList && idx == this.opList.length-1 ) {
 				const op = this.opList[idx]
 				const { OperationRoleType, OperationName, OperationRecordId } = op
 				if (OperationRoleType == USER_INFO.OperatorRoleId) {
@@ -332,7 +332,13 @@ export default {
 						timeout: 3000,
 					})
 				}
-			}
+			} else {
+				this.$dialog.toast({
+					mes: "您不能进入此操作",
+					icon: 'none',
+					timeout: 3000,
+				})
+		}
 		},
 
 		// 进入具体操作

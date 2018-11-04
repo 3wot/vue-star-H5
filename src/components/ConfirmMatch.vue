@@ -152,7 +152,7 @@ export default {
 
 		// 确认
 		sub () {
-			const { id, oprid } = this.$route.params
+			const { id, hid, oprid } = this.$route.params
 			const ConfirmMatchProductComment = this.ConfirmMatchProductComment
 			const param = {
 				OrderId: id,
