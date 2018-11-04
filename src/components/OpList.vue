@@ -323,7 +323,8 @@ export default {
 			if (this.opList && idx == this.opList.length-1 ) {
 				const op = this.opList[idx]
 				const { OperationRoleType, OperationName, OperationRecordId } = op
-				if (OperationRoleType == USER_INFO.OperatorRoleId) {
+				const OperatorRoleId = window.sessionStorage.getItem('OperatorRoleId')
+				if (OperationRoleType == OperatorRoleId) {
 					this.gotoDetail(OperationName, OperationRecordId)
 				} else {
 					this.$dialog.toast({
