@@ -32,7 +32,10 @@
 	                <span slot="left">初审报告：</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
-	                <img class="cv-img" slot="right" :src="FirstAuditionImageUrl">
+	                <!-- <img class="cv-img" slot="right" :src="FirstAuditionImageUrl"> -->
+	                <yd-lightbox class="cv-img" slot="right">
+						<yd-lightbox-img :src="C_FirstAuditionImageUrl" :original="FirstAuditionImageUrl"></yd-lightbox-img>
+					</yd-lightbox>
 	            </yd-cell-item>
 
 	            <yd-cell-item>
@@ -186,6 +189,12 @@ export default {
 	height: auto;
 	margin-bottom: .3rem;
 }
+
+.cv-img img{
+	width: 100%;
+	height: auto;
+}
+
 
 
 </style>
