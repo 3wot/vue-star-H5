@@ -13,7 +13,8 @@
 			<div class="slot-bottom" slot="bottom">
 				<yd-flexbox>
         	 		<yd-button class="bottom-btn" size="large" @click.native="gotoLook">查看资料</yd-button>
-        	 		<yd-button class="bottom-btn" size="large" @click.native="gotoAdd">补充资料</yd-button>
+        	 		<yd-button class="bottom-btn" size="large" @click.native="gotoAdd">补充资料<span v-if="needAddTemp" class="need-badge"></span></yd-button>
+        	 		<!-- <yd-badge slot="badge" type="danger">2</yd-badge> -->
 		        </yd-flexbox>
 			</div>
 			<!-- 内容 -->
@@ -41,6 +42,7 @@ export default {
 	name: 'OpList',
 	data () {
 		return {
+			needAddTemp: false, // 是否需要补充资料
 			// 订单列表
 			opList: [
 				// OperationRecordId : 操作在该报单列表里Id
@@ -244,12 +246,33 @@ export default {
 	mounted () {
 		// this.testLogin()
 		this.getOpList()
+		this.getNeedAddTemp()
 	},
 	methods:{
 		// 查看资料
 		gotoLook() {
 			const { id, hid, oprid } = this.$route.params
 			this.$router.push({ name: 'look', params: { id, hid }})
+		},
+
+		// 是否需要补充资料
+		getNeedAddTemp () {
+			const { id, hid, oprid } = this.$route.params
+			const param = {
+				OrderId: id,
+			}
+			this.pp('NeedToSupplementMaterial', param, res => {
+				if (res.ret) {
+					const { NeedToSupplementMaterial } = res.data
+					if (NeedToSupplementMaterial === true) {
+						this.needAddTemp = true
+					} else {
+						this.needAddTemp = false	
+					}
+				} else {
+					this.needAddTemp = false
+				}
+			})
 		},
 		
 		// 补充资料
@@ -432,5 +455,13 @@ export default {
 	position: absolute;
 	right: .2rem;
 }
+.need-badge {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 5px;
+    background-color: red;
+    position: absolute;
 
+}
 </style>
