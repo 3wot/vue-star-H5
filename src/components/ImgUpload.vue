@@ -143,6 +143,7 @@ export default {
 		    });
 			
 		},
+
 		randomStr (len) {
 			len = len || 32;
 			var chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';   
