@@ -32,7 +32,10 @@
 	                <span slot="left">初审报告：</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
-	                <img class="cv-img" slot="right" :src="FirstAuditionImageUrl">
+	                <!-- <img class="cv-img" slot="right" :src="FirstAuditionImageUrl"> -->
+	                <yd-lightbox class="cv-img" slot="left">
+						<yd-lightbox-img :src="C_FirstAuditionImageUrl" :original="FirstAuditionImageUrl"></yd-lightbox-img>
+					</yd-lightbox>
 	            </yd-cell-item>
 
 	            <yd-cell-item>
@@ -75,7 +78,9 @@ export default {
 	methods:{
 		// 跳到首页
 		goBack() {
-			this.$router.go(-1)
+			// this.$router.go(-1)
+			const { id, hid, oprid } = this.$route.params
+			this.$router.push({ name : 'opList', params: { id, hid }})
 		},
 
 		// 结案
@@ -186,6 +191,12 @@ export default {
 	height: auto;
 	margin-bottom: .3rem;
 }
+
+.cv-img img{
+	max-width: 100%;
+	height: auto;
+}
+
 
 
 </style>

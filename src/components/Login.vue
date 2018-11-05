@@ -98,6 +98,10 @@ export default {
 						USER_INFO.token = token
 						USER_INFO.OperatorRoleId = OperatorRoleId
 						USER_INFO.OperatorRoleName = OperatorRoleName
+						
+						window.sessionStorage.setItem('uid',uid)
+						window.sessionStorage.setItem('token',token)
+						window.sessionStorage.setItem('OperatorRoleId',OperatorRoleId)
 						// 首页
 						this.$router.push({ name : 'index' })
 					} else {

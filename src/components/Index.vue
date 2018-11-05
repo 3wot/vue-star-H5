@@ -107,6 +107,7 @@ export default {
 		// 新增
 		gotoAdd() {
 			// 调到预报单
+			window.sessionStorage.setItem('OrderId','null')
 			this.$router.push({ name : 'addOrder' })
 		},
 
