@@ -60,3 +60,10 @@
 .input-none input[type="file"]{
 	display: none;
 }
+
+.title-center .yd-cell-title {
+    text-align: center;
+    font-size: .35rem;
+    color: #555;
+    font-weight: bold;
+}

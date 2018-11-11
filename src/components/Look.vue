@@ -18,6 +18,12 @@
 		    </yd-cell-group> -->
 		    <yd-cell-group>
 		        <yd-cell-item type="label">
+		            <span slot="left">客户电话：</span>
+		            <span slot="right">{{BorrowerMobile}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
 		            <span slot="left">报单状态：</span>
 		            <span slot="right">{{Status == 0 ? '进行中' : (Status == 1 ? '正常结案' : '中途结案')}}</span>
 		        </yd-cell-item>
@@ -220,6 +226,9 @@ export default {
 			C_CompanyFinancialStatementImageUrls: [], // 企业财务报表照片缩略图url
 			C_LawsuitFinishCertificateImageUrls: [], // 诉讼结案证明照片缩略图url
 			C_OtherCertificateImageUrls: [], // 其它照片缩略图url
+
+
+			BorrowerMobile: '',
 		}
 	},
 	mounted () {
@@ -359,6 +368,8 @@ export default {
 						C_CompanyFinancialStatementImageUrls, // 企业财务报表照片缩略图url
 						C_LawsuitFinishCertificateImageUrls, // 诉讼结案证明照片缩略图url
 						C_OtherCertificateImageUrls, // 其它照片缩略图url
+
+						BorrowerMobile, // 客户电话
 					} = formatData || {}
 					this.CurrentOperationName = CurrentOperationName // 当前操作名称,
 					this.Status = Status // 报单状态, 0，正在进行中，1，正常结案，2，中途结案
@@ -449,6 +460,8 @@ export default {
 					this.C_CompanyFinancialStatementImageUrls = C_CompanyFinancialStatementImageUrls // 企业财务报表照片缩略图url
 					this.C_LawsuitFinishCertificateImageUrls = C_LawsuitFinishCertificateImageUrls // 诉讼结案证明照片缩略图url
 					this.C_OtherCertificateImageUrls = C_OtherCertificateImageUrls // 其它照片缩略图url
+
+					this.BorrowerMobile = BorrowerMobile // 客户电话
 				} else {
 					this.$dialog.toast({
 						mes: res.msg,

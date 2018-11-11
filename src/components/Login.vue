@@ -7,10 +7,8 @@
 		</div>
 
 		<div class="content-in">
-        	<yd-cell-group class="m-t-h">
-        		<yd-cell-item>
-		            <p slot="left" class="text-center">业务管理系统 1.0</p>
-		        </yd-cell-item>
+        	<yd-cell-group class="m-t-h title-center" title="业务管理系统 1.0">
+        		
 		        <yd-cell-item>
 		            <span slot="left">账号：</span>
 		            <yd-input slot="right" required v-model="mobile" placeholder="请输入手机号"></yd-input>
@@ -173,7 +171,7 @@ export default {
 }
 .login-logo {
 	position: absolute;
-	top: 30px;
+	top: .8rem;
 	left: 0px;
 	right: 0px;
 	text-align: center;
@@ -183,5 +181,6 @@ export default {
 	height: auto;
 	margin: 0 auto;
 }
+
 
 </style>

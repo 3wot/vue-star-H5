@@ -167,7 +167,7 @@ export default {
 
 					this.C_LoanApprovalImageUrls = C_LoanApprovalImageUrls
 					this.IsLoanApproved = IsLoanApproved
-					this.LoanAmount = LoanAmount
+					this.LoanAmount = parseInt(LoanAmount)
 
 					this.LoanApprovalDateTime = LoanApprovalDateTime
 					this.LoanApprovalImageUrls = LoanApprovalImageUrls
