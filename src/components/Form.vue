@@ -242,6 +242,22 @@ export default {
 				})
 				return
 			}
+			if (+BorrowerMobile.length != 11) {
+				this.$dialog.toast({
+					mes: "请填写11位手机号码！",
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
+			if (BorrowerIDNO.length != 18) {
+				this.$dialog.toast({
+					mes: "请填写18位身份证号！",
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
 
 			const param = {
 				OrderId,
