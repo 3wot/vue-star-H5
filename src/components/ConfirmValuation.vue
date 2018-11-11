@@ -23,7 +23,7 @@
 	            </yd-cell-item>
 	            <yd-cell-item>
 	                <span slot="left">操作时间：</span>
-	                <span slot="right">{{HouseValuationConfirmDateTime}}</span>
+	                <span slot="right">{{HouseValuationDateTime}}</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
 	                <span slot="left">估值结果：</span>
@@ -59,7 +59,7 @@ export default {
 		return {
             "C_HouseValuationImageUrl": "",
             "HouseValuationImageUrl": "",
-            "HouseValuationConfirmDateTime": "",
+            "HouseValuationDateTime": "",
             "HouseValuationOperatorId": "",
             "HouseValuationOperatorName": "",
             "HouseValuationConfirmComment": "",
@@ -134,13 +134,13 @@ export default {
 				if (res.ret) {
 					const {
 					 	C_HouseValuationImageUrl,
-			            HouseValuationConfirmDateTime,
+			            HouseValuationDateTime,
 			            HouseValuationImageUrl,
 			            HouseValuationOperatorId,
 			            HouseValuationOperatorName,
 					} = res.data || {}
 					this.C_HouseValuationImageUrl = C_HouseValuationImageUrl
-					this.HouseValuationConfirmDateTime = HouseValuationConfirmDateTime
+					this.HouseValuationDateTime = HouseValuationDateTime
 					this.HouseValuationImageUrl = HouseValuationImageUrl
 					this.HouseValuationOperatorId = HouseValuationOperatorId
 					this.HouseValuationOperatorName = HouseValuationOperatorName
