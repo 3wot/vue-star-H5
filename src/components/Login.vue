@@ -2,9 +2,13 @@
 	<div class="login">
 		<img class="bg" src="../../static/login.jpg">
 
-		<div class="content-in">
+		<div class="login-logo">
+    		<img src="../../static/wlogo.png">
+		</div>
 
-        	<yd-cell-group class="m-t-h">
+		<div class="content-in">
+        	<yd-cell-group class="m-t-h title-center" title="业务管理系统 1.0">
+        		
 		        <yd-cell-item>
 		            <span slot="left">账号：</span>
 		            <yd-input slot="right" required v-model="mobile" placeholder="请输入手机号"></yd-input>
@@ -164,6 +168,18 @@ export default {
 
 .m-t-h {
 	margin-top: 50%;
+}
+.login-logo {
+	position: absolute;
+	top: .8rem;
+	left: 0px;
+	right: 0px;
+	text-align: center;
+}
+.login-logo img {
+	width: 2rem;
+	height: auto;
+	margin: 0 auto;
 }
 
 

@@ -18,6 +18,12 @@
 		    </yd-cell-group> -->
 		    <yd-cell-group>
 		        <yd-cell-item type="label">
+		            <span slot="left">客户电话：</span>
+		            <span slot="right">{{BorrowerMobile}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
 		            <span slot="left">报单状态：</span>
 		            <span slot="right">{{Status == 0 ? '进行中' : (Status == 1 ? '正常结案' : '中途结案')}}</span>
 		        </yd-cell-item>
@@ -26,8 +32,55 @@
 			
 			<ImgLook v-if="HouseValuationImageUrl" title="房屋估值报告：" :arr="HouseValuationImageUrl" :arrc="C_HouseValuationImageUrl"></ImgLook>
 			<ImgLook v-if="FirstAuditionImageUrl" title="一审报告：" :arr="FirstAuditionImageUrl" :arrc="C_FirstAuditionImageUrl"></ImgLook>
+			<yd-cell-group>
+	             <yd-accordion>
+			        <yd-accordion-item title="一审确认意见：">
+			            <div style="padding-left: .48rem;">
+			                <p class="p-left">{{FirstAuditionConfirmComment}}</p>
+			            </div>
+			        </yd-accordion-item>
+			    </yd-accordion>
+			</yd-cell-group>
+			<yd-cell-group>
+	             <yd-accordion>
+			        <yd-accordion-item title="销售立项意见：">
+			            <div style="padding-left: .48rem;">
+			                <p class="p-left">{{SaleOrderValidationComment}}</p>
+			            </div>
+			        </yd-accordion-item>
+			    </yd-accordion>
+			</yd-cell-group>
 			<!-- <ImgLook v-if="" title="立项报告" :arr="HouseValuationImageUrl" :arrc="C_HouseValuationImageUrl"></ImgLook> -->
 			<ImgLook v-if="SecondAuditionImageUrl" title="二审：" :arr="SecondAuditionImageUrl" :arrc="C_SecondAuditionImageUrl"></ImgLook>
+			
+			<yd-cell-group>
+	             <yd-accordion>
+			        <yd-accordion-item title="二审意见：">
+			            <div style="padding-left: .48rem;">
+			                <p class="p-left">{{SecondAuditionComment}}</p>
+			            </div>
+			        </yd-accordion-item>
+			    </yd-accordion>
+			</yd-cell-group>
+			<yd-cell-group>
+	             <yd-accordion>
+			        <yd-accordion-item title="二审确认意见：">
+			            <div style="padding-left: .48rem;">
+			                <p class="p-left">{{SecondAuditionConfirmComment}}</p>
+			            </div>
+			        </yd-accordion-item>
+			    </yd-accordion>
+			</yd-cell-group>
+			<yd-cell-group>
+	             <yd-accordion>
+			        <yd-accordion-item title="联系产品供应方意见：">
+			            <div style="padding-left: .48rem;">
+			                <p class="p-left">{{ContactProductProviderComment}}</p>
+			            </div>
+			        </yd-accordion-item>
+			    </yd-accordion>
+			</yd-cell-group>
+			
 
 			<yd-cell-group v-if="MatchProducts">
 	             <yd-accordion>
@@ -38,6 +91,16 @@
 			        </yd-accordion-item>
 			    </yd-accordion>
 			</yd-cell-group>
+			<yd-cell-group>
+	             <yd-accordion>
+			        <yd-accordion-item title="匹配产品确认意见：">
+			            <div style="padding-left: .48rem;">
+			                <p class="p-left">{{ConfirmMatchProductComment}}</p>
+			            </div>
+			        </yd-accordion-item>
+			    </yd-accordion>
+			</yd-cell-group>
+			
 
 			<ImgLook v-if="HouseVisitImageUrls" title="下户照片：" :arr="HouseVisitImageUrls" :arrc="C_HouseVisitImageUrls"></ImgLook>
 			<yd-cell-group>
@@ -46,21 +109,30 @@
 		            <span slot="right">{{IsLoanApproved ? '通过' : "未通过"}}</span>
 		        </yd-cell-item>
 		    </yd-cell-group>
+		    <yd-cell-group v-if="!IsLoanApproved">
+	             <yd-accordion>
+			        <yd-accordion-item title="贷款拒绝意见：">
+			            <div style="padding-left: .48rem;">
+			                <p class="p-left">{{LoanRejectionComment}}</p>
+			            </div>
+			        </yd-accordion-item>
+			    </yd-accordion>
+			</yd-cell-group>
 		    <yd-cell-group>
 		        <yd-cell-item type="label">
-		            <span slot="left">批贷金额：</span>
+		            <span slot="left">批贷金额(万元)：</span>
 		            <span slot="right">{{LoanAmount}}</span>
 		        </yd-cell-item>
 		    </yd-cell-group>
 		    <yd-cell-group>
 		        <yd-cell-item type="label">
-		            <span slot="left">批贷期限：</span>
+		            <span slot="left">批贷期限(月)：</span>
 		            <span slot="right">{{LoanPeriodInMonth}}</span>
 		        </yd-cell-item>
 		    </yd-cell-group>
 		    <yd-cell-group>
 		        <yd-cell-item type="label">
-		            <span slot="left">批贷利率：</span>
+		            <span slot="left">批贷月利率(%)：</span>
 		            <span slot="right">{{LoanInterest}}</span>
 		        </yd-cell-item>
 		    </yd-cell-group>
@@ -220,6 +292,16 @@ export default {
 			C_CompanyFinancialStatementImageUrls: [], // 企业财务报表照片缩略图url
 			C_LawsuitFinishCertificateImageUrls: [], // 诉讼结案证明照片缩略图url
 			C_OtherCertificateImageUrls: [], // 其它照片缩略图url
+
+
+			BorrowerMobile: '',
+			FirstAuditionConfirmComment: '',
+			SaleOrderValidationComment: '',
+			SecondAuditionComment: '',
+			SecondAuditionConfirmComment: '',
+			ContactProductProviderComment: '',
+			ConfirmMatchProductComment: '',
+			LoanRejectionComment: '',
 		}
 	},
 	mounted () {
@@ -359,6 +441,15 @@ export default {
 						C_CompanyFinancialStatementImageUrls, // 企业财务报表照片缩略图url
 						C_LawsuitFinishCertificateImageUrls, // 诉讼结案证明照片缩略图url
 						C_OtherCertificateImageUrls, // 其它照片缩略图url
+
+						BorrowerMobile, // 客户电话
+						FirstAuditionConfirmComment,
+						SaleOrderValidationComment,
+						SecondAuditionComment,
+						SecondAuditionConfirmComment,
+						ContactProductProviderComment,
+						ConfirmMatchProductComment,
+						LoanRejectionComment,
 					} = formatData || {}
 					this.CurrentOperationName = CurrentOperationName // 当前操作名称,
 					this.Status = Status // 报单状态, 0，正在进行中，1，正常结案，2，中途结案
@@ -382,7 +473,7 @@ export default {
 					this.IsLoanApproved = IsLoanApproved // 是否批贷通过
 					this.LoanApprovalImageUrls = LoanApprovalImageUrls // 批贷函照片url
 					this.C_LoanApprovalImageUrls = C_LoanApprovalImageUrls // 批贷函照片缩略图url
-					this.LoanAmount = LoanAmount // 批贷金额
+					this.LoanAmount = parseInt(LoanAmount) // 批贷金额
 					this.LoanPeriodInMonth = LoanPeriodInMonth // 批贷期限
 					this.LoanInterest = LoanInterest // 批贷利率
 										
@@ -449,6 +540,15 @@ export default {
 					this.C_CompanyFinancialStatementImageUrls = C_CompanyFinancialStatementImageUrls // 企业财务报表照片缩略图url
 					this.C_LawsuitFinishCertificateImageUrls = C_LawsuitFinishCertificateImageUrls // 诉讼结案证明照片缩略图url
 					this.C_OtherCertificateImageUrls = C_OtherCertificateImageUrls // 其它照片缩略图url
+
+					this.BorrowerMobile = BorrowerMobile // 客户电话
+					this.FirstAuditionConfirmComment = FirstAuditionConfirmComment
+					this.SaleOrderValidationComment = SaleOrderValidationComment
+					this.SecondAuditionComment = SecondAuditionComment
+					this.SecondAuditionConfirmComment = SecondAuditionConfirmComment
+					this.ContactProductProviderComment = ContactProductProviderComment
+					this.ConfirmMatchProductComment = ConfirmMatchProductComment
+					this.LoanRejectionComment = LoanRejectionComment
 				} else {
 					this.$dialog.toast({
 						mes: res.msg,
