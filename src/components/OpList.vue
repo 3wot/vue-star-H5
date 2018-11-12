@@ -267,7 +267,7 @@ export default {
 					if (NeedToSupplementMaterial === true) {
 						this.needAddTemp = true
 					} else {
-						this.needAddTemp = false	
+						this.needAddTemp = false
 					}
 				} else {
 					this.needAddTemp = false
