@@ -18,6 +18,12 @@
 		    </yd-cell-group> -->
 		    <yd-cell-group>
 		        <yd-cell-item type="label">
+		            <span slot="left">报单ID：</span>
+		            <span slot="right">{{$route.params.id}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
 		            <span slot="left">客户电话：</span>
 		            <span slot="right">{{BorrowerMobile}}</span>
 		        </yd-cell-item>
@@ -28,7 +34,12 @@
 		            <span slot="right">{{Status == 0 ? '进行中' : (Status == 1 ? '正常结案' : '中途结案')}}</span>
 		        </yd-cell-item>
 		    </yd-cell-group>
-			
+			<yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">最后操作：</span>
+		            <span slot="right">{{LastOperationName}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
 			
 			<ImgLook v-if="HouseValuationImageUrl" title="房屋估值报告：" :arr="HouseValuationImageUrl" :arrc="C_HouseValuationImageUrl"></ImgLook>
 			<ImgLook v-if="FirstAuditionImageUrl" title="一审报告：" :arr="FirstAuditionImageUrl" :arrc="C_FirstAuditionImageUrl"></ImgLook>
@@ -189,6 +200,7 @@ export default {
 	name: 'Look',
 	data () {
 		return {
+			LastOperationName: '',
 			CurrentOperationName: '', // 当前操作名称,
 			Status: '', // 报单状态: [], 0，正在进行中，1，正常结案，2，中途结案
 			HouseValuationImageUrl: '', // 房屋估值报告照片url
@@ -311,9 +323,10 @@ export default {
 		
 		// 返回
 		gotoIndex() {
-			const { id, hid } = this.$route.params
-            // 跳到首页
-			this.$router.push({ name :'opList',params: { id, hid }})
+			// const { id, hid } = this.$route.params
+   //          // 跳到首页
+			// this.$router.push({ name :'opList',params: { id, hid }})
+			this.$router.go(-1)
 		},
 
 		// 格式化
@@ -340,6 +353,7 @@ export default {
 				if (res.ret) {
 					const formatData = this.format(res.data)
 					const {
+						LastOperationName,
 						CurrentOperationName, // 当前操作名称,
 						Status, // 报单状态, 0，正在进行中，1，正常结案，2，中途结案
 						HouseValuationImageUrl, // 房屋估值报告照片url
@@ -451,6 +465,7 @@ export default {
 						ConfirmMatchProductComment,
 						LoanRejectionComment,
 					} = formatData || {}
+					this.LastOperationName = LastOperationName
 					this.CurrentOperationName = CurrentOperationName // 当前操作名称,
 					this.Status = Status // 报单状态, 0，正在进行中，1，正常结案，2，中途结案
 					this.HouseValuationImageUrl = HouseValuationImageUrl // 房屋估值报告照片url
