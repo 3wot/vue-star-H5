@@ -28,7 +28,7 @@
 
 		    <yd-cell-group>
 		        <yd-cell-item>
-		            <span slot="left"><span class="danger">* </span>客户身份证号{{ageTemp}}：</span>
+		            <span slot="left"><span class="danger">* </span>客户身份证号：</span>
 		            <yd-input slot="right" :class="{'input-danger': ageTemp }" required v-model="BorrowerIDNO" placeholder="请输入客户身份证号"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
@@ -179,7 +179,9 @@ export default {
 	methods:{
 		// 回退
 		goBack() {
-			this.$router.go(-1)
+			// this.$router.go(-1)
+			const { id, hid, oprid } = this.$route.params
+			this.$router.push({ name : 'opList', params: { id, hid }})
 		},
 
 		// 提交
@@ -235,6 +237,22 @@ export default {
 			if (HasCompany && CompanyName=="") {
 				this.$dialog.toast({
 					mes: "请填写或者上传标红的项目！",
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
+			if (+BorrowerMobile.length != 11) {
+				this.$dialog.toast({
+					mes: "请填写11位手机号码！",
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
+			if (BorrowerIDNO.length != 18) {
+				this.$dialog.toast({
+					mes: "请填写18位身份证号！",
 					icon: 'none',
 					timeout: 3000,
 				})

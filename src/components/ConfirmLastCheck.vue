@@ -37,15 +37,15 @@
 	            	<ImgList title="产品供应方批贷函：" :arr="LoanApprovalImageUrls" :arrc="C_LoanApprovalImageUrls"></ImgList>
 
 		            <yd-cell-item>
-		                <span slot="left">批贷金额：</span>
+		                <span slot="left">批贷金额(万元)：</span>
 		                <span slot="right">{{LoanAmount}}</span>
 		            </yd-cell-item>
 		            <yd-cell-item>
-		                <span slot="left">批贷期限：</span>
+		                <span slot="left">批贷期限(月)：</span>
 		                <span slot="right">{{LoanPeriodInMonth}}</span>
 		            </yd-cell-item>
 		            <yd-cell-item>
-		                <span slot="left">批贷利率：</span>
+		                <span slot="left">批贷月利率(%)：</span>
 		                <span slot="right">{{LoanInterest}}</span>
 		            </yd-cell-item>
 
@@ -105,7 +105,9 @@ export default {
 		
 		// 跳到首页
 		goBack() {
-			this.$router.go(-1)
+			// this.$router.go(-1)
+			const { id, hid, oprid } = this.$route.params
+			this.$router.push({ name : 'opList', params: { id, hid }})
 		},
 
 		// 结案
@@ -165,7 +167,7 @@ export default {
 
 					this.C_LoanApprovalImageUrls = C_LoanApprovalImageUrls
 					this.IsLoanApproved = IsLoanApproved
-					this.LoanAmount = LoanAmount
+					this.LoanAmount = parseInt(LoanAmount)
 
 					this.LoanApprovalDateTime = LoanApprovalDateTime
 					this.LoanApprovalImageUrls = LoanApprovalImageUrls

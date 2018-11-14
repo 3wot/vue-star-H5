@@ -23,13 +23,16 @@
 	            </yd-cell-item>
 	            <yd-cell-item>
 	                <span slot="left">操作时间：</span>
-	                <span slot="right">{{HouseValuationConfirmDateTime}}</span>
+	                <span slot="right">{{HouseValuationDateTime}}</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
 	                <span slot="left">估值结果：</span>
 	            </yd-cell-item>
 	            <yd-cell-item>
-	                <img class="cv-img" slot="right" :src="C_HouseValuationImageUrl">
+	                <!-- <img class="cv-img" slot="right" :src="C_HouseValuationImageUrl"> -->
+	                <yd-lightbox class="cv-img" slot="left">
+						<yd-lightbox-img :src="C_HouseValuationImageUrl" :original="HouseValuationImageUrl"></yd-lightbox-img>
+					</yd-lightbox>
 	            </yd-cell-item>
 	            <yd-cell-item>
 	                <span slot="left">备注：</span>
@@ -56,7 +59,7 @@ export default {
 		return {
             "C_HouseValuationImageUrl": "",
             "HouseValuationImageUrl": "",
-            "HouseValuationConfirmDateTime": "",
+            "HouseValuationDateTime": "",
             "HouseValuationOperatorId": "",
             "HouseValuationOperatorName": "",
             "HouseValuationConfirmComment": "",
@@ -84,7 +87,9 @@ export default {
 		
 		// 跳到首页
 		goBack() {
-			this.$router.go(-1)
+			// this.$router.go(-1)
+			const { id, hid, oprid } = this.$route.params
+			this.$router.push({ name : 'opList', params: { id, hid }})
 		},
 
 		// 结案
@@ -129,13 +134,13 @@ export default {
 				if (res.ret) {
 					const {
 					 	C_HouseValuationImageUrl,
-			            HouseValuationConfirmDateTime,
+			            HouseValuationDateTime,
 			            HouseValuationImageUrl,
 			            HouseValuationOperatorId,
 			            HouseValuationOperatorName,
 					} = res.data || {}
 					this.C_HouseValuationImageUrl = C_HouseValuationImageUrl
-					this.HouseValuationConfirmDateTime = HouseValuationConfirmDateTime
+					this.HouseValuationDateTime = HouseValuationDateTime
 					this.HouseValuationImageUrl = HouseValuationImageUrl
 					this.HouseValuationOperatorId = HouseValuationOperatorId
 					this.HouseValuationOperatorName = HouseValuationOperatorName
@@ -196,5 +201,9 @@ export default {
 	margin-bottom: .3rem;
 }
 
+.cv-img img {
+	max-width: 100%;
+	height: auto;
+}
 
 </style>
