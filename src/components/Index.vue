@@ -16,6 +16,7 @@
 			<div @click="gotoOpList(index)" v-for="(item,index) in orderList" :key="index" class="order-item">
 				<yd-icon class="order-item-icon" name="ucenter" color="#ffffff" size=".4rem"></yd-icon>
 				<!-- 姓名 -->
+				<span v-if="type==0 && item.NeedToOperate" class="need-badge-2"></span>
 				<span class="order-item-name">{{item.showTitle}}</span>
 				
 				<yd-navbar-next-icon class="order-item-next" color="#ffffff"></yd-navbar-next-icon>

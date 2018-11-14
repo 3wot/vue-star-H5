@@ -14,7 +14,7 @@
 				<yd-flexbox>
         	 		<yd-button class="bottom-btn" size="large" @click.native="gotoLook">查看资料</yd-button>
         	 		<yd-button class="bottom-btn" size="large" @click.native="gotoAdd">补充资料<span v-if="needAddTemp" class="need-badge"></span></yd-button>
-        	 		<!-- <yd-badge slot="badge" type="danger">2</yd-badge> -->
+        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">结案</yd-button>
 		        </yd-flexbox>
 			</div>
 			<!-- 内容 -->
@@ -255,6 +255,36 @@ export default {
 			this.$router.push({ name: 'look', params: { id, hid }})
 		},
 
+		// 结案
+		finish () {
+			const { id, hid, oprid } = this.$route.params
+			const param = {
+				OrderId: id,
+			}
+			this.$dialog.confirm({
+                title: '警告',
+                mes: '点击确定，将直接结案，请您慎重操作！',
+                opts: () => {
+                    this.pp('CancelOrder', param, res => {
+						if (res.ret) {
+							this.$dialog.toast({
+								mes: '结案成功',
+								icon: 'none',
+								timeout: 3000,
+							})
+							this.$router.push({ name : 'index' })
+						} else {
+							this.$dialog.toast({
+								mes: res.msg,
+								icon: 'none',
+								timeout: 3000,
+							})
+						}
+					})
+                }
+            })
+		},
+
 		// 是否需要补充资料
 		getNeedAddTemp () {
 			const { id, hid, oprid } = this.$route.params
@@ -454,14 +484,5 @@ export default {
 .op-item-next {
 	position: absolute;
 	right: .2rem;
-}
-.need-badge {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    border-radius: 5px;
-    background-color: red;
-    position: absolute;
-
 }
 </style>
