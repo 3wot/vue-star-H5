@@ -31,8 +31,8 @@
 
 			<yd-cell-group>
 		        <yd-cell-item>
-		            <span slot="left"><span class="danger">* </span>申请贷款金额(元)：</span>
-		            <yd-input slot="right" type="number" required v-model="ExpectedBorrowAmount"  placeholder="请输入申请贷款金额(元)"></yd-input>
+		            <span slot="left"><span class="danger">* </span>申请贷款金额(万元)：</span>
+		            <yd-input slot="right" type="number" required v-model="ExpectedBorrowAmount"  placeholder="请输入申请贷款金额(万元)"></yd-input>
 		        </yd-cell-item>
 		    </yd-cell-group>
 		    <yd-cell-group>
@@ -119,8 +119,8 @@
 
 		    	<yd-cell-group>
 			        <yd-cell-item>
-			            <span slot="left"><span class="danger">* </span>抵押金额：</span>
-			            <yd-input slot="right" required v-model="PledgePrice"  placeholder="请输入抵押金额"></yd-input>
+			            <span slot="left"><span class="danger">* </span>抵押金额(万元)：</span>
+			            <yd-input slot="right" required v-model="PledgePrice"  placeholder="请输入抵押金额(万元)"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
@@ -383,7 +383,7 @@ export default {
 				OrderId,
 				HouseId,
 				OperationRecordId,
-				ExpectedBorrowAmount,
+				ExpectedBorrowAmount:parseInt(ExpectedBorrowAmount*10000),
 				ExpectedBorrowPeriodInMonth,
 				BorrowUsage : BorrowUsage == '其他' ? BorrowUsageReal : BorrowUsage,
 				InterestReturnSource : InterestReturnSource == '其他' ? InterestReturnSourceReal : InterestReturnSource,
@@ -392,7 +392,7 @@ export default {
 				PledgeInfo,
 				IsPledged,
 				PledgeOrgnization,
-				PledgePrice,
+				PledgePrice:parseInt(PledgePrice*10000),
 				IsLoanPaidOff,
 				IsZhuanDan,
 				HasCompany, // 获取回来

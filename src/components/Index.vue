@@ -119,7 +119,12 @@ export default {
 				const id = order.OrderId
 				const hid = order.HouseId
 				window.sessionStorage.setItem('OrderId',id)
-				this.$router.push({ name : 'opList', params: { id, hid }})
+				if (this.type == 0) {
+					this.$router.push({ name : 'opList', params: { id, hid }})	
+				} else {
+					this.$router.push({ name : 'opList1', params: { id, hid }})
+				}
+				
 			}
 		},
 

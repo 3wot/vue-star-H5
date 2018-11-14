@@ -67,7 +67,7 @@
 
 			    <yd-cell-group>
 			        <yd-cell-item>
-			            <span slot="left"><span class="danger">* </span>配偶电话：</span>
+			            <span slot="left">配偶电话：</span>
 			            <yd-input slot="right" required v-model="BorrowerSpouseMobile" placeholder="请输入配偶电话"></yd-input>
 			        </yd-cell-item>
 			    </yd-cell-group>
@@ -226,7 +226,7 @@ export default {
 				})
 				return
 			}
-			if (BorrowerMarriageStatus == "已婚" && !(BorrowerSpouseName && BorrowerSpouseIDNO && BorrowerSpouseMobile)) {
+			if (BorrowerMarriageStatus == "已婚" && !(BorrowerSpouseName && BorrowerSpouseIDNO)) {
 				this.$dialog.toast({
 					mes: "请填写或者上传标红的项目！",
 					icon: 'none',
