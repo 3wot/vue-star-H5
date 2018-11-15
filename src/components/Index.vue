@@ -5,7 +5,8 @@
 	       <!-- 头 -->
 			<yd-navbar slot="navbar" title="销售" fontsize=".4rem" bgcolor="#5871f5" color="#ffffff">
 				<!-- <yd-icon name="verifycode" slot="right">添加</yd-icon> -->
-				<span slot="right" @click="gotoAdd">添加</span>
+				<span slot="left" @click="gotoAdd">添加</span>
+				<span slot="right" @click="changeType(type)">刷新</span>
 			</yd-navbar>
 
 		 	<div slot="top" style="height: 1rem;">
@@ -119,7 +120,12 @@ export default {
 				const id = order.OrderId
 				const hid = order.HouseId
 				window.sessionStorage.setItem('OrderId',id)
-				this.$router.push({ name : 'opList', params: { id, hid }})
+				if (this.type == 0) {
+					this.$router.push({ name : 'opList', params: { id, hid }})	
+				} else {
+					this.$router.push({ name : 'opList1', params: { id, hid }})
+				}
+				
 			}
 		},
 

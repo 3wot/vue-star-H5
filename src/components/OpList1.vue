@@ -7,18 +7,18 @@
 				<span slot="left" @click="gotoIndex">
 					<yd-navbar-back-icon color="#ffffff"></yd-navbar-back-icon>
 				</span>
-				<span slot="right" @click="init">刷新</span>
+				<!-- <span slot="right" @click="init">刷新</span> -->
 			</yd-navbar>
 			<!-- 底部 -->
 			<div class="slot-bottom" slot="bottom">
 				<yd-flexbox>
         	 		<yd-button class="bottom-btn" size="large" @click.native="gotoLook">查看资料</yd-button>
-        	 		<yd-button class="bottom-btn" size="large" @click.native="gotoAdd">补充资料<span v-if="needAddTemp" class="need-badge"></span></yd-button>
-        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">结案</yd-button>
+        	 		<!-- <yd-button class="bottom-btn" size="large" @click.native="gotoAdd">补充资料<span v-if="needAddTemp" class="need-badge"></span></yd-button>
+        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">结案</yd-button> -->
 		        </yd-flexbox>
 			</div>
 			<!-- 内容 -->
-			<div @click="handleTapOp(index)" v-for="(item,index) in opList" :key="index" class="op-item">
+			<div v-for="(item,index) in opList" :key="index" class="op-item">
 				<yd-icon v-if="item.Status != 0" class="op-item-icon" color="#ffffff" size=".4rem" name="shield-outline"></yd-icon>
 				<yd-icon v-if="item.Status == 0" class="op-item-icon" color="#ffffff" size=".4rem" name="time"></yd-icon>
 				<!-- 姓名 -->

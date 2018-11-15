@@ -5,6 +5,7 @@ import Login from '@/components/Login'
 import Index from '@/components/Index'
 import AddOrder from '@/components/AddOrder'
 import OpList from '@/components/OpList'
+import OpList1 from '@/components/OpList1'
 import Look from '@/components/Look'
 import ConfirmValuation from '@/components/ConfirmValuation'
 import Form from '@/components/Form'
@@ -49,6 +50,12 @@ export default new Router({
 			path: '/opList/:id/:hid',
 			name: 'opList',
 			component: OpList
+		},
+		{
+			// 操作列表1
+			path: '/opList1/:id/:hid',
+			name: 'opList1',
+			component: OpList1
 		},
 		{
 			// 查看所有资料
