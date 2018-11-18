@@ -258,6 +258,14 @@ export default {
 				})
 				return
 			}
+			if (UPLOAD_NUM) {
+				this.$dialog.toast({
+					mes: '还有图片正在上传！',
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
 
 			const param = {
 				OrderId,

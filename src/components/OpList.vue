@@ -429,6 +429,7 @@ export default {
 				"立项" : "setUpProject",
 				"产品匹配确认" : "confirmMatch",
 				"产品终审结果确认" : "confirmLastCheck",
+				"提交收付款凭证" : "sendDeal",
 				"提交收款凭证" : "sendDeal",
 			}
 			const id = this.$route.params.id

@@ -82,6 +82,14 @@ export default {
 					})
 				return
 			}
+			if (UPLOAD_NUM) {
+				this.$dialog.toast({
+					mes: '还有图片正在上传！',
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
 			this.pp('CompleteUploadLoanReceivedCertificate', param, res => {
 				if (res.ret) {
 					// 跳到操作页面

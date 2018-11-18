@@ -49,6 +49,8 @@ import $ from 'jquery'
 import { Upload } from 'element-ui'
 Vue.use(Upload)
 
+let uploadObj = {}
+
 export default {
 	components:{
 	// Button,Field
@@ -68,6 +70,9 @@ export default {
 		if (this.max) {
 			this.maxNum = this.max
 		}
+
+		UPLOAD_NUM = 0
+		uploadObj = {}
 	},
 	methods:{
 		// 点击上传
@@ -102,6 +107,9 @@ export default {
       		that.arr.push(loadingUrl)
       		that.arrc.push(loadingUrl)
 
+      		UPLOAD_NUM = UPLOAD_NUM + 1
+      		uploadObj[length] = true // 表示当前位置的图片正在上传
+
       		fd.append('uid', uid)
       		fd.append('token', token)
       		fd.append('OrderId', OrderId)
@@ -134,8 +142,17 @@ export default {
 							that.arrc.splice(length,1)	
 						}
 		            }
+
+		            if (uploadObj[length]) { // 如果没有中途放弃
+		            	UPLOAD_NUM = UPLOAD_NUM - 1
+		            	uploadObj[length] = false
+		            }
 		        },
 		        error: function (err) {
+		        	if (uploadObj[length]) { // 如果没有中途放弃
+		            	UPLOAD_NUM = UPLOAD_NUM - 1
+		            	uploadObj[length] = false
+		            }
 		            that.$dialog.toast({
 						mes: err,
 						icon: 'none',
@@ -162,28 +179,35 @@ export default {
 		},
 		// 添加
 		add (url,urlc,index) {
-			if (index < this.arr.length) { // 没问题
-				this.arr.splice(index,1,url)
-				if (this.arrc) {
-					this.arrc.splice(index,1,urlc)
-				}	
-			} else { // 出现失败
-				let idxTemp
-				this.arr.map((item,idx) => {
-					if (item == loadingUrl) {
-						idxTemp = idx
+			if (uploadObj[index]) {
+				if (index < this.arr.length) { // 没问题
+					this.arr.splice(index,1,url)
+					if (this.arrc) {
+						this.arrc.splice(index,1,urlc)
+					}	
+				} else { // 出现失败
+					let idxTemp
+					this.arr.map((item,idx) => {
+						if (item == loadingUrl) {
+							idxTemp = idx
+						}
+					})
+					this.arr.splice(idxTemp,1,url)
+					if (this.arrc) {
+						this.arrc.splice(idxTemp,1,urlc)
 					}
-				})
-				this.arr.splice(idxTemp,1,url)
-				if (this.arrc) {
-					this.arrc.splice(idxTemp,1,urlc)
 				}
 			}
+			
 			
 		},
 		// 删除图片
 		dele(idx) {
 			const OSSFileUrl = this.arr[idx]
+			if (OSSFileUrl == loadingUrl) { // 如果删除的是，正在上传的
+				UPLOAD_NUM = UPLOAD_NUM - 1
+				uploadObj[idx] = false // 放弃上传
+			}
 			this.arr.splice(idx,1)
 			if (this.arrc) {
 				this.arrc.splice(idx,1)	
