@@ -14,7 +14,7 @@
 				<yd-flexbox>
         	 		<yd-button class="bottom-btn" size="large" @click.native="gotoLook">查看资料</yd-button>
         	 		<yd-button class="bottom-btn" size="large" @click.native="gotoAdd">补充资料<span v-if="needAddTemp" class="need-badge"></span></yd-button>
-        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">结案</yd-button>
+        	 		<yd-button class="bottom-btn" size="large" type="danger" @click.native="finish">结案</yd-button>
 		        </yd-flexbox>
 			</div>
 			<!-- 内容 -->

@@ -12,7 +12,7 @@
 			<div class="slot-bottom" slot="bottom">
 				<yd-flexbox>
         	 		<yd-button class="bottom-btn" size="large" @click.native="sub">确认</yd-button>	
-        	 		<yd-button class="bottom-btn" size="large" @click.native="finish">结案</yd-button>
+        	 		<yd-button class="bottom-btn" size="large" type="danger" @click.native="finish">结案</yd-button>
 		        </yd-flexbox>
 			</div>
 			<!-- 内容 -->
