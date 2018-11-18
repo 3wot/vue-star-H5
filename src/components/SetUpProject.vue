@@ -156,7 +156,8 @@
 		    	<yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left">企业统一社会信用代码：</span>
-			            <yd-input slot="right" v-model="CompanySecurityIDNO"  placeholder="请输入企业统一社会信用代码"></yd-input>
+			            <!-- <yd-input slot="right" v-model="CompanySecurityIDNO"  placeholder="请输入企业统一社会信用代码"></yd-input> -->
+			            <span slot="right">{{CompanySecurityIDNO || '-'}}</span>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
@@ -317,8 +318,9 @@ export default {
 			}
 			this.pp('GetOrderValidationParams', param, res => {
 				if (res.ret) {
-					const { HasCompany } = res.data || {}
+					const { HasCompany, CompanySecurityIDNO } = res.data || {}
 					this.HasCompany = HasCompany
+					this.CompanySecurityIDNO = CompanySecurityIDNO
 				} else {
 					this.$dialog.toast({
 						mes: res.msg,
