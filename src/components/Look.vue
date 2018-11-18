@@ -177,7 +177,7 @@
 		    <ImgLook v-if="BuySellContractImageUrls" title="购销合同照片：" :arr="BuySellContractImageUrls" :arrc="C_BuySellContractImageUrls"></ImgLook>
 		    <ImgLook v-if="GuarantorProofDocumentImageUrls" title="担保人财产共有人同意提供担保的书面文件：" :arr="GuarantorProofDocumentImageUrls" :arrc="C_GuarantorProofDocumentImageUrls"></ImgLook>
 
-		    <ImgLook v-if="BankCardImageUrl" title="还款卡照片：" :arr="BankCardImageUrl" :arrc="C_BankCardImageUrl"></ImgLook>
+		    <ImgLook v-if="BankCardImageUrl" title="银行卡照片：" :arr="BankCardImageUrl" :arrc="C_BankCardImageUrl"></ImgLook>
 		    <ImgLook v-if="CompanyHoldingCertificateImageUrls" title="实控人证明照片：" :arr="CompanyHoldingCertificateImageUrls" :arrc="C_CompanyHoldingCertificateImageUrls"></ImgLook>
 		    <ImgLook v-if="CompanyFinancialStatementImageUrls" title="企业财务报表照片：" :arr="CompanyFinancialStatementImageUrls" :arrc="C_CompanyFinancialStatementImageUrls"></ImgLook>
 		    <ImgLook v-if="LawsuitFinishCertificateImageUrls" title="诉讼结案证明照片：" :arr="LawsuitFinishCertificateImageUrls" :arrc="C_LawsuitFinishCertificateImageUrls"></ImgLook>
@@ -488,7 +488,7 @@ export default {
 					this.IsLoanApproved = IsLoanApproved // 是否批贷通过
 					this.LoanApprovalImageUrls = LoanApprovalImageUrls // 批贷函照片url
 					this.C_LoanApprovalImageUrls = C_LoanApprovalImageUrls // 批贷函照片缩略图url
-					this.LoanAmount = parseInt(LoanAmount) // 批贷金额
+					this.LoanAmount = parseInt(LoanAmount) || '-' // 批贷金额
 					this.LoanPeriodInMonth = LoanPeriodInMonth // 批贷期限
 					this.LoanInterest = LoanInterest // 批贷利率
 										
