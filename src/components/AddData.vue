@@ -135,6 +135,7 @@ export default {
 			const { id, hid } = this.$route.params
 			const arr = this.arr
 			let Materials = []
+			let emptyTemp = false // 非空标志位
 			arr.map(item => {
 				// { "Id" : "1", "ImageUrls" : ["ImageUrl1", "ImageUrl2"], "C_ImageUrls" : ["ImageUrl1", "ImageUrl2"] },
 				const { Id, ImageUrls, C_ImageUrls } = item || {}
@@ -143,7 +144,18 @@ export default {
 					ImageUrls,
 					C_ImageUrls,
 				})
+				if (ImageUrls.length == 0 || C_ImageUrls == 0) { // 如果有空的
+					emptyTemp = true
+				}
 			})
+			if (emptyTemp) {
+				this.$dialog.toast({
+					mes: '您还有资料未补充，请补充后提交',
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
 			const param = {
 				OrderId: id,
 				HouseId: hid,
