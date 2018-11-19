@@ -380,10 +380,10 @@ export default {
 		handleTapOp(idx) {
 			if (this.opList && idx == this.opList.length-1) {
 				const op = this.opList[idx]
-				const { OperationRoleType, OperationName, OperationRecordId } = op
+				const { OperationRoleType, RouteName, OperationRecordId } = op
 				const OperatorRoleId = window.sessionStorage.getItem('OperatorRoleId')
 				if (OperationRoleType == OperatorRoleId) {
-					this.gotoDetail(OperationName, OperationRecordId)
+					this.gotoDetail(RouteName, OperationRecordId)
 				} else {
 					this.$dialog.toast({
 						mes: "您不能进入此操作",
@@ -429,8 +429,7 @@ export default {
 				"立项" : "setUpProject",
 				"产品匹配确认" : "confirmMatch",
 				"产品终审结果确认" : "confirmLastCheck",
-				"提交收付款凭证" : "sendDeal",
-				"提交收款凭证" : "sendDeal",
+				"提交收放款凭证" : "sendDeal",
 			}
 			const id = this.$route.params.id
 			const hid = this.$route.params.hid
