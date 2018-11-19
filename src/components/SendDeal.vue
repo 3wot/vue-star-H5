@@ -3,7 +3,7 @@
 		
 		 <yd-layout>
 	       <!-- 头 -->
-			<yd-navbar slot="navbar" title="提交收款凭证" fontsize=".4rem" bgcolor="#5871f5" color="#ffffff">
+			<yd-navbar slot="navbar" title="提交收放款凭证" fontsize=".4rem" bgcolor="#5871f5" color="#ffffff">
 				<span slot="left" @click="gotoIndex">
 					<yd-navbar-back-icon color="#ffffff"></yd-navbar-back-icon>
 				</span>

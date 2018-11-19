@@ -171,7 +171,8 @@
 			    <yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left"><span class="danger">* </span>企业法定代表人姓名：</span>
-			            <yd-input slot="right" required v-model="CompanyLegalPersonName"  placeholder="请输入企业法人姓名"></yd-input>
+			            <!-- <yd-input slot="right" required v-model="CompanyLegalPersonName"  placeholder="请输入企业法人姓名"></yd-input> -->
+			            <span slot="right">{{CompanyLegalPersonName}}</span>
 			        </yd-cell-item>
 			    </yd-cell-group>
 
@@ -318,9 +319,11 @@ export default {
 			}
 			this.pp('GetOrderValidationParams', param, res => {
 				if (res.ret) {
-					const { HasCompany, CompanySecurityIDNO } = res.data || {}
+					const { HasCompany, CompanySecurityIDNO, CompanyLegalPersonName } = res.data || {}
 					this.HasCompany = HasCompany
 					this.CompanySecurityIDNO = CompanySecurityIDNO
+					this.CompanyLegalPersonName = CompanyLegalPersonName
+
 				} else {
 					this.$dialog.toast({
 						mes: res.msg,
@@ -429,7 +432,7 @@ export default {
 				})
 				return
 			}
-			if (HasCompany && !(CompanyLegalPersonName && param.CompanyLicenseImageUrl && param.C_CompanyLicenseImageUrl)) {
+			if (HasCompany && !(param.CompanyLicenseImageUrl && param.C_CompanyLicenseImageUrl)) {
 				this.$dialog.toast({
 					mes: "请填写或者上传标红的项目！",
 					icon: 'none',
