@@ -171,7 +171,6 @@
 			    <yd-cell-group>
 			        <yd-cell-item>
 			            <span slot="left"><span class="danger">* </span>企业法定代表人姓名：</span>
-			            <!-- <yd-input slot="right" required v-model="CompanyLegalPersonName"  placeholder="请输入企业法人姓名"></yd-input> -->
 			            <span slot="right">{{CompanyLegalPersonName}}</span>
 			        </yd-cell-item>
 			    </yd-cell-group>
