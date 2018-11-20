@@ -170,7 +170,7 @@
 
 			    <yd-cell-group>
 			        <yd-cell-item>
-			            <span slot="left"><span class="danger">* </span>企业法定代表人姓名：</span>
+			            <span slot="left">企业法定代表人姓名：</span>
 			            <span slot="right">{{CompanyLegalPersonName}}</span>
 			        </yd-cell-item>
 			    </yd-cell-group>
