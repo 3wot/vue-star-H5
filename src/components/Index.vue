@@ -10,9 +10,18 @@
 			</yd-navbar>
 
 		 	<div slot="top" style="height: 1rem;">
-	 		 	<span class="line" :class="{ active: type == 0 }" @click="changeType(0)">进行中的报单</span>
-	 		 	<span class="line" :class="{ active: type == 3 }" @click="changeType(3)">历史报单</span>
+	 		 	<span class="line" :class="{ active: type == 0 }" @click="clickType(0)">进行中的报单</span>
+	 		 	<span class="line" :class="{ active: type == 3 }" @click="clickType(3)">历史报单</span>
 		 	</div>
+
+		 	<!-- 底部 -->
+			<div class="slot-bottom" slot="bottom">
+				<yd-flexbox>
+        	 		<yd-button class="bottom-btn" size="large" @click.native="prevPage">上一页</yd-button>
+        	 		<yd-button class="bottom-btn span-btn" disabled size="large">第 {{PageIndex}} 页</yd-button>
+        	 		<yd-button class="bottom-btn" size="large" @click.native="nextPage">下一页</yd-button>
+		        </yd-flexbox>
+			</div>
 
 			<div @click="gotoOpList(index)" v-for="(item,index) in orderList" :key="index" class="order-item">
 				<yd-icon class="order-item-icon" name="ucenter" color="#ffffff" size=".4rem"></yd-icon>
@@ -33,6 +42,7 @@
 <script>
 // import Router from 'vue-router'
 import URLS from '../router/link'
+const PAGE_ROWS = 20 // 每页20条
 
 export default {
 	components:{
@@ -63,7 +73,8 @@ export default {
 				// 	"Status" : "2", 
 				// 	"CurrentOperation" : "估值"
 				// },	
-			], 
+			],
+			PageIndex: 1,
 		}
 	},
 	mounted () {
@@ -71,11 +82,23 @@ export default {
 		this.changeType(0)
 	},
 	methods:{
+
 		// 点击进行中或者历史
+		clickType(type) {
+			this.type = type
+			this.PageIndex = 1
+			this.changeType(type)
+		},
+
+		// 发送请求
 		changeType(type) {
 			this.type = type
+			const PageIndex = this.PageIndex
+			const PageRows = PAGE_ROWS
 			const param = {
 				order_type: type,
+				PageIndex,
+				PageRows,
 			}
 			this.pp('OrderList', param, res => {
 				// console.log(res)
@@ -143,6 +166,26 @@ export default {
 			}
 		},
 
+		// 上一页
+		prevPage() {
+			const num = this.PageIndex
+			if (num > 1) {
+				this.PageIndex = num - 1
+			} else {
+				this.PageIndex = 1
+			}
+			const type = this.type
+			this.changeType(type)
+		},
+
+		// 下一页
+		nextPage() {
+			const num = this.PageIndex
+			this.PageIndex = num + 1
+			const type = this.type
+			this.changeType(type)
+		},
+
 	},
 
 
@@ -201,5 +244,8 @@ export default {
 	position: absolute;
 	right: .2rem;
 }
-
+.span-btn.yd-btn-disabled {
+	background-color: rgba(0,0,0,0);
+	color: #333333;
+}
 </style>
