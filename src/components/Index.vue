@@ -17,9 +17,9 @@
 		 	<!-- 底部 -->
 			<div class="slot-bottom" slot="bottom">
 				<yd-flexbox>
-        	 		<yd-button class="bottom-btn" size="large" @click.native="prevPage">上一页</yd-button>
+        	 		<yd-button class="bottom-btn" :disabled="PageIndex == 1" size="large" @click.native="prevPage">上一页</yd-button>
         	 		<yd-button class="bottom-btn span-btn" disabled size="large">第 {{PageIndex}} 页</yd-button>
-        	 		<yd-button class="bottom-btn" size="large" @click.native="nextPage">下一页</yd-button>
+        	 		<yd-button class="bottom-btn" :disabled="nextBtnDisable" size="large" @click.native="nextPage">下一页</yd-button>
 		        </yd-flexbox>
 			</div>
 
@@ -76,6 +76,16 @@ export default {
 			],
 			PageIndex: 1,
 		}
+	},
+	computed:{
+		nextBtnDisable: function(){
+			const len = this.orderList.length
+			if (len < PAGE_ROWS) {
+				return true
+			} else {
+				return false
+			}
+		},
 	},
 	mounted () {
 		// this.testLogin()
