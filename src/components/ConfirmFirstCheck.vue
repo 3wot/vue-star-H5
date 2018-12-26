@@ -12,7 +12,7 @@
 			<div class="slot-bottom" slot="bottom">
 				<yd-flexbox>
 
-        	 		<yd-button class="bottom-btn" size="large" @click.native="sub">确认</yd-button>	
+        	 		<yd-button class="bottom-btn" size="large" @click.native="sub">确认</yd-button>
         	 		<yd-button class="bottom-btn" size="large" type="danger" @click.native="finish">结案</yd-button>	
 
 		        </yd-flexbox>
@@ -46,6 +46,21 @@
 	            </yd-cell-item>
 	        </yd-cell-group>
 
+            <yd-popup v-model="finishVisible" position="center" width="90%">
+	            <div class="finishBox">
+	                <yd-cell-group>
+	                	<yd-cell-item>
+				            <span slot="left" class="finishTitle">点击确定，将直接结案，请您慎重操作！</span>
+				        </yd-cell-item>
+				        <yd-cell-item>
+				            <yd-input slot="right" :show-clear-icon="false" :show-error-icon="false" :show-success-icon="false" :show-required-icon="false" placeholder="请输入结案理由"></yd-input>
+				        </yd-cell-item>
+				    </yd-cell-group>
+			        <yd-button type="hollow" class="finishBtn">取消</yd-button>
+			        <yd-button type="hollow" class="finishBtn">确定</yd-button>
+	            </div>
+        	</yd-popup>
+
 
 	    </yd-layout>
 
@@ -69,6 +84,8 @@ export default {
             "FirstAuditionOperatorName": "",
 
             FirstAuditionConfirmComment: '',
+            finishVisible: false,
+            finishText: '',
 		}
 	},
 	mounted () {
@@ -85,32 +102,33 @@ export default {
 
 		// 结案
 		finish () {
-			const { id, hid, oprid } = this.$route.params
-			const param = {
-				OrderId: id,
-			}
-			this.$dialog.confirm({
-                title: '警告',
-                mes: '点击确定，将直接结案，请您慎重操作！',
-                opts: () => {
-                    this.pp('CancelOrder', param, res => {
-						if (res.ret) {
-							this.$dialog.toast({
-								mes: '结案成功',
-								icon: 'none',
-								timeout: 3000,
-							})
-							this.$router.push({ name : 'index' })
-						} else {
-							this.$dialog.toast({
-								mes: res.msg,
-								icon: 'none',
-								timeout: 3000,
-							})
-						}
-					})
-                }
-            })
+			this.finishVisible = true
+			// const { id, hid, oprid } = this.$route.params
+			// const param = {
+			// 	OrderId: id,
+			// }
+			// this.$dialog.confirm({
+   //              title: '警告',
+   //              mes: '点击确定，将直接结案，请您慎重操作！',
+   //              opts: () => {
+   //                  this.pp('CancelOrder', param, res => {
+			// 			if (res.ret) {
+			// 				this.$dialog.toast({
+			// 					mes: '结案成功',
+			// 					icon: 'none',
+			// 					timeout: 3000,
+			// 				})
+			// 				this.$router.push({ name : 'index' })
+			// 			} else {
+			// 				this.$dialog.toast({
+			// 					mes: res.msg,
+			// 					icon: 'none',
+			// 					timeout: 3000,
+			// 				})
+			// 			}
+			// 		})
+   //              }
+   //          })
 		},
 
 		// 初始化

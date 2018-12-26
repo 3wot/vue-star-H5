@@ -84,3 +84,16 @@
     top: 0.2rem;
     left: 0.1rem;
 }
+
+.finishBox {
+	background-color: #ffffff;
+	border-radius: .1rem;
+	padding: 0.1rem;
+	overflow: hidden;
+}
+.finishTitle {
+	color: #ef4f4f;
+}
+.finishBtn {
+	margin: .1rem;
+}
