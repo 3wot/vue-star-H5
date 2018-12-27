@@ -77,6 +77,8 @@ export default {
             "HouseValuationOperatorId": "",
             "HouseValuationOperatorName": "",
             "HouseValuationConfirmComment": "",
+            finishVisible: false,
+			finishText: '',
 		}
 	},
 	mounted () {

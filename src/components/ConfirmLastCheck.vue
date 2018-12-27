@@ -56,9 +56,19 @@
 		                <span slot="left">拒绝理由：</span>
 		            </yd-cell-item>
 		            <yd-cell-item>
-			            <yd-textarea slot="left" :readonly="true" v-model="LoanRejectionComment" placeholder="无"></yd-textarea>
+			            <yd-textarea slot="right" :readonly="true" v-model="LoanRejectionComment" placeholder="无"></yd-textarea>
 			        </yd-cell-item>	
 	            </div>
+
+	        </yd-cell-group>
+
+	        <yd-cell-group>
+	        	<yd-cell-item >
+	                <span slot="left">产品终审确认备注：</span>
+	            </yd-cell-item>
+	            <yd-cell-item>
+		            <yd-textarea slot="right" v-model="LoanApprovalConfirmComment" placeholder="请输入产品终审确认备注"></yd-textarea>
+		        </yd-cell-item>	
 	        </yd-cell-group>
 
 			<yd-popup v-model="finishVisible" position="center" width="90%" :close-on-masker="false">
@@ -109,6 +119,7 @@ export default {
             LoanRejectionComment:"",
             finishVisible: false,
             finishText: '',
+            LoanApprovalConfirmComment: '',
 		}
 	},
 	mounted () {
@@ -217,10 +228,20 @@ export default {
 		sub () {
 			const { id, hid, oprid } = this.$route.params
 			// const LoanRejectionComment = this.LoanRejectionComment
+			const LoanApprovalConfirmComment = this.LoanApprovalConfirmComment
+			if (!LoanApprovalConfirmComment) {
+				this.$dialog.toast({
+					mes: '请输入终审确认备注',
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
 			const param = {
 				OrderId: id,
 				OperationRecordId: oprid,
 				// LoanRejectionComment,
+				LoanApprovalConfirmComment,
 			}
 			this.pp('CompleteConfirmLoanApproval', param, res => {
 				if (res.ret) {
