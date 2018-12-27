@@ -41,7 +41,21 @@
 	                <yd-textarea v-model="HouseValuationConfirmComment" slot="right" placeholder="请输入备注"></yd-textarea>
 	            </yd-cell-item>
 	        </yd-cell-group>
-
+			
+			<yd-popup v-model="finishVisible" position="center" width="90%" :close-on-masker="false">
+	            <div class="finishBox">
+	                <yd-cell-group>
+	                	<yd-cell-item>
+				            <span slot="left" class="finishTitle">点击确定，将直接结案，请您慎重操作！</span>
+				        </yd-cell-item>
+				        <yd-cell-item>
+				            <yd-input slot="right" v-model="finishText" :show-clear-icon="false" :show-error-icon="false" :show-success-icon="false" :show-required-icon="false" placeholder="请输入结案理由"></yd-input>
+				        </yd-cell-item>
+				    </yd-cell-group>
+			        <yd-button type="hollow" class="finishBtn" @click.native="finishNot">取消</yd-button>
+			        <yd-button type="hollow" class="finishBtn" @click.native="finishOk">确定</yd-button>
+	            </div>
+        	</yd-popup>
 
 	    </yd-layout>
 
@@ -94,32 +108,44 @@ export default {
 
 		// 结案
 		finish () {
+			this.finishVisible = true
+			this.finishText = ''
+		},
+		finishNot() {
+			this.finishVisible = false
+			this.finishText = ''
+		},
+		finishOk() {
 			const { id, hid, oprid } = this.$route.params
+			const CancelOrderComment = this.finishText
 			const param = {
 				OrderId: id,
+				CancelOrderComment,
 			}
-			this.$dialog.confirm({
-                title: '警告',
-                mes: '点击确定，将直接结案，请您慎重操作！',
-                opts: () => {
-                    this.pp('CancelOrder', param, res => {
-						if (res.ret) {
-							this.$dialog.toast({
-								mes: '结案成功',
-								icon: 'none',
-								timeout: 3000,
-							})
-							this.$router.push({ name : 'index' })
-						} else {
-							this.$dialog.toast({
-								mes: res.msg,
-								icon: 'none',
-								timeout: 3000,
-							})
-						}
+			if (!CancelOrderComment) {
+				this.$dialog.toast({
+					mes: '请输入结案理由',
+					icon: 'none',
+					timeout: 3000,
+				})
+				return
+			}
+			this.pp('CancelOrder', param, res => {
+				if (res.ret) {
+					this.$dialog.toast({
+						mes: '结案成功',
+						icon: 'none',
+						timeout: 3000,
 					})
-                }
-            })
+					this.$router.push({ name : 'index' })
+				} else {
+					this.$dialog.toast({
+						mes: res.msg,
+						icon: 'none',
+						timeout: 3000,
+					})
+				}
+			})
 		},
 
 		// 初始化
