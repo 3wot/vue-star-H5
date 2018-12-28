@@ -22,18 +22,21 @@
 		            <span slot="right">{{$route.params.id}}</span>
 		        </yd-cell-item>
 		    </yd-cell-group>
-		    <yd-cell-group>
-		        <yd-cell-item type="label">
-		            <span slot="left">客户电话：</span>
-		            <span slot="right">{{BorrowerMobile}}</span>
-		        </yd-cell-item>
-		    </yd-cell-group>
+
 		    <yd-cell-group>
 		        <yd-cell-item type="label">
 		            <span slot="left">报单状态：</span>
 		            <span slot="right">{{Status == 0 ? '进行中' : (Status == 1 ? '正常结案' : '中途结案')}}</span>
 		        </yd-cell-item>
 		    </yd-cell-group>
+		    
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">客户电话：</span>
+		            <span slot="right">{{BorrowerMobile}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    
 			<yd-cell-group>
 		        <yd-cell-item type="label">
 		            <span slot="left">最后操作：</span>
