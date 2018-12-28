@@ -229,14 +229,14 @@ export default {
 			const { id, hid, oprid } = this.$route.params
 			// const LoanRejectionComment = this.LoanRejectionComment
 			const LoanApprovalConfirmComment = this.LoanApprovalConfirmComment
-			if (!LoanApprovalConfirmComment) {
-				this.$dialog.toast({
-					mes: '请输入终审确认备注',
-					icon: 'none',
-					timeout: 3000,
-				})
-				return
-			}
+			// if (!LoanApprovalConfirmComment) {
+			// 	this.$dialog.toast({
+			// 		mes: '请输入终审确认备注',
+			// 		icon: 'none',
+			// 		timeout: 3000,
+			// 	})
+			// 	return
+			// }
 			const param = {
 				OrderId: id,
 				OperationRecordId: oprid,
