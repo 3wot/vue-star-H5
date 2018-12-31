@@ -8,14 +8,6 @@
 					<yd-navbar-back-icon color="#ffffff"></yd-navbar-back-icon>
 				</span>
 			</yd-navbar>
-
-			<!-- 内容 -->
-<!-- 			<yd-cell-group v-if="CurrentOperationName">
-		        <yd-cell-item type="label">
-		            <span slot="left">当前操作：</span>
-		            <span slot="right">{{CurrentOperationName}}</span>
-		        </yd-cell-item>
-		    </yd-cell-group> -->
 		    <yd-cell-group>
 		        <yd-cell-item type="label">
 		            <span slot="left">报单ID：</span>
@@ -29,23 +21,196 @@
 		            <span slot="right">{{Status == 0 ? '进行中' : (Status == 1 ? '正常结案' : '中途结案')}}</span>
 		        </yd-cell-item>
 		    </yd-cell-group>
-		    
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">最后操作人：</span>
+		            <span slot="right">{{LastOperatorName}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">最后操作时间：</span>
+		            <span slot="right">{{LastOperationDateTime}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">最后操作：</span>
+		            <span slot="right">{{LastOperationName}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group v-if="CancelOrderComment">
+		        <yd-cell-item type="label">
+		            <span slot="left">结案理由：</span>
+		            <span slot="right">{{CancelOrderComment}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <ImgLook v-if="HouseCertificateImageUrls" title="房产证照片：" :arr="HouseCertificateImageUrls" :arrc="C_HouseCertificateImageUrls"></ImgLook>
+		    <yd-cell-group v-if="CancelOrderComment">
+		        <yd-cell-item type="label">
+		            <span slot="left">房屋建筑面积(㎡)：</span>
+		            <span slot="right">{{HouseArea}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group v-if="CancelOrderComment">
+		        <yd-cell-item type="label">
+		            <span slot="left">房屋坐落：</span>
+		            <span slot="right">{{HouseLocation1}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group v-if="CancelOrderComment">
+		        <yd-cell-item type="label">
+		            <span slot="left">房屋性质：</span>
+		            <span slot="right">{{HouseType}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group v-if="CancelOrderComment">
+		        <yd-cell-item type="label">
+		            <span slot="left">用途：</span>
+		            <span slot="right">{{HouseUsage}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group v-if="CancelOrderComment">
+		        <yd-cell-item type="label">
+		            <span slot="left">抵押成数：</span>
+		            <span slot="right">{{HousePledgePercentage}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group v-if="CancelOrderComment">
+		        <yd-cell-item type="label">
+		            <span slot="left">房屋朝向：</span>
+		            <span slot="right">{{HouseOrientation}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group v-if="CancelOrderComment">
+		        <yd-cell-item type="label">
+		            <span slot="left">总楼层数：</span>
+		            <span slot="right">{{HouseTotalFloor}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group v-if="CancelOrderComment">
+		        <yd-cell-item type="label">
+		            <span slot="left">所在楼层：</span>
+		            <span slot="right">{{HouseFloor}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group v-if="CancelOrderComment">
+		        <yd-cell-item type="label">
+		            <span slot="left">建成年代：</span>
+		            <span slot="right">{{HouseBuildingFinishYear}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+			<ImgLook v-if="HouseValuationImageUrl" title="房屋估值报告：" :arr="HouseValuationImageUrl" :arrc="C_HouseValuationImageUrl"></ImgLook>
+			<yd-cell-group>
+	             <yd-accordion>
+			        <yd-accordion-item title="估值确认意见：">
+			            <div style="padding-left: .48rem;">
+			                <p class="p-left">{{HouseValuationConfirmComment}}</p>
+			            </div>
+			        </yd-accordion-item>
+			    </yd-accordion>
+			</yd-cell-group>
+			<yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">客户姓名：</span>
+		            <span slot="right">{{BorrowerName}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">客户身份证号：</span>
+		            <span slot="right">{{BorrowerIDNO}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>		
 		    <yd-cell-group>
 		        <yd-cell-item type="label">
 		            <span slot="left">客户电话：</span>
 		            <span slot="right">{{BorrowerMobile}}</span>
 		        </yd-cell-item>
 		    </yd-cell-group>
-		    
+		    <ImgLook v-if="BorrowerIDNOImageUrls" title="客户身份证照片：" :arr="BorrowerIDNOImageUrls" :arrc="C_BorrowerIDNOImageUrls"></ImgLook>
+		    <ImgLook v-if="PermanentResidenceBookImageUrls" title="客户户口本照片：" :arr="PermanentResidenceBookImageUrls" :arrc="C_PermanentResidenceBookImageUrls"></ImgLook>
+		    <ImgLook v-if="MarriageCertificateImageUrls" title="客户婚姻证明材料照片：" :arr="MarriageCertificateImageUrls" :arrc="C_MarriageCertificateImageUrls"></ImgLook>
+			<ImgLook v-if="PersonalCreditReportImageUrls" title="客户征信报告照片：" :arr="PersonalCreditReportImageUrls" :arrc="C_PersonalCreditReportImageUrls"></ImgLook>
+			<ImgLook v-if="BankAccountStatementImageUrls" title="银行流水照片：" :arr="BankAccountStatementImageUrls" :arrc="C_BankAccountStatementImageUrls"></ImgLook>
 			<yd-cell-group>
 		        <yd-cell-item type="label">
-		            <span slot="left">最后操作：</span>
-		            <span slot="right">{{LastOperationName}}</span>
+		            <span slot="left">婚姻状况：</span>
+		            <span slot="right">{{BorrowerMarriageStatus}}</span>
 		        </yd-cell-item>
 		    </yd-cell-group>
-			
-			<ImgLook v-if="HouseValuationImageUrl" title="房屋估值报告：" :arr="HouseValuationImageUrl" :arrc="C_HouseValuationImageUrl"></ImgLook>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">配偶姓名：</span>
+		            <span slot="right">{{BorrowerSpouseName}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">配偶身份证号：</span>
+		            <span slot="right">{{BorrowerSpouseIDNO}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">配偶电话：</span>
+		            <span slot="right">{{BorrowerSpouseMobile}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+			<ImgLook v-if="BorrowerSpouseIDNOImageUrls" title="配偶身份证照片：" :arr="BorrowerSpouseIDNOImageUrls" :arrc="C_BorrowerSpouseIDNOImageUrls"></ImgLook>
+		    <ImgLook v-if="SpousePermanentResidenceBookImageUrls" title="配偶户口本照片：" :arr="SpousePermanentResidenceBookImageUrls" :arrc="C_SpousePermanentResidenceBookImageUrls"></ImgLook>
+		    <ImgLook v-if="SpouseMarriageCertificateImageUrls" title="配偶婚姻证明材料照片：" :arr="SpouseMarriageCertificateImageUrls" :arrc="C_SpouseMarriageCertificateImageUrls"></ImgLook>
+			<ImgLook v-if="SpousePersonalCreditReportImageUrls" title="配偶征信报告照片：" :arr="SpousePersonalCreditReportImageUrls" :arrc="C_SpousePersonalCreditReportImageUrls"></ImgLook>
+			<yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">是否有公司：</span>
+		            <span slot="right">{{HasCompany}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">企业名称：</span>
+		            <span slot="right">{{CompanyName}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">企业统一社会信用代码：</span>
+		            <span slot="right">{{CompanySecurityIDNO}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">企业电话：</span>
+		            <span slot="right">{{CompanyPhone}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">企业法定代表人姓名：</span>
+		            <span slot="right">{{CompanyLegalPersonName}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">企业法人身份证号：</span>
+		            <span slot="right">{{CompanyLegalPersonIDNO}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <ImgLook v-if="CompanyLicenseImageUrl" title="公司营业执照副本照片：" :arr="CompanyLicenseImageUrl" :arrc="C_CompanyLicenseImageUrl"></ImgLook>
+		    <ImgLook v-if="CompanyCreditReportImageUrls" title="企业征信照片：" :arr="CompanyCreditReportImageUrls" :arrc="C_CompanyCreditReportImageUrls"></ImgLook>
+		    <ImgLook v-if="CompanyBankAccountStatementImageUrls" title="对公流水照片：" :arr="CompanyBankAccountStatementImageUrls" :arrc="C_CompanyBankAccountStatementImageUrls"></ImgLook>
+		    <ImgLook v-if="CompanyFinancialStatementImageUrls" title="企业财务报表照片：" :arr="CompanyFinancialStatementImageUrls" :arrc="C_CompanyFinancialStatementImageUrls"></ImgLook>
 			<ImgLook v-if="FirstAuditionImageUrl" title="一审报告：" :arr="FirstAuditionImageUrl" :arrc="C_FirstAuditionImageUrl"></ImgLook>
+			<yd-cell-group>
+	             <yd-accordion>
+			        <yd-accordion-item title="初审意见：">
+			            <div style="padding-left: .48rem;">
+			                <p class="p-left">{{FirstAuditionComment}}</p>
+			            </div>
+			        </yd-accordion-item>
+			    </yd-accordion>
+			</yd-cell-group>
 			<yd-cell-group>
 	             <yd-accordion>
 			        <yd-accordion-item title="一审确认意见：">
@@ -56,6 +221,85 @@
 			    </yd-accordion>
 			</yd-cell-group>
 			<yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">申请贷款金额（万元）：</span>
+		            <span slot="right">{{ExpectedBorrowAmount}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">申请贷款期限（月）：</span>
+		            <span slot="right">{{ExpectedBorrowPeriodInMonth}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">借款用途：</span>
+		            <span slot="right">{{BorrowUsage}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">利息还款来源：</span>
+		            <span slot="right">{{InterestReturnSource}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">本金还款来源：</span>
+		            <span slot="right">{{PrincipalReturnSource}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">共有情况：</span>
+		            <span slot="right">{{ShareOwnerInfo}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">抵押物现状：</span>
+		            <span slot="right">{{PledgeInfo}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">抵押状况：</span>
+		            <span slot="right">{{IsPledged}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">抵押机构：</span>
+		            <span slot="right">{{PledgeOrgnization}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">抵押金额（万元）：</span>
+		            <span slot="right">{{PledgePrice}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">是否结清：</span>
+		            <span slot="right">{{IsLoanPaidOff}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">是否转单：</span>
+		            <span slot="right">{{IsZhuanDan}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">客户需求侧重：</span>
+		            <span slot="right">{{LoanPriority}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+
+			<yd-cell-group>
 	             <yd-accordion>
 			        <yd-accordion-item title="销售立项意见：">
 			            <div style="padding-left: .48rem;">
@@ -64,18 +308,46 @@
 			        </yd-accordion-item>
 			    </yd-accordion>
 			</yd-cell-group>
-			<!-- <ImgLook v-if="" title="立项报告" :arr="HouseValuationImageUrl" :arrc="C_HouseValuationImageUrl"></ImgLook> -->
-			<ImgLook v-if="SecondAuditionImageUrl" title="二审：" :arr="SecondAuditionImageUrl" :arrc="C_SecondAuditionImageUrl"></ImgLook>
-			
 			<yd-cell-group>
 	             <yd-accordion>
-			        <yd-accordion-item title="二审意见：">
+			        <yd-accordion-item title="借款主体风险分析：">
+			            <div style="padding-left: .48rem;">
+			                <p class="p-left">{{SecondAuditionBorrowerSecurityAnalysis}}</p>
+			            </div>
+			        </yd-accordion-item>
+			    </yd-accordion>
+			</yd-cell-group>
+			<yd-cell-group>
+	             <yd-accordion>
+			        <yd-accordion-item title="还款来源分析：">
+			            <div style="padding-left: .48rem;">
+			                <p class="p-left">{{SecondAuditionBorrowerIncomeAnalysis}}</p>
+			            </div>
+			        </yd-accordion-item>
+			    </yd-accordion>
+			</yd-cell-group>
+			<yd-cell-group>
+	             <yd-accordion>
+			        <yd-accordion-item title="偿债能力分析：">
+			            <div style="padding-left: .48rem;">
+			                <p class="p-left">{{SecondAuditionBorrowerPayOffAbilityAnalysis}}</p>
+			            </div>
+			        </yd-accordion-item>
+			    </yd-accordion>
+			</yd-cell-group>
+			<yd-cell-group>
+	             <yd-accordion>
+			        <yd-accordion-item title="风控建议：">
 			            <div style="padding-left: .48rem;">
 			                <p class="p-left">{{SecondAuditionComment}}</p>
 			            </div>
 			        </yd-accordion-item>
 			    </yd-accordion>
 			</yd-cell-group>
+
+			<!-- <ImgLook v-if="" title="立项报告" :arr="HouseValuationImageUrl" :arrc="C_HouseValuationImageUrl"></ImgLook> -->
+			<ImgLook v-if="SecondAuditionImageUrl" title="二审报告：" :arr="SecondAuditionImageUrl" :arrc="C_SecondAuditionImageUrl"></ImgLook>
+			
 			<yd-cell-group>
 	             <yd-accordion>
 			        <yd-accordion-item title="二审确认意见：">
@@ -85,15 +357,7 @@
 			        </yd-accordion-item>
 			    </yd-accordion>
 			</yd-cell-group>
-			<yd-cell-group>
-	             <yd-accordion>
-			        <yd-accordion-item title="联系产品供应方意见：">
-			            <div style="padding-left: .48rem;">
-			                <p class="p-left">{{ContactProductProviderComment}}</p>
-			            </div>
-			        </yd-accordion-item>
-			    </yd-accordion>
-			</yd-cell-group>
+			
 			
 
 			<yd-cell-group v-if="MatchProducts">
@@ -114,7 +378,15 @@
 			        </yd-accordion-item>
 			    </yd-accordion>
 			</yd-cell-group>
-			
+			<yd-cell-group>
+	             <yd-accordion>
+			        <yd-accordion-item title="联系产品供应方意见：">
+			            <div style="padding-left: .48rem;">
+			                <p class="p-left">{{ContactProductProviderComment}}</p>
+			            </div>
+			        </yd-accordion-item>
+			    </yd-accordion>
+			</yd-cell-group>
 
 			<ImgLook v-if="HouseVisitImageUrls" title="下户照片：" :arr="HouseVisitImageUrls" :arrc="C_HouseVisitImageUrls"></ImgLook>
 			<yd-cell-group>
@@ -154,36 +426,33 @@
 		    <ImgLook v-if="ContractImageUrls" title="合同照片：" :arr="ContractImageUrls" :arrc="C_ContractImageUrls"></ImgLook>
 		    <ImgLook v-if="SignContractImageUrls" title="公证面签现场照片：" :arr="SignContractImageUrls" :arrc="C_SignContractImageUrls"></ImgLook>
 		    <ImgLook v-if="PledgeImageUrls" title="进抵现场照片：" :arr="PledgeImageUrls" :arrc="C_PledgeImageUrls"></ImgLook>
-		    <ImgLook v-if="LoanReceivedImageUrls" title="放款现场照片：" :arr="LoanReceivedImageUrls" :arrc="C_LoanReceivedImageUrls"></ImgLook>
-		    
-		    <ImgLook v-if="BorrowerIDNOImageUrls" title="客户身份证照片：" :arr="BorrowerIDNOImageUrls" :arrc="C_BorrowerIDNOImageUrls"></ImgLook>
-		    <ImgLook v-if="BorrowerSpouseIDNOImageUrls" title="客户配偶身份证照片：" :arr="BorrowerSpouseIDNOImageUrls" :arrc="C_BorrowerSpouseIDNOImageUrls"></ImgLook>
-		    <ImgLook v-if="PermanentResidenceBookImageUrls" title="客户户口本照片：" :arr="PermanentResidenceBookImageUrls" :arrc="C_PermanentResidenceBookImageUrls"></ImgLook>
-		    <ImgLook v-if="SpousePermanentResidenceBookImageUrls" title="客户配偶户口本照片：" :arr="SpousePermanentResidenceBookImageUrls" :arrc="C_SpousePermanentResidenceBookImageUrls"></ImgLook>
-		    <ImgLook v-if="MarriageCertificateImageUrls" title="客户婚姻证明材料照片：" :arr="MarriageCertificateImageUrls" :arrc="C_MarriageCertificateImageUrls"></ImgLook>
-
-		    <ImgLook v-if="SpouseMarriageCertificateImageUrls" title="客户配偶婚姻证明材料照片：" :arr="SpouseMarriageCertificateImageUrls" :arrc="C_SpouseMarriageCertificateImageUrls"></ImgLook>
-		    <ImgLook v-if="HouseCertificateImageUrls" title="房产证照片：" :arr="HouseCertificateImageUrls" :arrc="C_HouseCertificateImageUrls"></ImgLook>
+		    <yd-cell-group>
+		        <yd-cell-item type="label">
+		            <span slot="left">放款日期：</span>
+		            <span slot="right">{{LoanReceivedDateTime}}</span>
+		        </yd-cell-item>
+		    </yd-cell-group>
+		    <ImgLook v-if="LoanReceivedImageUrls" title="收放款凭证照片：" :arr="LoanReceivedImageUrls" :arrc="C_LoanReceivedImageUrls"></ImgLook>
 		    <ImgLook v-if="RentalContractImageUrls" title="房屋租赁合同照片：" :arr="RentalContractImageUrls" :arrc="C_RentalContractImageUrls"></ImgLook>
 		    <ImgLook v-if="BuyContractImageUrls" title="原始购房合同照片：" :arr="BuyContractImageUrls" :arrc="C_BuyContractImageUrls"></ImgLook>
 		    <ImgLook v-if="DeedTaxInvoiceImageUrls" title="契税发票照片：" :arr="DeedTaxInvoiceImageUrls" :arrc="C_DeedTaxInvoiceImageUrls"></ImgLook>
 
 		    <ImgLook v-if="LoanContractImageUrls" title="上家借款合同照片：" :arr="LoanContractImageUrls" :arrc="C_LoanContractImageUrls"></ImgLook>
 			<ImgLook v-if="LoanPaidOffCertificateImageUrls" title="上家结清证明照片：" :arr="LoanPaidOffCertificateImageUrls" :arrc="C_LoanPaidOffCertificateImageUrls"></ImgLook>
-		    <ImgLook v-if="BankAccountStatementImageUrls" title="银行流水照片：" :arr="BankAccountStatementImageUrls" :arrc="C_BankAccountStatementImageUrls"></ImgLook>
-		    <ImgLook v-if="PersonalCreditReportImageUrls" title="客户征信报告照片：" :arr="PersonalCreditReportImageUrls" :arrc="C_PersonalCreditReportImageUrls"></ImgLook>
-		    <ImgLook v-if="SpousePersonalCreditReportImageUrls" title="客户配偶征信报告照片：" :arr="SpousePersonalCreditReportImageUrls" :arrc="C_SpousePersonalCreditReportImageUrls"></ImgLook>
+		    
+		    
+		    
 
-		    <ImgLook v-if="CompanyLicenseImageUrl" title="公司营业执照副本照片：" :arr="CompanyLicenseImageUrl" :arrc="C_CompanyLicenseImageUrl"></ImgLook>
-		    <ImgLook v-if="CompanyCreditReportImageUrls" title="企业征信照片：" :arr="CompanyCreditReportImageUrls" :arrc="C_CompanyCreditReportImageUrls"></ImgLook>
-		    <ImgLook v-if="CompanyBankAccountStatementImageUrls" title="对公流水照片：" :arr="CompanyBankAccountStatementImageUrls" :arrc="C_CompanyBankAccountStatementImageUrls"></ImgLook>
-		    <ImgLook v-if="BuySellContractImageUrls" title="购销合同照片：" :arr="BuySellContractImageUrls" :arrc="C_BuySellContractImageUrls"></ImgLook>
+		    
+		    
 		    <ImgLook v-if="GuarantorProofDocumentImageUrls" title="担保人财产共有人同意提供担保的书面文件：" :arr="GuarantorProofDocumentImageUrls" :arrc="C_GuarantorProofDocumentImageUrls"></ImgLook>
 
 		    <ImgLook v-if="BankCardImageUrl" title="银行卡照片：" :arr="BankCardImageUrl" :arrc="C_BankCardImageUrl"></ImgLook>
 		    <ImgLook v-if="CompanyHoldingCertificateImageUrls" title="实控人证明照片：" :arr="CompanyHoldingCertificateImageUrls" :arrc="C_CompanyHoldingCertificateImageUrls"></ImgLook>
-		    <ImgLook v-if="CompanyFinancialStatementImageUrls" title="企业财务报表照片：" :arr="CompanyFinancialStatementImageUrls" :arrc="C_CompanyFinancialStatementImageUrls"></ImgLook>
+		    
 		    <ImgLook v-if="LawsuitFinishCertificateImageUrls" title="诉讼结案证明照片：" :arr="LawsuitFinishCertificateImageUrls" :arrc="C_LawsuitFinishCertificateImageUrls"></ImgLook>
+		    <ImgLook v-if="BuySellContractImageUrls" title="购销合同照片：" :arr="BuySellContractImageUrls" :arrc="C_BuySellContractImageUrls"></ImgLook>
+		    <ImgLook v-if="BuySellContractImageUrls" title="企业章程：" :arr="CompanyArticlesImageUrls" :arrc="CompanyArticlesImageUrls"></ImgLook>
 		    <ImgLook v-if="OtherCertificateImageUrls" title="其他照片：" :arr="OtherCertificateImageUrls" :arrc="C_OtherCertificateImageUrls"></ImgLook>
 
 		</yd-layout>
@@ -203,6 +472,53 @@ export default {
 	name: 'Look',
 	data () {
 		return {
+			LastOperatorName: '',
+			LastOperationDateTime: '',
+			CancelOrderComment: '',
+			HouseArea: '',
+			HouseLocation1: '',
+			HouseType: '',
+			HouseUsage: '',
+			HousePledgePercentage: '',
+			HouseOrientation: '',
+			HouseTotalFloor: '',
+			HouseFloor: '',
+			HouseBuildingFinishYear: '',
+			HouseValuationConfirmComment: '',
+			BorrowerName: '',
+			BorrowerIDNO: '',
+
+			BorrowerMarriageStatus: '',
+			BorrowerSpouseName: '',
+			BorrowerSpouseIDNO: '',
+			BorrowerSpouseMobile: '',
+			HasCompany: '',
+			CompanyName: '',
+			CompanySecurityIDNO: '',
+			CompanyPhone: '',
+			CompanyLegalPersonName: '',
+			CompanyLegalPersonIDNO: '',
+			ExpectedBorrowAmount: '',
+			ExpectedBorrowPeriodInMonth: '',
+			BorrowUsage: '',
+			InterestReturnSource: '',
+			PrincipalReturnSource: '',
+			ShareOwnerInfo: '',
+			PledgeInfo: '',
+			IsPledged : '',
+			PledgeOrgnization: '',
+			PledgePrice: '',
+			IsLoanPaidOff: '',
+			IsZhuanDan: '',
+			LoanPriority: '',
+			SecondAuditionBorrowerSecurityAnalysis: '',
+			SecondAuditionBorrowerIncomeAnalysis: '',
+			SecondAuditionBorrowerPayOffAbilityAnalysis: '',
+			LoanReceivedDateTime: '',
+			CompanyArticlesImageUrls: '',
+
+			FirstAuditionComment: '',
+
 			LastOperationName: '',
 			CurrentOperationName: '', // 当前操作名称,
 			Status: '', // 报单状态: [], 0，正在进行中，1，正常结案，2，中途结案
@@ -252,7 +568,6 @@ export default {
 			LoanReceivedImageUrls: [], // 放款现场照片url
 			C_LoanReceivedImageUrls: [], // 放款现场照片缩略图url
 			// LoanReceivedOperatorName: [], // 放款操作人
-			// LoanReceivedDateTime: [], // 放款操作时间
 			
 			BorrowerIDNOImageUrls: [], // 客户身份证照片url
 			BorrowerSpouseIDNOImageUrls: [], // 客户配偶身份证照片url
@@ -308,7 +623,6 @@ export default {
 			C_LawsuitFinishCertificateImageUrls: [], // 诉讼结案证明照片缩略图url
 			C_OtherCertificateImageUrls: [], // 其它照片缩略图url
 
-
 			BorrowerMobile: '',
 			FirstAuditionConfirmComment: '',
 			SaleOrderValidationComment: '',
@@ -326,9 +640,6 @@ export default {
 		
 		// 返回
 		gotoIndex() {
-			// const { id, hid } = this.$route.params
-   //          // 跳到首页
-			// this.$router.push({ name :'opList',params: { id, hid }})
 			this.$router.go(-1)
 		},
 
@@ -356,6 +667,54 @@ export default {
 				if (res.ret) {
 					const formatData = this.format(res.data)
 					const {
+						LastOperatorName,
+						LastOperationDateTime,
+						CancelOrderComment,
+						HouseArea,
+						HouseLocation1,
+						HouseType,
+						HouseUsage,
+						HousePledgePercentage,
+						HouseOrientation,
+						HouseTotalFloor,
+						HouseFloor,
+						HouseBuildingFinishYear,
+						HouseValuationConfirmComment,
+						BorrowerName,
+						BorrowerIDNO,
+
+						BorrowerMarriageStatus,
+						BorrowerSpouseName,
+						BorrowerSpouseIDNO,
+						BorrowerSpouseMobile,
+						HasCompany,
+						CompanyName,
+						CompanySecurityIDNO,
+						CompanyPhone,
+						CompanyLegalPersonName,
+						CompanyLegalPersonIDNO,
+						ExpectedBorrowAmount,
+						ExpectedBorrowPeriodInMonth,
+						BorrowUsage,
+						InterestReturnSource,
+						PrincipalReturnSource,
+						ShareOwnerInfo,
+						PledgeInfo,
+						IsPledged ,
+						PledgeOrgnization,
+						PledgePrice,
+						IsLoanPaidOff,
+						IsZhuanDan,
+						LoanPriority,
+						SecondAuditionBorrowerSecurityAnalysis,
+						SecondAuditionBorrowerIncomeAnalysis,
+						SecondAuditionBorrowerPayOffAbilityAnalysis,
+						LoanReceivedDateTime,
+						CompanyArticlesImageUrls,
+
+						FirstAuditionComment,
+
+
 						LastOperationName,
 						CurrentOperationName, // 当前操作名称,
 						Status, // 报单状态, 0，正在进行中，1，正常结案，2，中途结案
@@ -405,7 +764,6 @@ export default {
 						LoanReceivedImageUrls, // 放款现场照片url
 						C_LoanReceivedImageUrls, // 放款现场照片缩略图url
 						// LoanReceivedOperatorName, // 放款操作人
-						// LoanReceivedDateTime, // 放款操作时间
 						
 						BorrowerIDNOImageUrls, // 客户身份证照片url
 						BorrowerSpouseIDNOImageUrls, // 客户配偶身份证照片url
@@ -459,7 +817,7 @@ export default {
 						C_LawsuitFinishCertificateImageUrls, // 诉讼结案证明照片缩略图url
 						C_OtherCertificateImageUrls, // 其它照片缩略图url
 
-						BorrowerMobile, // 客户电话
+						BorrowerMobile,
 						FirstAuditionConfirmComment,
 						SaleOrderValidationComment,
 						SecondAuditionComment,
@@ -468,6 +826,54 @@ export default {
 						ConfirmMatchProductComment,
 						LoanRejectionComment,
 					} = formatData || {}
+					this.LastOperatorName = LastOperatorName
+					this.LastOperationDateTime = LastOperationDateTime
+					this.CancelOrderComment = CancelOrderComment
+					this.HouseArea = HouseArea
+					this.HouseLocation1 = HouseLocation1
+					this.HouseType = HouseType
+					this.HouseUsage = HouseUsage
+					this.HousePledgePercentage = HousePledgePercentage
+					this.HouseOrientation = HouseOrientation
+					this.HouseTotalFloor = HouseTotalFloor
+					this.HouseFloor = HouseFloor
+					this.HouseBuildingFinishYear = HouseBuildingFinishYear
+					this.HouseValuationConfirmComment = HouseValuationConfirmComment
+					this.BorrowerName = BorrowerName
+					this.BorrowerIDNO = BorrowerIDNO
+
+					this.BorrowerMarriageStatus = BorrowerMarriageStatus
+					this.BorrowerSpouseName = BorrowerSpouseName
+					this.BorrowerSpouseIDNO = BorrowerSpouseIDNO
+					this.BorrowerSpouseMobile = BorrowerSpouseMobile
+					this.HasCompany = HasCompany
+					this.CompanyName = CompanyName
+					this.CompanySecurityIDNO = CompanySecurityIDNO
+					this.CompanyPhone = CompanyPhone
+					this.CompanyLegalPersonName = CompanyLegalPersonName
+					this.CompanyLegalPersonIDNO = CompanyLegalPersonIDNO
+					this.ExpectedBorrowAmount = parseFloat(ExpectedBorrowAmount/10000)
+					this.ExpectedBorrowPeriodInMonth = ExpectedBorrowPeriodInMonth
+					this.BorrowUsage = BorrowUsage
+					this.InterestReturnSource = InterestReturnSource
+					this.PrincipalReturnSource = PrincipalReturnSource
+					this.ShareOwnerInfo = ShareOwnerInfo
+					this.PledgeInfo = PledgeInfo
+					this.IsPledged  = IsPledged 
+					this.PledgeOrgnization = PledgeOrgnization
+					this.PledgePrice = parseFloat(PledgePrice/10000)
+					this.IsLoanPaidOff = IsLoanPaidOff
+					this.IsZhuanDan = IsZhuanDan
+					this.LoanPriority = LoanPriority
+					this.SecondAuditionBorrowerSecurityAnalysis = SecondAuditionBorrowerSecurityAnalysis
+					this.SecondAuditionBorrowerIncomeAnalysis = SecondAuditionBorrowerIncomeAnalysis
+					this.SecondAuditionBorrowerPayOffAbilityAnalysis = SecondAuditionBorrowerPayOffAbilityAnalysis
+					this.LoanReceivedDateTime = LoanReceivedDateTime
+					this.CompanyArticlesImageUrls = CompanyArticlesImageUrls
+
+					this.FirstAuditionComment = FirstAuditionComment
+
+
 					this.LastOperationName = LastOperationName
 					this.CurrentOperationName = CurrentOperationName // 当前操作名称,
 					this.Status = Status // 报单状态, 0，正在进行中，1，正常结案，2，中途结案
@@ -491,7 +897,7 @@ export default {
 					this.IsLoanApproved = IsLoanApproved // 是否批贷通过
 					this.LoanApprovalImageUrls = LoanApprovalImageUrls // 批贷函照片url
 					this.C_LoanApprovalImageUrls = C_LoanApprovalImageUrls // 批贷函照片缩略图url
-					this.LoanAmount = parseInt(LoanAmount) || '-' // 批贷金额
+					this.LoanAmount = parseFloat(LoanAmount/10000) || '-'// 批贷金额
 					this.LoanPeriodInMonth = LoanPeriodInMonth // 批贷期限
 					this.LoanInterest = LoanInterest // 批贷利率
 										
@@ -559,7 +965,7 @@ export default {
 					this.C_LawsuitFinishCertificateImageUrls = C_LawsuitFinishCertificateImageUrls // 诉讼结案证明照片缩略图url
 					this.C_OtherCertificateImageUrls = C_OtherCertificateImageUrls // 其它照片缩略图url
 
-					this.BorrowerMobile = BorrowerMobile // 客户电话
+					this.BorrowerMobile = BorrowerMobile
 					this.FirstAuditionConfirmComment = FirstAuditionConfirmComment
 					this.SaleOrderValidationComment = SaleOrderValidationComment
 					this.SecondAuditionComment = SecondAuditionComment
@@ -576,6 +982,7 @@ export default {
 				}
 			})
 		},
+
 
 
 
