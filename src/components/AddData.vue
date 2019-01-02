@@ -184,7 +184,13 @@ export default {
 				})
 				return
 			}
-			if (UPLOAD_NUM) {
+			let UPLOAD_TEMP = false
+			Object.keys(UPLOAD_NUM).forEach(k => {
+				if (UPLOAD_NUM[k]) {
+					UPLOAD_TEMP = true
+				}
+			})
+			if (UPLOAD_TEMP) {
 				this.$dialog.toast({
 					mes: '还有图片正在上传！',
 					icon: 'none',

@@ -18,7 +18,7 @@ window.USER_INFO = {
     OperatorRoleId: '',
     OperatorRoleName: '',
 }
-window.UPLOAD_NUM = 0
+window.UPLOAD_NUM = {}
 
 Vue.prototype.pp = GETJSON
 Vue.prototype.JCACHE = JCACHE

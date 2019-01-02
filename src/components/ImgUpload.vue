@@ -73,7 +73,7 @@ export default {
 			this.maxNum = this.max
 		}
 
-		UPLOAD_NUM = 0
+		UPLOAD_NUM = {}
 		uploadObj = {}
 	},
 	methods:{
@@ -93,7 +93,7 @@ export default {
       		const uid = window.sessionStorage.getItem('uid')
         	const token = window.sessionStorage.getItem('token')
       		const OrderId = window.sessionStorage.getItem('OrderId') + ""
-      		const name = this.randomStr(5)
+      		const name = this.randomStr(10)
       		if (uid && token && OrderId) {
 
       		} else {
@@ -109,7 +109,8 @@ export default {
       		that.arr.push(loadingUrl)
       		that.arrc.push(loadingUrl)
 
-      		UPLOAD_NUM = UPLOAD_NUM + 1
+      		// UPLOAD_NUM = UPLOAD_NUM + 1
+      		UPLOAD_NUM[name] = true
       		uploadObj[length] = true // 表示当前位置的图片正在上传
 
       		fd.append('uid', uid)
@@ -145,13 +146,14 @@ export default {
 		            }
 
 		            if (uploadObj[length]) { // 如果没有中途放弃
-		            	UPLOAD_NUM = UPLOAD_NUM - 1
+		            	// UPLOAD_NUM = UPLOAD_NUM - 1
 		            	uploadObj[length] = false
 		            }
+		            UPLOAD_NUM[name] = false
 		        },
 		        error: function (err) {
 		        	if (uploadObj[length]) { // 如果没有中途放弃
-		            	UPLOAD_NUM = UPLOAD_NUM - 1
+		            	// UPLOAD_NUM = UPLOAD_NUM - 1
 		            	uploadObj[length] = false
 		            }
 		            that.$dialog.toast({
@@ -163,6 +165,7 @@ export default {
 					if (that.arrc) {
 						that.arrc.splice(length,1)	
 					}
+					UPLOAD_NUM[name] = false
 		        }
 		    });
 			
@@ -206,40 +209,42 @@ export default {
 		dele(idx) {
 			const OSSFileUrl = this.arr[idx]
 			if (OSSFileUrl == loadingUrl) { // 如果删除的是，正在上传的
-				UPLOAD_NUM = UPLOAD_NUM - 1
+				// UPLOAD_NUM = UPLOAD_NUM - 1
 				uploadObj[idx] = false // 放弃上传
+			} else { // 删除接口
+				let fd = new FormData()
+	      		// const { uid, token } = USER_INFO
+	      		const uid = window.sessionStorage.getItem('uid')
+	        	const token = window.sessionStorage.getItem('token')
+	      		fd.append('uid', uid)
+	      		fd.append('token', token)
+	      		fd.append('OSSFileUrl',OSSFileUrl)
+				$.ajax({
+			        type: "POST",
+			        url: DeleteFileUrl,
+			       	contentType: false,
+			        processData:false,
+	            	mimeType:"multipart/form-data",
+			        data: fd,
+			        dataType: "json",
+			        success: function (res) {
+			            if (res.ret == 'ok') {
+							console.log('删除图片成功')
+						} else {
+							console.log('删除图片失败')
+						}
+			        },
+			        error: function (err) {
+			           	console.log('删除图片失败:',err)
+			        }
+			    });
 			}
 			this.arr.splice(idx,1)
 			if (this.arrc) {
 				this.arrc.splice(idx,1)	
 			}
 			
-			let fd = new FormData()
-      		// const { uid, token } = USER_INFO
-      		const uid = window.sessionStorage.getItem('uid')
-        	const token = window.sessionStorage.getItem('token')
-      		fd.append('uid', uid)
-      		fd.append('token', token)
-      		fd.append('OSSFileUrl',OSSFileUrl)
-			$.ajax({
-		        type: "POST",
-		        url: DeleteFileUrl,
-		       	contentType: false,
-		        processData:false,
-            	mimeType:"multipart/form-data",
-		        data: fd,
-		        dataType: "json",
-		        success: function (res) {
-		            if (res.ret == 'ok') {
-						console.log('删除图片成功')
-					} else {
-						console.log('删除图片失败')
-					}
-		        },
-		        error: function (err) {
-		           	console.log('删除图片失败:',err)
-		        }
-		    });
+			
 		},
 
 
