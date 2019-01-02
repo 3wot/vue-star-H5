@@ -50,7 +50,10 @@ import { Upload } from 'element-ui'
 Vue.use(Upload)
 
 let uploadObj = {}
-
+// const DeleteFileUrl = 'http://39.106.17.212:9005/DeleteFile.ashx'
+const DeleteFileUrl = '/DeleteFile.ashx'
+// const UpLoadFileUrl = 'http://39.106.17.212:9005/UpLoadFile.ashx'
+const UpLoadFileUrl = '/UpLoadFile.ashx'
 export default {
 	components:{
 	// Button,Field
@@ -62,8 +65,7 @@ export default {
 		return {
 			loadingUrl: loadingUrl,
 			maxNum : 999,
-			// uploadUrl: 'http://www.windant.com:9005/UpLoadFile.ashx',
-			uploadUrl: '/UpLoadFile.ashx',
+			uploadUrl: UpLoadFileUrl,
 		}
 	},
 	mounted () {
@@ -117,8 +119,7 @@ export default {
       		
       		$.ajax({
 		        type: "POST",
-		        // url: 'http://www.windant.com:9005/UpLoadFile.ashx',
-		        url: '/UpLoadFile.ashx',
+		        url: UpLoadFileUrl,
 		        contentType: false,
 		        processData:false,
             	mimeType:"multipart/form-data",
@@ -222,8 +223,7 @@ export default {
       		fd.append('OSSFileUrl',OSSFileUrl)
 			$.ajax({
 		        type: "POST",
-		        // url: 'http://www.windant.com:9005/DeleteFile.ashx',
-		        url: '/DeleteFile.ashx',
+		        url: DeleteFileUrl,
 		       	contentType: false,
 		        processData:false,
             	mimeType:"multipart/form-data",
